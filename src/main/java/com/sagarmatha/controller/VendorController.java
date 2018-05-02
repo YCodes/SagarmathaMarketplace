@@ -61,6 +61,7 @@ public class VendorController {
 //		
 		List<Product> products = productService.viewAllProduct();
 		model.addAttribute("products",products);
+		
 		return "vendorDashboard";
 	}
 	
