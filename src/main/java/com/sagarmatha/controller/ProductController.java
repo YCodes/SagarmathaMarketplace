@@ -26,5 +26,17 @@ public class ProductController {
 		
 	}
 
+	@RequestMapping("/customer/product/productdetails")
+	public String getProductDetailsPage() {
+		return "productDetail";
+	}
+	
+	@RequestMapping("/customer/cartPage")
+	public String getCartPage() {
+		return "cartPage";
+	}
+
+
+
 
 }
