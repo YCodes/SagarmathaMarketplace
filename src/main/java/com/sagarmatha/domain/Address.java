@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Address {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "address_id")
 	private Long addressId;
 
@@ -18,12 +18,12 @@ public class Address {
 
 	private String city;
 
+	@Column(name = "zip_code")
+	private String zipCode;
+
 	private String state;
 
 	private String country;
-
-	@Column(name = "zip_code")
-	private String zipCode;
 
 	public Long getAddressId() {
 		return addressId;
@@ -72,4 +72,11 @@ public class Address {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	@Override
+	public String toString() {
+		return "Address [addressId=" + addressId + ", street=" + street + ", city=" + city + ", zipCode=" + zipCode
+				+ ", state=" + state + ", country=" + country + "]";
+	}
+
 }
