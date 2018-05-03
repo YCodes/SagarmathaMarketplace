@@ -20,74 +20,93 @@ import com.sagarmatha.service.VendorService;
 
 @Controller
 public class VendorController {
-	
+
 	@Autowired
 	VendorService vendorService;
-	
+
 	@Autowired
 	ProductService productService;
-	
+
 	@RequestMapping("/vendor/signup")
 	public String vendorSignup() {
 		return "vendorRegistration";
 	}
-	
-	@RequestMapping(value="/vendor/signup", method = RequestMethod.POST)
-	public String addVendorSignup(@ModelAttribute("vendor") @Valid Vendor vendor, BindingResult result, ModelMap model) {
-		
-		if(result.hasErrors()) {
+
+	@RequestMapping(value = "/vendor/signup", method = RequestMethod.POST)
+	public String addVendorSignup(@ModelAttribute("vendor") @Valid Vendor vendor, BindingResult result,
+			ModelMap model) {
+
+		if (result.hasErrors()) {
 			return "redirect:vendor/signup";
 		}
-		
+
 		vendorService.saveVendor(vendor);
-		
-		model.addAttribute("vendorId",vendor.getId());
-		
-		
+
+		model.addAttribute("vendorId", vendor.getId());
+
 		return "redirect:/vendor/dashboard";
-		
+
 	}
-	
+
 	@RequestMapping("/vendor/dashboard")
 	public String vendorDashboard(ModelMap model) {
-		
+
 		Vendor vendor = new Vendor();
 		vendor.setId((long) 27);
 		Vendor vendor_db = vendorService.findVendorById(vendor.getId());
-		
-		model.addAttribute("vendor",vendor_db);
-		
-//		List<Product> products = productService.viewProductByVendorId(vendor_db.getId());
-//		
-		List<Product> products = productService.viewAllProduct();
-		model.addAttribute("products",products);
-		
+
+		model.addAttribute("vendor", vendor_db);
+
 		return "vendorDashboard";
 	}
-	
+
 	@RequestMapping(value = "/vendor/update/{Id}", method = RequestMethod.POST)
-	public String vendorUpdate(@PathVariable("id") Long id, @ModelAttribute("vendorUpdate") @Valid Vendor vendor, BindingResult result, ModelMap model) {
-		if(result.hasErrors()) {
+	public String vendorUpdate(@PathVariable("id") Long id, @ModelAttribute("vendorUpdate") @Valid Vendor vendor,
+			BindingResult result, ModelMap model) {
+		if (result.hasErrors()) {
 			return "redirect:vendor/signup";
 		}
-		
+
 		vendorService.updateVendor(id, vendor);
-		
-		model.addAttribute("vendorId",vendor.getId());
-		
+
+		model.addAttribute("vendorId", vendor.getId());
+
 		return "redirect:/vendor/dashboard";
 	}
-	
+
 	@RequestMapping("/vendor/product/delete/{id}")
 	public String deleteProduct(@PathVariable("id") Long id) {
 		productService.deleteProduct(id);
 		return "redirect:/vendor/dashboard";
 	}
-	
+
 	@RequestMapping(value = "/vendor/product/update/{id}", method = RequestMethod.POST)
 	public String updateProduct(@PathVariable("id") Long id, @ModelAttribute("vendorUpdate") @Valid Product product) {
 		productService.updateProduct((Long) id, product);
 		return "redirect:/vendor/dashboard";
+	}
+
+	@RequestMapping("/vendor/listproduct")
+	public String vendorListProduct(ModelMap model) {
+		List<Product> products = productService.viewAllProduct();
+		model.addAttribute("products", products);
+		return "listproduct";
+	}
+
+	@RequestMapping("/vendor/addproduct")
+	public String vendorAddProduct(ModelMap model) {
+		
+		Vendor vendor = new Vendor();
+		vendor.setId((long) 27);
+		Vendor vendor_db = vendorService.findVendorById(vendor.getId());
+
+		model.addAttribute("vendorId", vendor_db.getId());
+		
+		List<Product> products = productService.viewAllProduct();
+		
+		model.addAttribute("products", products);
+		
+		return "addproduct";
 	}
 
 }

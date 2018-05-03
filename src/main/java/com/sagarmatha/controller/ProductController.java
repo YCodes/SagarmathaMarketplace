@@ -19,7 +19,7 @@ public class ProductController {
 	ProductService productService;
 	
 	// Vendor Add Products from Vendor Dashboard
-	@RequestMapping(value="/vendor/addProduct", method = RequestMethod.POST)
+	@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
 	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result) {
 		productService.addProduct(product);
 		return "redirect:/vendor/dashboard";
