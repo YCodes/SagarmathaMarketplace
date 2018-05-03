@@ -1,5 +1,15 @@
 <%@ include file="admindashboard.jsp"%>
 
+ <div id="header_bottom">
+	        	<p>
+	            	<a href="<c:url value='/admin/addCategory'/>">Add Product Category</a> | 
+	            	<a href="<c:url value='/admin/addAdmin'/>">Add Admin</a>
+	            </p>
+	            
+	        </div> <!-- END of header bottom -->
+	    </div> <!-- END of header -->
+
+
 <div id="tooplate_main">
 	<span class="main_border main_border_t"></span><span
 		class="main_border main_border_b"></span>
