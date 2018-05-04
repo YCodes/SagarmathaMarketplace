@@ -31,18 +31,18 @@
 						<c:forEach var="product" items="${products}">
 
 							<tr>
-								<th scope="row">${product.productId }</th>
+								<th scope="row">${product.productId}</th>
 								<td>${product.product_name }</td>
 								<td>${product.product_category }</td>
 								<td>${product.product_description }</td>
 								<td>${product.product_quantity }</td>
 								<td>${product.product_image }</td>
-								<td><a data-toggle="modal" data-target="#exampleModal" id="editLink"
+								<td><a data-toggle="modal" data-target="#exampleModal${product.productId }" class="editLink"
 									href="#">Edit</a> <a
 									href="product/delete/${product.productId }">Delete</a></td>
 
 							</tr>
-							<div class="modal" id="exampleModal" tabindex="-1"
+							<div class="modal" id="exampleModal${product.productId }" tabindex="-1"
 								role="dialog">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">

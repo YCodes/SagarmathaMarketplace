@@ -14,13 +14,14 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
 <link href="<c:url value='/resources/css/tooplate_style.css'/>" rel="stylesheet" />
 <link href="<c:url value='/resources/css/ddsmoothmenu.css'/>" rel="stylesheet" />
 <link href="<c:url value='/resources/css/admindashboard.css'/>" rel="stylesheet" />
 
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
+
 
 <script type="text/javascript" src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/ddsmoothmenu.js'/>"></script>
