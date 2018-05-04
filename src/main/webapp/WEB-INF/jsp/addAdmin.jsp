@@ -58,10 +58,10 @@
 								id="password_confirmation" class="form-control input-sm"
 								placeholder="Confirm Password" style="width: 300px;">
 						</div>
+						<br />
 
 					</div>
-
-					<hr />
+					
 
 					<div class="col col_1">
 						<h3>ADDRESS</h3>
