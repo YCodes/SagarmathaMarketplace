@@ -24,7 +24,14 @@ public class Vendor {
 	private String last_name;
 	private String phone_number;
 	private String email;
+	private boolean vendorFee;
 
+	public boolean isVendorFee() {
+		return vendorFee;
+	}
+	public void setVendorFee(boolean vendorFee) {
+		this.vendorFee = vendorFee;
+	}
 	@Override
 	public String toString() {
 		return "Vendor [Id=" + Id + ", first_name=" + first_name + ", last_name=" + last_name + ", phone_number="

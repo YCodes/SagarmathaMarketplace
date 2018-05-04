@@ -1,7 +1,8 @@
 jQuery(document).ready(function(){
 	
-	$("#editLink").click(function(){
-		$("#exampleModal").show();
+	$(".editLink").click(function(){
+		var value = $(this).attr("data-target");
+		$("").show();
 		return false;
 	});
 	

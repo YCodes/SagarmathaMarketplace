@@ -25,8 +25,8 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<form:form action="addProduct" method="post"
-						modelAttribute="product">
+					<form:form action="addproduct" method="post"
+						modelAttribute="product" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-xs-6 col-sm-6 col-md-6">
 								<div class="form-group">
