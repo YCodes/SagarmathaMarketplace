@@ -24,6 +24,14 @@ public class Product {
 	private byte[] product_image;
 	private int vendorId;
 	
+	private boolean isActive;
+	
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 	public int getVendorId() {
 		return vendorId;
 	}

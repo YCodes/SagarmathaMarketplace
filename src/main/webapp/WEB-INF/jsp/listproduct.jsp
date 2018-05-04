@@ -42,7 +42,7 @@
 									href="product/delete/${product.productId }">Delete</a></td>
 
 							</tr>
-							<div class="modal" id="exampleModal${product.productId }" tabindex="-1"
+							<div class="modal" id="exampleModal${product.productId}" tabindex="-1"
 								role="dialog">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
