@@ -26,7 +26,7 @@ public class VendorServiceImpl implements VendorService {
 		user.setUserName(vendor.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRole(Role.Vendor);
-		
+		user.setEnabled(true);
 		vendorRepository.save(vendor);
 		
 		
@@ -55,6 +55,13 @@ public class VendorServiceImpl implements VendorService {
 		
 		// start here
 		
+	}
+
+
+	@Override
+	public Vendor findVendorByEmail(String email) {
+		
+		return vendorRepository.findVendorByEmail(email);
 	}
 
 }

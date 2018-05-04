@@ -27,7 +27,7 @@
 						</h3>
 					</div>
 					<div class="panel-body">
-						<form:form action="signup" method="post" modelAttribute="vendor">
+						<form:form action="vendorSignup" method="post" modelAttribute="vendor">
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">

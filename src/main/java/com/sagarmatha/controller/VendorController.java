@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sagarmatha.domain.Product;
 import com.sagarmatha.domain.Vendor;
@@ -27,16 +28,16 @@ public class VendorController {
 	@Autowired
 	ProductService productService;
 	
-	@RequestMapping("/vendor/signup")
+	@RequestMapping("/vendorSignup")
 	public String vendorSignup() {
 		return "vendorRegistration";
 	}
 	
-	@RequestMapping(value="/vendor/signup", method = RequestMethod.POST)
+	@RequestMapping(value="/vendorSignup", method = RequestMethod.POST)
 	public String addVendorSignup(@ModelAttribute("vendor") @Valid Vendor vendor, BindingResult result, ModelMap model) {
 		
 		if(result.hasErrors()) {
-			return "redirect:vendor/signup";
+			return "redirect:vendorSignup";
 		}
 		
 		vendorService.saveVendor(vendor);
@@ -49,12 +50,10 @@ public class VendorController {
 	}
 	
 	@RequestMapping("/vendor/dashboard")
-	public String vendorDashboard(ModelMap model) {
+	public String vendorDashboard(@RequestParam("vendorId") Long vendorId, ModelMap model) {
 		
-		Vendor vendor = new Vendor();
-		vendor.setId((long) 27);
-		Vendor vendor_db = vendorService.findVendorById(vendor.getId());
-		
+		Vendor vendor_db = vendorService.findVendorById(vendorId);
+		System.out.println("vendor controller called"+vendorId);
 		model.addAttribute("vendor",vendor_db);
 		
 //		List<Product> products = productService.viewProductByVendorId(vendor_db.getId());
