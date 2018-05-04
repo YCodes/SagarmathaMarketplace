@@ -34,17 +34,17 @@ public class AdminController {
 		
 		System.out.println("Controller Called for admin######");
 		if(result.hasErrors()) {
-			System.out.println("IN ERROR***************8");
 			return "addAdmin";
 		}
 		
 		adminService.addAdmin(admin);
-		System.out.println("CALLED ADMIN CONTROLLER........" + admin.getEmail());
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/dmin/addAdmin", method=RequestMethod.GET)
-	public String getAllAdmin(Model model) {
-		return "addAdmin";	
+	@RequestMapping(value = "/homepage")
+	public String showHomepage() {
+		return "index";
 	}
+	
+	
 }

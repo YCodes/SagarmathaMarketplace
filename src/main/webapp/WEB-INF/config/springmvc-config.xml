@@ -39,6 +39,7 @@
 		</property>
 	</bean>
 
+
 	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
@@ -54,6 +55,13 @@
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize" value="100000" />
+
 	</bean>
 
 </beans>

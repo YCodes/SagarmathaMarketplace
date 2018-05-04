@@ -109,6 +109,10 @@
 									<input type="text" name="address.country" id="country"
 									class="form-control input-sm" placeholder="Country">
 								</div>
+								
+								<div class="form-group">
+									<input name="vendorFee" id="vendorfee" type="checkbox">Vendor Fee: $2500 
+								</div>
 							
 							</div>
 							

@@ -1,9 +1,12 @@
 package com.sagarmatha.domain;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Product {
@@ -16,9 +19,19 @@ public class Product {
 	private String product_category;
 	private String product_description;
 	private int product_quantity;
-	private String product_image;
+	
+	@Lob @Basic(fetch = FetchType.LAZY)
+	private byte[] product_image;
 	private int vendorId;
 	
+	private boolean isActive;
+	
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 	public int getVendorId() {
 		return vendorId;
 	}
@@ -55,10 +68,10 @@ public class Product {
 	public void setProduct_quantity(int product_quantity) {
 		this.product_quantity = product_quantity;
 	}
-	public String getProduct_image() {
+	public byte[] getProduct_image() {
 		return product_image;
 	}
-	public void setProduct_image(String product_image) {
+	public void setProduct_image(byte[] product_image) {
 		this.product_image = product_image;
 	}
 	
