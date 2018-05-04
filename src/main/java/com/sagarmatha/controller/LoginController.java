@@ -47,6 +47,9 @@ public class LoginController {
 				
 				return "redirect:vendor/dashboard?vendorId="+vendor.getId();
 			}
+			else if(user.getRole().equals(Role.Admin)) {
+				return "redirect:admin/admindashboard";
+			}
 		}
 
 		return "customerPage";
