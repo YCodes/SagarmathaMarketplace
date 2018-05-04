@@ -19,12 +19,17 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	
-	@RequestMapping("/customer/customerSignup")
+	@RequestMapping("customerSignup")
 	public String getCustomerSignUpPage() {
 		return "customerSignup";
 	}
 	
-	@RequestMapping(value="/customer/customerSignup", method = RequestMethod.POST)
+	@RequestMapping("/403")
+	public String custPage() {
+		return "customerPage";
+	}
+	
+	@RequestMapping(value="customerSignup", method = RequestMethod.POST)
 	public String saveCustomer(@ModelAttribute("customer") @Valid Customer customer, BindingResult result) {
 		
 		if(result.hasErrors()) {

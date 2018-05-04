@@ -27,18 +27,18 @@ public class VendorController {
 
 	@Autowired
 	ProductService productService;
-
-	@RequestMapping("/vendor/signup")
+	
+	@RequestMapping("/vendorSignup")
 	public String vendorSignup() {
 		return "vendorRegistration";
 	}
-
-	@RequestMapping(value = "/vendor/signup", method = RequestMethod.POST)
-	public String addVendorSignup(@ModelAttribute("vendor") @Valid Vendor vendor, BindingResult result,
-			ModelMap model) {
-
-		if (result.hasErrors()) {
-			return "redirect:vendor/signup";
+	
+	@RequestMapping(value="/vendorSignup", method = RequestMethod.POST)
+	public String addVendorSignup(@ModelAttribute("vendor") @Valid Vendor vendor, BindingResult result, ModelMap model) {
+		
+		if(result.hasErrors()) {
+			return "redirect:vendorSignup";	
+	
 		}
 
 		vendorService.saveVendor(vendor);
@@ -50,21 +50,18 @@ public class VendorController {
 	}
 
 	@RequestMapping("/vendor/dashboard")
-	public String vendorDashboard(ModelMap model, @RequestParam(value="vendorId", required=false) Long vendorId) {
 
-		if(vendorId == null) {
-		Vendor vendor = new Vendor();
-		vendor.setId((long) 1);
-		Vendor vendor_db = vendorService.findVendorById(vendor.getId());
-		model.addAttribute("vendor", vendor_db);
-		}
-		else {
-			Vendor vendor_db = vendorService.findVendorById(vendorId);
-			model.addAttribute("vendor", vendor_db);
-		}
-
+	public String vendorDashboard(@RequestParam("vendorId") Long vendorId, ModelMap model) {
 		
-
+		Vendor vendor_db = vendorService.findVendorById(vendorId);
+		System.out.println("vendor controller called"+vendorId);
+		model.addAttribute("vendor",vendor_db);
+		
+//		List<Product> products = productService.viewProductByVendorId(vendor_db.getId());
+//		
+		List<Product> products = productService.viewAllProduct();
+		model.addAttribute("products",products);
+		
 		return "vendorDashboard";
 	}
 

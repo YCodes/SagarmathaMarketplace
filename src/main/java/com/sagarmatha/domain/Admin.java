@@ -44,12 +44,6 @@ public class Admin{
 	@Valid
 	private Address address;
 	
-	
-	
-	public Admin() {
-		user = new User();
-	}
-
 	public User getUser() {
 		return user;
 	}
