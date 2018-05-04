@@ -48,8 +48,6 @@ public class ProductController {
 	public String getCartPage() {
 		return "cartPage";
 	}
-
-
-
+	
 
 }
