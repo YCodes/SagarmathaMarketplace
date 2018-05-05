@@ -13,6 +13,8 @@ public interface ProductService {
 	
 	public List<Product> viewAllProduct();
 	
+	public List<Product> viewActiveProducts();
+	
 	public void addProduct(Product product);
 	
 	public List<Product> viewProductByVendorId(Long Id);

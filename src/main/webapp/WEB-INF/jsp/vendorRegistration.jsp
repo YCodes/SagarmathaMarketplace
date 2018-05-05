@@ -27,7 +27,7 @@
 						</h3>
 					</div>
 					<div class="panel-body">
-						<form:form action="signup" method="post" modelAttribute="vendor">
+						<form:form action="vendorsignup" method="post" modelAttribute="vendor">
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
@@ -108,6 +108,10 @@
 								<div class="form-group">
 									<input type="text" name="address.country" id="country"
 									class="form-control input-sm" placeholder="Country">
+								</div>
+								
+								<div class="form-group">
+									<input name="vendorFee" id="vendorfee" type="checkbox">Vendor Fee: $2500 
 								</div>
 							
 							</div>

@@ -21,6 +21,13 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findAll();
 		
 	}
+	
+	@Override
+	public List<Product> viewActiveProducts() {
+		
+		return productRepository.findActiveProducts();
+		
+	}
 
 	@Override
 	public void addProduct(Product product) {
@@ -38,7 +45,9 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void deleteProduct(Long id) {
 
-		productRepository.delete(id);
+		Product product = productRepository.findOne(id);
+		product.setActive(true);
+		productRepository.save(product);
 		
 	}
 

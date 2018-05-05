@@ -1,27 +1,18 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ include file="header.jsp"%>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<div id="header_bottom">
+	<p>
+		<a href="<c:url value='/customer/profile'/>">Customer Profile  |</a>
+	</p>
 
-<link href="<c:url value='/resources/css/login.css'/>" rel="stylesheet" />
-
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
-</head>
-<body>
-	<div class="container">
+</div>
+<!-- END of header bottom -->
+</div>
+<!-- END of header -->
+<div id="tooplate_main">
+	<span class="main_border main_border_t"></span><span
+		class="main_border main_border_b"></span>
 		<div class="row centered-form">
 			<div
 				class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -126,6 +117,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
-</html>
+	<div class="clear"></div>
+</div>
+<!-- END of main -->
+
+
+<%@ include file="footer.jsp"%>

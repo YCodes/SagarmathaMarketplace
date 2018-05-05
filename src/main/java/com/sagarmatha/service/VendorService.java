@@ -12,6 +12,7 @@ public interface VendorService {
 	void saveVendor(Vendor vendor);
 	
 	Vendor findVendorById(Long Id); 
+	Vendor findVendorByEmail(String email);
 	
 	void updateVendor(Long Id, Vendor vendor);
 

@@ -30,6 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 		user.setUserName(customer.getEmail());
 		user.setRole(Role.Customer);
 		user.setPassword(passworEncoder.encode(user.getPassword()));
+		user.setEnabled(true);
 		customerRepository.save(customer);
 	}
 
