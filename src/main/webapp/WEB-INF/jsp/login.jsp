@@ -81,8 +81,10 @@
 							Up Here</a>
 					</div>
 					<div id="demo" class="collapse">
+
 						<a href="customerSignup" class="btn btn-primary">Customer</a> <a
 							href="vendorsignup" class="btn btn-info collapseButton">Vendor</a>
+            
 					</div>
 
 				</div>

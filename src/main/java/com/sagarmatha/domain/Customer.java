@@ -1,5 +1,7 @@
 package com.sagarmatha.domain;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
@@ -45,6 +48,10 @@ public class Customer {
 	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CUSTOMER_ID")
+	private List<Order> orders;
 	
 	
 	public User getUser() {
@@ -85,6 +92,14 @@ public class Customer {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	public String getLastName() {
