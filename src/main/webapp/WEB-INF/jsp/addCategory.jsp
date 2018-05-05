@@ -1,4 +1,5 @@
-<%@ include file="admindashboard.jsp"%>
+<%@ include file="header.jsp"%>
+
 
  <div id="header_bottom">
 	        	<p>

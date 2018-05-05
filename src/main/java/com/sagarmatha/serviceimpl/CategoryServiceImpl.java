@@ -1,5 +1,7 @@
 package com.sagarmatha.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,12 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public void addCategory(Category category) {
 		categoryRepository.save(category);
+	}
+
+	@Override
+	public List<Category> viewAllCategory() {
+		
+		return categoryRepository.findAll();
 	}
 
 	

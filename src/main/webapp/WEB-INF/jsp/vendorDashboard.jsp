@@ -1,4 +1,5 @@
-<%@ include file="admindashboard.jsp"%>
+<%@ include file="header.jsp"%>
+
 
 <div id="header_bottom">
 		<p><a href="<c:url value='/vendor/dashboard'/>">Vendor Dashboard  |</a>
@@ -28,7 +29,9 @@
 									modelAttribute="vendorUpdate">
 									<div class="row">
 										<div class="col-xs-6 col-sm-6 col-md-6">
-											<input type="hidden" name="Id" value="2" >
+
+											<input type="hidden" name="Id" value="1" >
+
 											<div class="form-group">
 												<input type="text" name="first_name" id="first_name"
 													class="form-control input-sm" placeholder="First Name"

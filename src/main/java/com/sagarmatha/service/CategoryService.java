@@ -1,5 +1,7 @@
 package com.sagarmatha.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.sagarmatha.domain.Category;
@@ -8,4 +10,6 @@ import com.sagarmatha.domain.Category;
 public interface CategoryService {
 
 	public void addCategory(Category category);
+
+	public List<Category> viewAllCategory();
 }
