@@ -24,10 +24,6 @@ public class CustomerController {
 		return "customerSignup";
 	}
 	
-	@RequestMapping("/403")
-	public String custPage() {
-		return "customerPage";
-	}
 	
 	@RequestMapping(value="customerSignup", method = RequestMethod.POST)
 	public String saveCustomer(@ModelAttribute("customer") @Valid Customer customer, BindingResult result) {

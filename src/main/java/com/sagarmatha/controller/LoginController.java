@@ -32,12 +32,6 @@ public class LoginController {
 	public String getLoginPage() {
 		return "login";
 	}
-	
-
-	@RequestMapping(value = "/homepage")
-	public String showHomepage() {
-		return "index";
-	}
 
 	@RequestMapping(value = "/loginfailed")
 	public String loginerror(Model model) {
@@ -47,8 +41,8 @@ public class LoginController {
 	
 
 	@RequestMapping("/403")
-	public String custPage() {
-		return "customerPage";
+	public String errorPage() {
+		return "403error";
 	}
 
 	@RequestMapping("/home")
