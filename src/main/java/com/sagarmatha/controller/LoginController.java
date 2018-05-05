@@ -32,17 +32,17 @@ public class LoginController {
 	public String getLoginPage() {
 		return "login";
 	}
-	
-
-	@RequestMapping(value = "/homepage")
-	public String showHomepage() {
-		return "index";
-	}
 
 	@RequestMapping(value = "/loginfailed")
 	public String loginerror(Model model) {
 		model.addAttribute("error", "true");
 		return "login";
+	}
+	
+
+	@RequestMapping("/403")
+	public String errorPage() {
+		return "403error";
 	}
 
 	@RequestMapping("/home")

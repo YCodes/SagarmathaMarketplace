@@ -21,9 +21,9 @@
 
 		<intercept-url pattern="/**,/login, /customerSignup, /vendorSignup,/home"
 			access="permitAll" />
-		<!-- <intercept-url pattern="/admin/**" access="hasRole('Admin')" /> -->
-		<!-- <intercept-url pattern="/customer/**" access="hasRole('Customer')" /> -->
-		<!-- <intercept-url pattern="/vendor/**" access="hasRole('Vendor')"/> -->
+		<!-- <intercept-url pattern="/admin/**" access="hasRole('Admin')" />
+		<intercept-url pattern="/customer/**" access="hasRole('Customer')" />
+		<intercept-url pattern="/vendor/**" access="hasRole('Vendor')" /> -->
 		<intercept-url pattern="/test"
 			access="hasRole('IS_AUTHENICATED_ANONYMOUSLY')" />
 
@@ -52,7 +52,6 @@
 				from user where username=?" />
 		</authentication-provider>
 	</authentication-manager>
-	<!-- <beans:bean id="passwordEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-	</beans:bean> -->
+	<!-- <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"> 
+		</beans:bean> -->
 </beans:beans>
