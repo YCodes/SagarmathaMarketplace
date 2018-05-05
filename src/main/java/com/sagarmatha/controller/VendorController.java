@@ -42,16 +42,16 @@ public class VendorController {
 		}
 
 		vendorService.saveVendor(vendor);
+/*
+		model.addAttribute("vendorId", vendor.getId());*/
 
-		model.addAttribute("vendorId", vendor.getId());
-
-		return "redirect:/vendor/dashboard";
-
+		return "redirect:/vendor/dashboard/{vendorId}"+vendor.getId();
+		
 	}
 
-	@RequestMapping("/vendor/dashboard")
+	@RequestMapping("/vendor/dashboard/{vendorId}")
 
-	public String vendorDashboard(@RequestParam("vendorId") Long vendorId, ModelMap model) {
+	public String vendorDashboard(@PathVariable("vendorId") Long vendorId, ModelMap model) {
 		
 		Vendor vendor_db = vendorService.findVendorById(vendorId);
 		System.out.println("vendor controller called"+vendorId);

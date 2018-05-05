@@ -45,10 +45,5 @@ public class AdminController {
 		return "admindashboard";
 	}
 	
-	@RequestMapping(value = "/homepage")
-	public String showHomepage() {
-		return "index";
-	}
-	
 	
 }
