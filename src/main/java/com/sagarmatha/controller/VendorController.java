@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sagarmatha.domain.Product;
 import com.sagarmatha.domain.Vendor;
@@ -105,7 +104,7 @@ public class VendorController {
 	public String vendorAddProduct(ModelMap model) {
 		
 		Vendor vendor = new Vendor();
-		vendor.setId((long) 3);
+		vendor.setId((long) 1);
 		Vendor vendor_db = vendorService.findVendorById(vendor.getId());
 
 		model.addAttribute("vendorId", vendor_db.getId());
