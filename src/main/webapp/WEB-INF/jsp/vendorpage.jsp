@@ -1,1 +1,0 @@
-This is Vendor page

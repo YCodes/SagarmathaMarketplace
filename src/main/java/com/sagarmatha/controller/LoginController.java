@@ -8,10 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sagarmatha.domain.Category;
 import com.sagarmatha.domain.Product;
 import com.sagarmatha.domain.Role;
 import com.sagarmatha.domain.User;
 import com.sagarmatha.domain.Vendor;
+import com.sagarmatha.service.CategoryService;
 import com.sagarmatha.service.ProductService;
 import com.sagarmatha.service.UserService;
 import com.sagarmatha.service.VendorService;
@@ -27,6 +29,9 @@ public class LoginController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	CategoryService categoryService;
 
 	@RequestMapping(value = { "/login", "/" })
 	public String getLoginPage() {
@@ -69,7 +74,9 @@ public class LoginController {
 	
 	@RequestMapping(value = "/homepage")
 	public String showHomepage(Model model) {
+		List<Category>categories = categoryService.viewAllCategory();
 		List<Product> product = productService.viewAllProduct();
+		model.addAttribute("categories",categories);
 		model.addAttribute("products", product);
 		return "index";
 	}
