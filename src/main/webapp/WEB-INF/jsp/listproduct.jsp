@@ -72,8 +72,8 @@
 																<select name="product_category" id="edit_product_category"
 																	class="form-control input-sm"
 																	placeholder="Product category">
-																	<c:forEach var="category" items="${products}">
-																		<option value="${category.product_category}">${category.product_category}</option>
+																	<c:forEach var="category" items="${categories}">
+																		<option value="${category.categoryName}">${category.categoryName}</option>
 																	</c:forEach>
 
 																</select>

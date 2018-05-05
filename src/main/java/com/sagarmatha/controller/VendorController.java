@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sagarmatha.domain.Category;
 import com.sagarmatha.domain.Product;
 import com.sagarmatha.domain.Vendor;
+import com.sagarmatha.service.CategoryService;
 import com.sagarmatha.service.ProductService;
 import com.sagarmatha.service.VendorService;
 
@@ -27,6 +29,9 @@ public class VendorController {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	CategoryService categoryService;
 	
 	@RequestMapping("/vendorsignup")
 	public String vendorSignup() {
@@ -84,8 +89,13 @@ public class VendorController {
 //		System.out.println(vendor);
 //		List<Product> products = productService.viewActiveProducts(vendor.getId());
 //		System.out.println(products);
+
 		List<Product> products = productService.viewAllProduct();
 		model.addAttribute("products", products);
+		
+		List<Category> categories = categoryService.viewAllCategory();
+		model.addAttribute("categories", categories);
+		
 		return "listproduct";
 	}
 	
@@ -109,9 +119,8 @@ public class VendorController {
 
 		model.addAttribute("vendorId", vendor_db.getId());
 		
-		List<Product> products = productService.viewAllProduct();
-		
-		model.addAttribute("products", products);
+		List<Category> categories = categoryService.viewAllCategory();
+		model.addAttribute("categories", categories);
 		
 		return "addproduct";
 	}
