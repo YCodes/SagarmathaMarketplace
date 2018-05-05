@@ -12,9 +12,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sagarmatha Marketplace - Admin</title>
 
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-
 <link
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
