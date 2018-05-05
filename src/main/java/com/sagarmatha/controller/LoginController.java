@@ -32,6 +32,12 @@ public class LoginController {
 	public String getLoginPage() {
 		return "login";
 	}
+	
+
+	@RequestMapping(value = "/homepage")
+	public String showHomepage() {
+		return "index";
+	}
 
 	@RequestMapping(value = "/loginfailed")
 	public String loginerror(Model model) {
@@ -48,10 +54,10 @@ public class LoginController {
 		Vendor vendor = vendorService.findVendorByEmail(principal.getName());
 		if (user != null) {
 			if (user.getRole().equals(Role.Customer)) {
-				return "redirect:customerSignup";
+				return "redirect:homepage";
 			} else if (user.getRole().equals(Role.Vendor)) {
 				
-				return "redirect:vendor/dashboard?vendorId="+vendor.getId();
+				return "redirect:vendor/dashboard/"+vendor.getId();
 			}
 			else if(user.getRole().equals(Role.Admin)) {
 				return "redirect:admin/admindashboard";

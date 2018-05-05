@@ -1,4 +1,3 @@
 INSERT INTO `sagarmatha`.`user`(`username`, `password`, `enabled`, `role`) VALUES ('admin@mum.edu', 'admin', True, 'Admin');
-INSERT INTO `sagarmatha`.`admin`(`firstname`, `lastname`, `phonenumber`, `email`, `user_id`, `addressid`) VALUES ('admin',
-'admin','1234','admin@mum.edu','1','1');
-INSERT INTO `sagarmatha`.`address`(`street`, `city`, `zip_code`, `state`,'country') VALUES ('1000 North', 'Fairfield', '52557', 'Iowa','US');
+INSERT INTO `sagarmatha`.`admin`(`email`, `firstname`, `lastname`, `phonenumber`, `addressid`, `user_id`) VALUES ('admin@mum.edu','admin','admin','1234','1','1');
+INSERT INTO `sagarmatha`.`address`(`city`, `country`, `state`, `street`,'zip_code') VALUES ('Fairfield', 'US', 'IA', '1000 N','52557');
