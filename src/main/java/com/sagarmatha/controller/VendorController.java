@@ -76,15 +76,16 @@ public class VendorController {
 		Long id = vendor.getId();
 		vendorService.updateVendor(id, vendor);
 
-		model.addAttribute("vendorId", vendor.getId());
-
-		return "redirect:/vendor/dashboard";
+		return "redirect:/vendor/dashboard/"+id;
 	}
 	
 	@RequestMapping("/vendor/listproduct")
 	public String vendorListProduct(Principal principal, ModelMap model) {
-		String vendorUser = principal.getName();
-		List<Product> products = productService.viewActiveProducts();
+//		Vendor vendor = vendorService.findVendorByEmail(principal.getName());
+//		System.out.println(vendor);
+//		List<Product> products = productService.viewActiveProducts(vendor.getId());
+//		System.out.println(products);
+		List<Product> products = productService.viewAllProduct();
 		model.addAttribute("products", products);
 		return "listproduct";
 	}
@@ -102,11 +103,10 @@ public class VendorController {
 	}
 	
 	@RequestMapping("/vendor/addproduct")
-	public String vendorAddProduct(ModelMap model) {
+	public String vendorAddProduct(Principal principal, ModelMap model) {
 		
-		Vendor vendor = new Vendor();
-		vendor.setId((long) 3);
-		Vendor vendor_db = vendorService.findVendorById(vendor.getId());
+		Long vendorId = vendorService.findVendorByEmail(principal.getName()).getId();
+		Vendor vendor_db = vendorService.findVendorById(vendorId);
 
 		model.addAttribute("vendorId", vendor_db.getId());
 		

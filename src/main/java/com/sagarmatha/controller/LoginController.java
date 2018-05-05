@@ -50,13 +50,12 @@ public class LoginController {
 		if (principal == null) {
 			return "redirect:login";
 		}
-		User user = userService.findByEmail(principal.getName());
-		Vendor vendor = vendorService.findVendorByEmail(principal.getName());
+		User user = userService.findByEmail(principal.getName());	
 		if (user != null) {
 			if (user.getRole().equals(Role.Customer)) {
 				return "redirect:homepage";
 			} else if (user.getRole().equals(Role.Vendor)) {
-				
+				Vendor vendor = vendorService.findVendorByEmail(principal.getName());
 				return "redirect:vendor/dashboard/"+vendor.getId();
 			}
 			else if(user.getRole().equals(Role.Admin)) {
