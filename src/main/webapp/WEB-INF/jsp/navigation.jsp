@@ -2,9 +2,9 @@
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,11 +66,15 @@
 
 <link href="<c:url value='/resources/css/slimbox2.css'/>"
 	rel="stylesheet" media="screen" />
+	
+<link href="<c:url value='/resources/css/homenavigation.css'/>"
+	rel="stylesheet" media="screen" />
 <script type="text/javascript"
 	src="<c:url value='/resources/js/slimbox2.js'/>"></script>
 
+
 </head>
-<body>
+<body class="homepage navigationbar">
 	<div id="tooplate_wrapper">
 		<div id="tooplate_header">
 			<div id="header_top">
@@ -95,9 +99,9 @@
 
 			<div id="header_bottom">
 				<p>
-					<a href="<c:url value='/shoppingcart'/>">My Cart</a>
+					<a href="<c:url value='/shoppingcart'/>">My Cart</a> 
 				</p>
-
+				
 				<div id="tooplate_search">
 					<form action="#" method="get">
 						<input type="text" value=" " name="keyword" id="keyword"
@@ -106,6 +110,8 @@
 							type="submit" name="Search" value=" " alt="Search"
 							id="searchbutton" title="Search" class="sub_btn" />
 					</form>
+
+					<tags:header></tags:header>
 				</div>
 			</div>
 			<!-- END of header bottom -->
