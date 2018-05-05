@@ -38,6 +38,12 @@ public class LoginController {
 		model.addAttribute("error", "true");
 		return "login";
 	}
+	
+
+	@RequestMapping("/403")
+	public String custPage() {
+		return "customerPage";
+	}
 
 	@RequestMapping("/home")
 	public String getHome(Principal principal) {
