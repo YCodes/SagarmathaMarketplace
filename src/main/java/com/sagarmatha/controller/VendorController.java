@@ -59,12 +59,10 @@ public class VendorController {
 	public String vendorDashboard(@PathVariable("vendorId") Long vendorId, ModelMap model) {
 		
 		Vendor vendor_db = vendorService.findVendorById(vendorId);
-		System.out.println("vendor controller called"+vendorId);
 		model.addAttribute("vendor",vendor_db);
-		System.out.println(vendor_db);
 		
 //		List<Product> products = productService.viewProductByVendorId(vendor_db.getId());
-//		
+		
 		List<Product> products = productService.viewAllProduct();
 		model.addAttribute("products",products);
 		
