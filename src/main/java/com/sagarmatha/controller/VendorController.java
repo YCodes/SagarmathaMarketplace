@@ -1,5 +1,6 @@
 package com.sagarmatha.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -80,7 +81,8 @@ public class VendorController {
 	}
 	
 	@RequestMapping("/vendor/listproduct")
-	public String vendorListProduct(ModelMap model) {
+	public String vendorListProduct(Principal principal, ModelMap model) {
+		String vendorUser = principal.getName();
 		List<Product> products = productService.viewActiveProducts();
 		model.addAttribute("products", products);
 		return "listproduct";
