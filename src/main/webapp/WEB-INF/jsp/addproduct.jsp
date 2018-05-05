@@ -61,6 +61,12 @@
 								id="product_quantity" class="form-control input-sm"
 								placeholder="Product quantity">
 						</div>
+						
+						<div class="form-group">
+							<input type="number" name="product_price"
+								id="product_price" class="form-control input-sm"
+								placeholder="Product price">
+						</div>
 
 						<div class="form-group">
 							<input type="file" name="product_image" id="product_image"

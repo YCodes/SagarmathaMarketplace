@@ -1,15 +1,18 @@
 package com.sagarmatha.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sagarmatha.domain.Product;
 import com.sagarmatha.domain.Role;
 import com.sagarmatha.domain.User;
 import com.sagarmatha.domain.Vendor;
+import com.sagarmatha.service.ProductService;
 import com.sagarmatha.service.UserService;
 import com.sagarmatha.service.VendorService;
 
@@ -21,6 +24,9 @@ public class LoginController {
 	
 	@Autowired
 	VendorService vendorService;
+	
+	@Autowired
+	ProductService productService;
 
 	@RequestMapping(value = { "/login", "/" })
 	public String getLoginPage() {
@@ -59,6 +65,13 @@ public class LoginController {
 		}
 
 		return "customerPage";
+	}
+	
+	@RequestMapping(value = "/homepage")
+	public String showHomepage(Model model) {
+		List<Product> product = productService.viewAllProduct();
+		model.addAttribute("products", product);
+		return "index";
 	}
 
 }
