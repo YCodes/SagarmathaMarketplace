@@ -13,7 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	public List<Product> findByVendorId(Long Id);
 	
-	@Query("Select p from Product p where p.isActive = 0")
-	public List<Product> findActiveProducts();
+	@Query("Select p from Product p where p.vendorId = ?1 and p.isActive = false")
+	public List<Product> findActiveProducts(Long Id);
 
 }

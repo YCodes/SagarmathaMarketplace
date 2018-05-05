@@ -13,7 +13,7 @@ public interface ProductService {
 	
 	public List<Product> viewAllProduct();
 	
-	public List<Product> viewActiveProducts();
+	public List<Product> viewActiveProducts(Long Id);
 	
 	public void addProduct(Product product);
 	

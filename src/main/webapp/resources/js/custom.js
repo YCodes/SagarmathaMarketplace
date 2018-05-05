@@ -7,13 +7,10 @@ jQuery(document).ready(function(){
 	});
 	
 	$(".close").click(function(){
-		var value = $(this).closest(".modal").attr("id");
-		$(value).hide();
+		$(this).closest(".modal").hide();
 	});
 	
-	$(".modal-footer .btn.btn-secondary").click(function(){
-		var value = $(this).closest(".modal").attr("id");
-		alert(value);
-		$(value).hide();
+	$(".modal-footer .btn.btn-secondary").click(function(){		
+		$(this).closest(".modal").hide();
 	});
 });

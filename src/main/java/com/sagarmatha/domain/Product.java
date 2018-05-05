@@ -1,5 +1,7 @@
 package com.sagarmatha.domain;
 
+import java.util.Arrays;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -82,6 +84,13 @@ public class Product {
 		this.product_image = product_image;
 	}
 	
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", product_name=" + product_name + ", product_category="
+				+ product_category + ", product_description=" + product_description + ", product_quantity="
+				+ product_quantity + ", product_price=" + product_price + ", product_image="
+				+ Arrays.toString(product_image) + ", vendorId=" + vendorId + ", isActive=" + isActive + "]";
+	}
 	
 
 }
