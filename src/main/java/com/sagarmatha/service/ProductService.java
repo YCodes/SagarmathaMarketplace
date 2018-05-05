@@ -9,6 +9,8 @@ import com.sagarmatha.domain.Product;
 @Service
 public interface ProductService {
 	
+	   
+	
 	public List<Product> viewAllProduct();
 	
 	public void addProduct(Product product);
@@ -19,5 +21,6 @@ public interface ProductService {
 	
 	public void updateProduct(Long Id, Product product);
 	
+	public Product findProductById(Long id);
 
 }

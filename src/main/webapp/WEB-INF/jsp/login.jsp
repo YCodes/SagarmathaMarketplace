@@ -68,13 +68,14 @@
 						</form>
 					</div>
 					<div class="panel-footer ">
-						Don't have an account!<a data-toggle="collapse" href="#demo">Sign Up Here</a>
+						Don't have an account!<a data-toggle="collapse" href="#demo">Sign
+							Up Here</a>
 					</div>
 					<div id="demo" class="collapse">
-							<a href="customer/customerSignup" class="btn btn-primary">Customer</a>
-							<a href="#" class="btn btn-info collapseButton">Vendor</a>
+						<a href="customer/customerSignup" class="btn btn-primary">Customer</a>
+						<a href="#" class="btn btn-info collapseButton">Vendor</a>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
