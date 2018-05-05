@@ -50,11 +50,12 @@ public class Vendor {
 	@Valid
 	private User user;
 	
+	
 	public Long getId() {
 		return Id;
 	}
 	public void setId(Long id) {
-		Id = id;
+		this.Id = id;
 	}
 	public String getFirst_name() {
 		return first_name;

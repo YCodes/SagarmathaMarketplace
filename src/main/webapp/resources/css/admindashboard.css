@@ -6,3 +6,7 @@
 #tooplate_wrapper {
     width: 980px;
 }
+
+input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].btn-block {
+    width: 33.5%;
+}
