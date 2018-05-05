@@ -1,5 +1,7 @@
 package com.sagarmatha.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sagarmatha.domain.Admin;
+import com.sagarmatha.domain.Product;
 import com.sagarmatha.service.AdminService;
+import com.sagarmatha.service.ProductService;
 
 @Controller
 public class AdminController {
 
 	@Autowired
 	AdminService adminService;
+	
+	@Autowired
+	ProductService productService;
 	
 	@RequestMapping("/admin/addAdmin")
 	public String getAdmin() {
@@ -43,11 +50,6 @@ public class AdminController {
 	@RequestMapping("/admin/admindashboard")
 	public String getAdminDashboard() {
 		return "admindashboard";
-	}
-	
-	@RequestMapping(value = "/homepage")
-	public String showHomepage() {
-		return "index";
 	}
 	
 	

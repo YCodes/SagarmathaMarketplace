@@ -35,7 +35,7 @@ public class ProductController {
         }
 		
 		productService.addProduct(product);
-		return "redirect:/vendor/dashboard";
+		return "redirect:/vendor/listproduct";
 		
 	}
 

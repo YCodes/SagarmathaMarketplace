@@ -21,6 +21,13 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findAll();
 		
 	}
+	
+	@Override
+	public List<Product> viewActiveProducts() {
+		
+		return productRepository.findActiveProducts();
+		
+	}
 
 	@Override
 	public void addProduct(Product product) {
@@ -59,5 +66,6 @@ public class ProductServiceImpl implements ProductService {
 		
 		
 	}
+
 
 }

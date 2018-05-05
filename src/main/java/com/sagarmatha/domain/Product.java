@@ -19,7 +19,14 @@ public class Product {
 	private String product_category;
 	private String product_description;
 	private int product_quantity;
+	private int product_price;
 	
+	public int getPrice() {
+		return product_price;
+	}
+	public void setPrice(int price) {
+		this.product_price = price;
+	}
 	@Lob @Basic(fetch = FetchType.LAZY)
 	private byte[] product_image;
 	private int vendorId;
