@@ -43,7 +43,7 @@
 									<select name="product_category" id="product_category"
 										class="form-control input-sm" placeholder="Product category">
 										<c:forEach var="category" items="${categories}">
-											<option value="${category.categoryName}">${category.categoryName}</option>
+											<option value="${category.categoryId}">${category.categoryName}</option>
 										</c:forEach>
 
 									</select>

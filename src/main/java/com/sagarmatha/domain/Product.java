@@ -3,12 +3,18 @@ package com.sagarmatha.domain;
 import java.util.Arrays;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+import javax.validation.Valid;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Product {
@@ -18,10 +24,17 @@ public class Product {
 	private Long productId;
 	
 	private String product_name;
-	private String product_category;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Valid
+	private Category product_category;
 	private String product_description;
 	private int product_quantity;
 	private int product_price;
+	@Transient
+	private MultipartFile product_image;
+	private int vendorId;
+	
 	
 	public int getPrice() {
 		return product_price;
@@ -29,8 +42,6 @@ public class Product {
 	public void setPrice(int price) {
 		this.product_price = price;
 	}
-	private String product_image;
-	private int vendorId;
 	
 	private boolean isActive;
 	
@@ -58,10 +69,10 @@ public class Product {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
-	public String getProduct_category() {
+	public Category getProduct_category() {
 		return product_category;
 	}
-	public void setProduct_category(String product_category) {
+	public void setProduct_category(Category product_category) {
 		this.product_category = product_category;
 	}
 	public String getProduct_description() {
@@ -76,10 +87,10 @@ public class Product {
 	public void setProduct_quantity(int product_quantity) {
 		this.product_quantity = product_quantity;
 	}
-	public String getProduct_image() {
+	public MultipartFile getProduct_image() {
 		return product_image;
 	}
-	public void setProduct_image(String product_image) {
+	public void setProduct_image(MultipartFile product_image) {
 		this.product_image = product_image;
 	}
 	
