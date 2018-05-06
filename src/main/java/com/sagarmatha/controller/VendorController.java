@@ -55,7 +55,7 @@ public class VendorController {
 /*
 		model.addAttribute("vendorId", vendor.getId());*/
 
-		return "redirect:/vendor/dashboard/"+vendor.getId();
+		return "redirect:/login";
 		
 	}
 
