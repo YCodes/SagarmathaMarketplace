@@ -31,26 +31,6 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
-	// Vendor Add Products from Vendor Dashboard
-
-	@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
-	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,@RequestParam CommonsMultipartFile[] product_image) {
-		
-		if (product_image != null && product_image.length > 0) {
-            for (CommonsMultipartFile aFile : product_image){
-                  
-                System.out.println("Saving file: " + aFile.getOriginalFilename());
-                 
-                Product uploadFile = new Product();
-                product.setProduct_image(aFile.getBytes());               
-            }
-        }
-		
-		productService.addProduct(product);
-		return "redirect:/vendor/listproduct";
-		
-	}
-
 	// Product details page
 	@RequestMapping("/product/productdetails/{productId}")
 	public String getProductDetailsPage(Model model, @PathVariable Long ProductId) {

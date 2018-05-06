@@ -1,5 +1,8 @@
 package com.sagarmatha.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.sagarmatha.domain.Category;
 import com.sagarmatha.domain.Product;
@@ -50,7 +55,7 @@ public class VendorController {
 /*
 		model.addAttribute("vendorId", vendor.getId());*/
 
-		return "redirect:/vendor/dashboard/{vendorId}"+vendor.getId();
+		return "redirect:/vendor/dashboard/"+vendor.getId();
 		
 	}
 
@@ -122,5 +127,29 @@ public class VendorController {
 		
 		return "addproduct";
 	}
+	
+	// Vendor Add Products from Vendor Dashboard
+
+		@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
+		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,MultipartFile product_image) throws IOException {
+			
+			if (product_image != null) {
+	                  
+	                System.out.println("Saving file: " + product_image.getOriginalFilename());
+	                
+	                byte[] bytes = product_image.getBytes();
+	                String fileName = product_image.getOriginalFilename();
+	                String fileLocation = new File("src/main/webapp/static/images").getAbsolutePath() + "\\" + fileName;
+	                FileOutputStream fos = new FileOutputStream(fileLocation);
+		            fos.write(bytes);
+		            fos.close();   
+	                               
+	        }
+			//product.setProduct_image(fileName);
+			
+			productService.addProduct(product);
+			return "redirect:/vendor/listproduct";
+			
+		}
 
 }
