@@ -21,9 +21,9 @@
 
 		<intercept-url pattern="/**,/login, /customerSignup, /vendorSignup,/home"
 			access="permitAll" />
-		<!-- <intercept-url pattern="/admin/**" access="hasRole('Admin')" />
-		<intercept-url pattern="/customer/**" access="hasRole('Customer')" />
-		<intercept-url pattern="/vendor/**" access="hasRole('Vendor')" /> -->
+		<!-- <intercept-url pattern="/admin/**" access="hasRole('Admin')" /> <intercept-url 
+			pattern="/customer/**" access="hasRole('Customer')" /> <intercept-url pattern="/vendor/**" 
+			access="hasRole('Vendor')" /> -->
 		<intercept-url pattern="/test"
 			access="hasRole('IS_AUTHENICATED_ANONYMOUSLY')" />
 
@@ -42,9 +42,7 @@
 	<authentication-manager>
 
 		<authentication-provider>
-			<!-- <user-service> <user name="test" password="123" authorities="Customer" 
-				/> <user name="bob" password="mypassword" authorities="ROLE_USER" /> </user-service> -->
-			<!-- <password-encoder ref="passwordEncoder" /> -->
+			<password-encoder ref="passwordEncoder" />
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select username, password, enabled from user where 
 				username=?"
@@ -52,6 +50,7 @@
 				from user where username=?" />
 		</authentication-provider>
 	</authentication-manager>
-	<!-- <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"> 
-		</beans:bean> -->
+	<beans:bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</beans:bean>
 </beans:beans>

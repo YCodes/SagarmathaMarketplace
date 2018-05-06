@@ -7,9 +7,9 @@
 <link href="<c:url value='/resources/css/header.css'/>" rel="stylesheet" />
 
 <div id="header">
-	<%-- <security:authorize access="isAnonymous()">
+	<security:authorize access="isAnonymous()">
 		<a href="<spring:url value='/login' />">Login</a>
-	</security:authorize> --%>
+	</security:authorize>
 	<security:authorize access="isAuthenticated()">
 		<span><i><strong>User: <security:authentication
 						property="principal.username" /></strong></i></span>
