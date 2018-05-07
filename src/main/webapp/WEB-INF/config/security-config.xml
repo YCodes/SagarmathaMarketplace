@@ -19,7 +19,7 @@
 
 		<intercept-url pattern="/**,/login, /customerSignup, /vendorSignup,/home"
 			access="permitAll" />
-		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+		<!-- <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" /> -->
 		<intercept-url pattern="/customer/**" access="hasRole('CUSTOMER')" />
 		<intercept-url pattern="/vendor/**" access="hasRole('VENDOR')" />
 		<intercept-url pattern="/test"

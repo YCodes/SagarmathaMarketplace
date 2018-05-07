@@ -25,7 +25,6 @@
 					<th style="width: 10%">Price</th>
 					<th style="width: 8%">Quantity</th>
 					<th style="width: 22%" class="text-center">Subtotal</th>
-					<th style="width: 10%"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,17 +43,9 @@
 							</div>
 						</td>
 						<td data-th="Price">${orderline.product.price}</td>
-						<td data-th="Quantity"><input type="number"
+						<td data-th="Quantity"><input type="number" disabled = "true"
 							class="form-control text-center" value="${orderline.quantity}"></td>
 						<td data-th="Subtotal" class="text-center">${orderline.product.price * orderline.quantity}</td>
-						<td class="actions" data-th="">
-							<button class="btn btn-info btn-sm">
-								<i class="fa fa-refresh"></i>
-							</button>
-							<button class="btn btn-danger btn-sm">
-								<i class="fa fa-trash-o"></i>
-							</button>
-						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -63,11 +54,11 @@
 					<td class="text-center"><strong>totalPrice</strong></td>
 				</tr> -->
 				<tr>
-					<td><a href="<c:url value='/homepage'/>" class="btn btn-warning"><i
+					<%-- <td><a href="<c:url value='/homepage'/>" class="btn btn-warning"><i
 							class="fa fa-angle-left"></i> Continue Shopping</a></td>
-					<td colspan="2" class="hidden-xs"></td>
+					<td colspan="2" class="hidden-xs"></td> --%>
 					<td class="hidden-xs text-center"><strong>Total  $${totalPrice}</strong></td>
-					<td><a href="<c:url value='/checkout'/>" class="btn btn-success btn-block">Checkout
+					<td><a href="<c:url value='/place-order'/>" class="btn btn-success btn-block">Confirm Order
 							<i class="fa fa-angle-right"></i>
 					</a></td>
 				</tr>
