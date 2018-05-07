@@ -25,7 +25,7 @@ public class VendorServiceImpl implements VendorService {
 		User user = vendor.getUser();
 		user.setUserName(vendor.getEmail());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.setRole(Role.Vendor);
+		user.setRole(Role.ROLE_VENDOR);
 		user.setEnabled(true);
 		vendorRepository.save(vendor);
 		
