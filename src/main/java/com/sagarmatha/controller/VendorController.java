@@ -48,8 +48,7 @@ public class VendorController {
 	}
 
 	@RequestMapping(value = "/vendorsignup", method = RequestMethod.POST)
-	public String addVendorSignup(@ModelAttribute("vendor") @Valid Vendor vendor, BindingResult result,
-			ModelMap model) {
+	public String addVendorSignup(@ModelAttribute("vendor") @Valid Vendor vendor, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
 			return "redirect:vendorsignup";
@@ -57,9 +56,6 @@ public class VendorController {
 		}
 
 		vendorService.saveVendor(vendor);
-		/*
-		 * model.addAttribute("vendorId", vendor.getId());
-		 */
 
 		return "redirect:/login";
 
