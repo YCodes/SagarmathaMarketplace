@@ -75,7 +75,7 @@ public class OrderController {
 
 		if (responseCode.equals("5")) {
 			model.addAttribute("error", "Please Enter the Correct Card Detail");
-			return "submitorder";
+			return "paymentDetail";
 		}
 		if (responseCode.equals("6")) {
 			model.addAttribute("error", "Transaction Amount Not Sufficient");

@@ -1,71 +1,158 @@
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ include file = "navigation.jsp" %>
 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div id="tooplate_main">
+	<span class="main_border main_border_t"></span><span
+		class="main_border main_border_b"></span>
+		
+		
+	<div class="container">
+	
+		<div class="col col_2">
+			<h3>Address</h3>
+			
+			<form:form id="submit-payment" modelAttribute="paymentForm" method="post" action="submit">
+			<div class="form-group">
+				<input type="text" name="address.street" id="street"
+					class="form-control input-sm" placeholder="Street"
+					style="width: 300px;">
+			</div>
+			<div class="form-group">
+				<input type="text" name="address.city" id="city"
+					class="form-control input-sm" placeholder="City"
+					style="width: 300px;">
+			</div>
+			<div class="form-group">
+				<input type="text" name="address.zipCode" id="zipcode"
+					class="form-control input-sm" placeholder="Zip Code"
+					style="width: 300px;">
+			</div>
+			<div class="form-group">
+				<input type="text" name="address.state" id="state"
+					class="form-control input-sm" placeholder="State"
+					style="width: 300px;">
+			</div>
+			<div class="form-group">
+				<input type="text" name="address.country" id="country"
+					class="form-control input-sm" placeholder="Country"
+					style="width: 300px;">
+			</div>
+			
+			<br />
+			<br />
+			
+			<h3>Secure Payment</h3>
+				<div class="form-group">
+					<label>Card Holder</label><form:input path="cardHolderName" class="form-control" style="width: 300px;" /> 
+					<label>CVV</label><form:input path="cvv" class="form-control" style="width: 300px;" />
+					<label>Card Number : 16 digits number</label><form:input path="cardNumber" class="form-control" 
+						style="width: 300px;" pattern="[0-9]{16}"/> 
+					<label>Expiration Date</label>
+					<select style="margin-bottom: 10px; margin-right: 10px; width: 200px" name="month" id='expireMM'>
+						<option value=''>Month</option>
+						<option value='01'>January</option>
+						<option value='02'>February</option>
+						<option value='03'>March</option>
+						<option value='04'>April</option>
+						<option value='05'>May</option>
+						<option value='06'>June</option>
+						<option value='07'>July</option>
+						<option value='08'>August</option>
+						<option value='09'>September</option>
+						<option value='10'>October</option>
+						<option value='11'>November</option>
+						<option value='12'>December</option>
+					</select>
+					<select style="margin-bottom: 10px; width: 90px"  name="year" id='expireYY'>
+						<option value=''>Year</option>
+						<option value='18'>2018</option>
+						<option value='19'>2019</option>
+						<option value='20'>2020</option>
+						<option value='21'>2021</option>
+						<option value='22'>2022</option>
+						<option value='23'>2023</option>
+					</select>
+					<label>Zip Code</label>  <form:input path="cardZipcode" class="form-control"  pattern="^\d{5}$" style="width: 300px;" /> 
+				</div>
+				<br />
+				<input type="submit" value="Submit" class="btn btn-info" />
 
-<form:form id="submit-payment" modelAttribute="paymentForm" method="post" action="submit">
-                    <form:hidden path="cardType" id="card-type"/>
-                    <div class="form-group owner">
-                        <label for="owner">Card Holder</label>
-                        <form:input path="cardHolderName" class="form-control" id="owner"/>
+			</form:form>
+			<h5>${error}</h5>
+		</div>
+		
+		<div class="col col_2">
+		<!--REVIEW ORDER-->
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 style="display: inline-block">Review Order</h3> <div class="pull-right"><small><a class="afix-1" href="#">Edit Cart</a></small></div>
+                        </div>
+                        
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-sm-3 col-xs-3">
+                                    <img class="img-responsive" src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
+                                </div>
+                                <div class="col-sm-6 col-xs-6">
+                                    <div class="col-xs-12">Product name</div>
+                                    <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
+                                </div>
+                                <div class="col-sm-3 col-xs-3 text-right">
+                                    <h6><span>$</span>25.00</h6>
+                                </div>
+                            </div>
+                            <div class="form-group"><hr /></div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-xs-3">
+                                    <img class="img-responsive" src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
+                                </div>
+                                <div class="col-sm-6 col-xs-6">
+                                    <div class="col-xs-12">Product name</div>
+                                    <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
+                                </div>
+                                <div class="col-sm-3 col-xs-3 text-right">
+                                    <h6><span>$</span>25.00</h6>
+                                </div>
+                            </div>
+                            <div class="form-group"><hr /></div>
+                            <div class="form-group">
+                                <div class="col-sm-3 col-xs-3">
+                                    <img class="img-responsive" src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
+                                </div>
+                                <div class="col-sm-6 col-xs-6">
+                                    <div class="col-xs-12">Product name</div>
+                                    <div class="col-xs-12"><small>Quantity:<span>2</span></small></div>
+                                </div>
+                                <div class="col-sm-3 col-xs-3 text-right">
+                                    <h6><span>$</span>50.00</h6>
+                                </div>
+                            </div>
+                            <div class="form-group"><hr /></div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <strong>Subtotal</strong>
+                                    <div class="pull-right"><span>$</span><span>200.00</span></div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <small>Shipping</small>
+                                    <div class="pull-right"><span>-</span></div>
+                                </div>
+                            </div>
+                            <div class="form-group"><hr /></div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <strong>Order Total</strong>
+                                    <div class="pull-right"><span>$</span><span>150.00</span></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group CVV">
-                        <label for="cvv">CVV</label>
-                        <form:input path="cvv" class="form-control" id="cvv"/>
-                    </div>
-                    <div class="form-group" id="card-number-field">
-                        <label for="cardNumber">Card Number</label>
-                        <form:input path="cardNumber" class="form-control" id="cardNumber"/>
-                    </div>
-                    <div class="form-group" id="expiration-date">
-                        <label>Expiration Date</label>
-                        <select name="month">
-                            <option value="01">January</option>
-                            <option value="02">February</option>
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                        <select name="year">
-                            <option value="2018"> 2018</option>
-                            <option value="2019"> 2019</option>
-                            <option value="2020"> 2020</option>
-                            <option value="2021"> 2021</option>
-                            <option value="2020"> 2022</option>
-                            <option value="2021"> 2023</option>
-                            <option value="2021"> 2024</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Zipcode</label>
-                        <form:input path="cardZipcode" class="form-control" />
-                    </div>
-                    <div class="form-group" id="credit_cards">
-                        <img src="/resources/paymentdetail/images/visa.jpg" id="visa">
-                        <img src="/resources/paymentdetail/images/mastercard.jpg" id="mastercard">
-                    </div>
-                    <div class="form-group" id="pay-now">
-                        <button type="submit" class="btn btn-default" id="confirm-purchase">Confirm</button>
-                    </div>
-                    
-                    
-            </form:form>
-            <h1>${error}</h1>
+                    <!--REVIEW ORDER END-->
+		</div>
+		
+	</div>
 
-</body>
-</html>
+	<div class="clear"></div>
+</div>
+<!-- END of main -->
+
+<%@ include file = "footer.jsp" %>
