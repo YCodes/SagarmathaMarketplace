@@ -46,6 +46,15 @@
 						name="cardHolder" id="cardHolder" style="width: 300px;"> 
 					<label>CVV</label><input type="text" class="form-control" name="cvv" id="cvv"
 						style="width: 300px;">
+						
+                    <ul class="cards">
+                        <li class="visa">Visa</li>
+                        <li class="mastercard">MasterCard</li>
+                        
+                    </ul>
+                    <div class="clear"></div>
+                                   
+                    
 					<label>Card Number</label><input type="text" class="form-control" name="cardNumber" id="cardNumber"
 						style="width: 300px;"> 
 					<label>Expiration Date</label>
