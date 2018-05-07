@@ -3,7 +3,7 @@
 
 <div id="header_bottom">
 	<p>
-		<a href="<c:url value='/vendor/dashboard'/>">Vendor Dashboard  |</a> <a
+		<a href="<c:url value='/vendor/dashboard/${vendorId}'/>">Vendor Dashboard  |</a> <a
 			href="<c:url value='/vendor/listproduct'/>">List Product | </a><a
 			href="<c:url value='/vendor/addproduct'/>">Add Product</a>
 	</p>
@@ -42,8 +42,8 @@
 								<div class="form-group">
 									<select name="product_category" id="product_category"
 										class="form-control input-sm" placeholder="Product category">
-										<c:forEach var="category" items="${products}">
-											<option value="${category.product_category}">${category.product_category}</option>
+										<c:forEach var="category" items="${categories}">
+											<option value="${category.categoryId}">${category.categoryName}</option>
 										</c:forEach>
 
 									</select>
