@@ -13,8 +13,10 @@ public class ReportController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String report(ModelMap modelMap) {
+		
 		ProductReport pr = new ProductReport();
 		modelMap.put("listProducts", pr.findAll());
+		
 		return "report";
 	}
 
