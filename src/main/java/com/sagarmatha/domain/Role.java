@@ -1,6 +1,7 @@
 package com.sagarmatha.domain;
 
 public enum Role {
-	Admin, Vendor, Customer;
+	
+	ROLE_ADMIN,ROLE_VENDOR,ROLE_CUSTOMER
 
 }
