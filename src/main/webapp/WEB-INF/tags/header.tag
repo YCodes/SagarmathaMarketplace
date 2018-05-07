@@ -16,7 +16,7 @@
 			&nbsp;&nbsp;&nbsp; ||  <i><a id="logout"
 			onclick="document.getElementById('logout-form').submit();">Logout</a></i>
 		<form id="logout-form"
-			action="<spring:url value="/login"></spring:url>" method="post"
+			action="<spring:url value="/logout"></spring:url>" method="post"
 			class="hidden">
 			<security:csrfInput />
 		</form>
