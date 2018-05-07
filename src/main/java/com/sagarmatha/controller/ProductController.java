@@ -1,14 +1,9 @@
 package com.sagarmatha.controller;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
+
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.sagarmatha.domain.Order;
 import com.sagarmatha.domain.OrderLine;
@@ -30,82 +24,72 @@ import com.sagarmatha.domain.Product;
 import com.sagarmatha.service.ProductService;
 
 @Controller
-@SessionAttributes({"order"})
-@RequestMapping("/product")
+@SessionAttributes(value = { "order" })
 public class ProductController {
 
 	@Autowired
 	ProductService productService;
 
+	@ModelAttribute("order")
+	public Order getOrder() {
+		return new Order();
+	}
+
 	// Vendor Add Products from Vendor Dashboard
 
-	/*@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
-	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,@RequestParam CommonsMultipartFile[] product_image) {
-		
+	/*@RequestMapping(value = "/vendor/addproduct", method = RequestMethod.POST)
+	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,
+			@RequestParam CommonsMultipartFile[] product_image) {
+
 		if (product_image != null && product_image.length > 0) {
-            for (CommonsMultipartFile aFile : product_image){
-                  
-                System.out.println("Saving file: " + aFile.getOriginalFilename());
-                 
-                Product uploadFile = new Product();
-                product.setProduct_image(aFile.getBytes());               
-            }
-        }
-		
+			for (CommonsMultipartFile aFile : product_image) {
+
+				System.out.println("Saving file: " + aFile.getOriginalFilename());
+
+				Product uploadFile = new Product();
+//				product.setProduct_image(aFile.getBytes());
+			}
+		}
+
 		productService.addProduct(product);
 		return "redirect:/vendor/listproduct";
-		
+
 	}*/
 
 	// Product details page
-	@RequestMapping("/productdetails/{productId}")
-	public String getProductDetailsPage(Model model, @PathVariable("productId") Long ProductId, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		System.out.println("here");
+	@RequestMapping("/product/productdetails/{productId}")
+	public String getProductDetailsPage(Model model, @PathVariable("productId") Long ProductId) {
 		OrderLine orderLine = new OrderLine();
 		orderLine.setQuantity(1);
 		orderLine.setProduct(productService.findProductById(ProductId));
 		model.addAttribute("orderLine", orderLine);
 		return "productDetail";
-	}	 	
+	}
 
-	@RequestMapping(value="/addToCart/{productId}", method = RequestMethod.GET)
-	@ModelAttribute("order")
-	public ModelAndView addProductToCart( Model model, @PathVariable("productId") long id, SessionStatus sessionStatus, HttpServletRequest request) {
-		System.out.println("inside add to cart ");
-		HttpSession cart = request.getSession();
-		
-//		Product product = productService.findProductById(id);
-//		Order order = new Order();
-//		List<OrderLine> orderLineList = new ArrayList();
-//		OrderLine orderLine = new OrderLine();
-//		orderLine.setProduct(product);
-//		
-//		orderLineList.add(orderLine);
-//		
-//		order.setOrderLine(orderLineList);
-//		model.addAttribute("cart", (Order)cart);
-		
-//		System.out.println(model==null);
-		Order order = (Order)cart.getAttribute("order");
-		System.out.println(order.getOrderLine().get(0).getProduct().getProduct_name());
-		
-		List<OrderLine> orderLines = ((Order) cart).getOrderLine();
+	@RequestMapping(value = "/product/addToCart/{productId}", method = RequestMethod.GET)
+	public String addProductToCart(Model model, @ModelAttribute("order") Order order,
+			// @RequestParam("quantity") int quantity,
+			@PathVariable Long productId) {
+
+		System.out.println(productId);
+		List<OrderLine> orderLines = order.getOrderLine();
 		Boolean orderLineExists = false;
 		for (OrderLine orderLine : orderLines) {
-			if (orderLine.getProduct().getProductId() == id) {
+			if (orderLine.getProduct().getProductId() == productId) {
+				orderLine.setQuantity(1);
 				orderLineExists = true;
 			}
 		}
 		if (!orderLineExists) {
 			OrderLine orderLine = new OrderLine();
-			orderLine.setProduct(productService.findProductById(id));
+			orderLine.setProduct(productService.findProductById(productId));
+			orderLine.setQuantity(1);
 			orderLines.add(orderLine);
-			((Order) cart).setOrderLine(orderLines);	
+			order.setOrderLine(orderLines);
 		}
-		ModelAndView mnv = new ModelAndView("cartPage");
-		return mnv;
+		return "redirect:/homepage";
 	}
+	
 	
 
 }

@@ -1,31 +1,36 @@
 package com.sagarmatha.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.sagarmatha.domain.Address;
 import com.sagarmatha.domain.Order;
-import com.sagarmatha.model.SubmitForm;
+import com.sagarmatha.domain.User;
 import com.sagarmatha.service.OrderService;
+import com.sagarmatha.service.UserService;
 
 @Controller
 @SessionAttributes(value = "order")
-@RequestMapping("order")
 public class OrderController {
+
+	@ModelAttribute("order")
+	public Order gerOrder() {
+		return new Order();
+	}
 
 	@Autowired
 	public OrderService orderService;
+	
+	@Autowired
+	public UserService userService;
+	
 
 	@RequestMapping("/shoppingcart")
 	public String createOrderPage(Model model, @ModelAttribute("order") Order order) {
@@ -36,6 +41,7 @@ public class OrderController {
 		else
 			return "cartPage";
 	}
+
 	
 	/*@RequestMapping(value="/order", method=RequestMethod.POST)
 	public String createOrder(Order order) {
@@ -48,7 +54,16 @@ public class OrderController {
 		model.addAttribute("total", 1500);
 		return "submitorder";
 
-	}
+
+	@RequestMapping(value = "/shoppingcart", method = RequestMethod.GET)
+	public String showCart(Model model, @ModelAttribute("order") Order order) {
+
+		model.addAttribute("order", order);
+		int totalQuantities = order.getOrderLine().stream().mapToInt(or -> or.getQuantity()).sum();
+		double totalPrice = order.getOrderLine().stream()
+				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
+		model.addAttribute("orderedQuantities", totalQuantities);
+		model.addAttribute("totalPrice", totalPrice);
 
 	@PostMapping("checkout/submit")
 	public String checkoutCustomerOrder(Model model, @ModelAttribute("paymentForm") SubmitForm paymentForm,
@@ -64,14 +79,17 @@ public class OrderController {
 					
 		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s", ""));
 		paymentForm.setCardExpirationDate(month + "/" + year);
+r
 
-		List<String> destionationscard = new ArrayList<>();
-		destionationscard.add("1233333333");
-		destionationscard.add("12112121221");
-		destionationscard.add("1212121221");
-		String responseCode = orderService.doTransaction("111", paymentForm.getCardNumber(),
-				paymentForm.getCardExpirationDate(), paymentForm.getCardHolderName(), paymentForm.getCvv(),
-				paymentForm.getCardZipcode(), (double) 100, "789456123", destionationscard);
+		if (order.getOrderLine().size() == 0)
+			return "redirect:/homepage";
+		else
+			return "cartPage";
+
+	}
+
+	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
+	public String confirmOrder(Model model, @ModelAttribute("order") Order order) {
 
 		if (responseCode.equals("5")) {
 			model.addAttribute("error", "Please Enter the Correct Card Detail");
@@ -82,7 +100,46 @@ public class OrderController {
 			return "submitorder";
 		}
 		//orderService.reduceStockAndSave(order);
-		return "ordersuccess";
+	//	return "ordersuccess";
 
+
+		model.addAttribute("order", order);
+		int totalQuantities = order.getOrderLine().stream().mapToInt(or -> or.getQuantity()).sum();
+		double totalPrice = order.getOrderLine().stream()
+				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
+		model.addAttribute("orderedQuantities", totalQuantities);
+		model.addAttribute("totalPrice", totalPrice);
+		
+		return "confirmedOrder";
+	}
+	/*
+	 * @RequestMapping(value="/order", method=RequestMethod.POST) public String
+	 * createOrder(Order order) { orderService.saveOrder(order); return
+	 * "redirect:/"; }
+	 */
+	
+	@RequestMapping(value = "/place-order", method = RequestMethod.GET)
+	public String placeOrder(Model model, @ModelAttribute("order") Order order, SessionStatus sessionStatus, Authentication principal) {
+		
+		double totalPrice = order.getOrderLine().stream()
+				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
+	
+		
+		String email = principal.getName();
+		User user = userService.findByEmail(email);
+		
+		
+//		Customer customer= (Customer)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		Customer customer = (Customer)user;
+		
+		order.setTotalPrice(totalPrice);
+//		order.setCustomer(customer);
+		
+		orderService.saveOrder(order);
+		
+		sessionStatus.setComplete();
+		
+		
+		return "redirect:/homepage";
 	}
 }

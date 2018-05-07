@@ -14,8 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
-import org.hibernate.validator.constraints.Email;
-
 import com.sagarmatha.validator.EmailExist;
 
 
@@ -38,8 +36,7 @@ public class Customer {
 	private String phoneNumber;
 	
 	@Column(name="email")
-	@EmailExist
-	@Email(message = "{email.not.valid}")
+	@EmailExist(message="Email already exists")
 	private String email;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

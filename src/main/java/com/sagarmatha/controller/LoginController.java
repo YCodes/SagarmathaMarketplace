@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.sagarmatha.domain.Category;
 import com.sagarmatha.domain.Role;
@@ -45,6 +48,7 @@ public class LoginController {
 		return "login";
 	}
 
+
 	@RequestMapping("/logouts")
 	public String logoutSuccessful() {
 		System.out.println("Logout success called.......");
@@ -56,11 +60,11 @@ public class LoginController {
 		return "403error";
 	}
 
+
 	@RequestMapping(value = { "/home", "/homepage" })
 	public String getHome(@RequestParam("categoryId") Optional<Long> categoryId, Model model, Principal principal) {
-
 		if (principal == null) {
-			return "redirect:/login";
+			return "redirect:login";
 		}
 		User user = userService.findByEmail(principal.getName());
 		if (user != null) {
@@ -81,11 +85,13 @@ public class LoginController {
 				return "redirect:vendor/dashboard/" + vendor.getId();
 			} else if (user.getRole().equals(Role.ROLE_ADMIN)) {
 				return "redirect:admin/addAdmin";
+
 			}
 		}
 
 		return "customerPage";
 	}
+
 
 	/*
 	 * @RequestMapping(value = "/homepage") public String showHomepage(Model model)
@@ -94,5 +100,6 @@ public class LoginController {
 	 * model.addAttribute("categories",categories); model.addAttribute("products",
 	 * product); return "index"; }
 	 */
+
 
 }
