@@ -53,7 +53,6 @@
 				<div id="site_title">
 					<a href="<c:url value='/'/>">Sagarmatha Marketplace</a>
 				</div>
-				<tags:header></tags:header>
 			</div>
 			
 			<!-- END of header top -->

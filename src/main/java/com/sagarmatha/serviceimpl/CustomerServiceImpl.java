@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 		BCryptPasswordEncoder passworEncoder = new BCryptPasswordEncoder();
 		User user = customer.getUser();
 		user.setUserName(customer.getEmail());
-		user.setRole(Role.Customer);
+		user.setRole(Role.ROLE_CUSTOMER);
 		user.setPassword(passworEncoder.encode(user.getPassword()));
 		user.setEnabled(true);
 		customerRepository.save(customer);
