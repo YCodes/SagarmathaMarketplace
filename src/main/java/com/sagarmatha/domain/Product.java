@@ -57,8 +57,6 @@ public class Product {
 	public void setPrice(int price) {
 		this.product_price = price;
 	}
-	private String product_image;
-	private int vendorId;
 	
 	private boolean isActive;
 	
@@ -100,12 +98,7 @@ public class Product {
 	public void setProduct_quantity(int product_quantity) {
 		this.product_quantity = product_quantity;
 	}
-	public String getProduct_image() {
-		return product_image;
-	}
-	public void setProduct_image(String product_image) {
-		this.product_image = product_image;
-	}
+
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", product_name=" + product_name + ", category=" + category
