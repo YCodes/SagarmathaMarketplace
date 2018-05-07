@@ -28,5 +28,11 @@ public class CategoryServiceImpl implements CategoryService{
 		return categoryRepository.findAll();
 	}
 
+	@Override
+	public Category findOne(Long Id) {
+		
+		return categoryRepository.findOne(Id);
+	}
+
 	
 }
