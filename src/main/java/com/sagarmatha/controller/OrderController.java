@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.sagarmatha.domain.Address;
 import com.sagarmatha.domain.Order;
 import com.sagarmatha.domain.User;
 import com.sagarmatha.service.OrderService;
@@ -41,6 +42,19 @@ public class OrderController {
 			return "cartPage";
 	}
 
+	
+	/*@RequestMapping(value="/order", method=RequestMethod.POST)
+	public String createOrder(Order order) {
+		orderService.saveOrder(order);
+		return "redirect:/";
+	}*/
+	
+	@GetMapping("checkout/submit")
+	public String getcheckoutCustomerOrder(Model model,@ModelAttribute("paymentForm") SubmitForm paymentForm) {
+		model.addAttribute("total", 1500);
+		return "submitorder";
+
+
 	@RequestMapping(value = "/shoppingcart", method = RequestMethod.GET)
 	public String showCart(Model model, @ModelAttribute("order") Order order) {
 
@@ -51,6 +65,22 @@ public class OrderController {
 		model.addAttribute("orderedQuantities", totalQuantities);
 		model.addAttribute("totalPrice", totalPrice);
 
+	@PostMapping("checkout/submit")
+	public String checkoutCustomerOrder(Model model, @ModelAttribute("paymentForm") SubmitForm paymentForm,
+			@RequestParam("month") String month, @RequestParam("year") String year) {
+		/*Order order = new Order();
+		Address shippingAddress = new Address();
+		shippingAddress.setCity(paymentForm.getCity());
+		shippingAddress.setCountry(paymentForm.getCountry());
+		shippingAddress.setState(paymentForm.getState());
+		shippingAddress.setStreet(paymentForm.getStreet());
+		shippingAddress.setZipCode(paymentForm.getZipCode());
+		order.setShippingAddress(shippingAddress);*/
+					
+		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s", ""));
+		paymentForm.setCardExpirationDate(month + "/" + year);
+r
+
 		if (order.getOrderLine().size() == 0)
 			return "redirect:/homepage";
 		else
@@ -60,6 +90,18 @@ public class OrderController {
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
 	public String confirmOrder(Model model, @ModelAttribute("order") Order order) {
+
+		if (responseCode.equals("5")) {
+			model.addAttribute("error", "Please Enter the Correct Card Detail");
+			return "paymentDetail";
+		}
+		if (responseCode.equals("6")) {
+			model.addAttribute("error", "Transaction Amount Not Sufficient");
+			return "submitorder";
+		}
+		//orderService.reduceStockAndSave(order);
+	//	return "ordersuccess";
+
 
 		model.addAttribute("order", order);
 		int totalQuantities = order.getOrderLine().stream().mapToInt(or -> or.getQuantity()).sum();

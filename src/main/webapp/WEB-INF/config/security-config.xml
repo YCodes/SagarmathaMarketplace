@@ -11,13 +11,13 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd">
-		
+
 	<global-method-security pre-post-annotations="enabled" />
 
 	<http use-expressions="true">
 		<csrf disabled="true" />
 
-		<intercept-url pattern="/**,/login, /customerSignup, /vendorSignup,/home"
+		<intercept-url pattern="/**,/login,/logouts, /customerSignup, /vendorSignup,/home"
 			access="permitAll" />
 		<!-- <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" /> -->
 		<intercept-url pattern="/customer/**" access="hasRole('CUSTOMER')" />
@@ -29,11 +29,11 @@
 
 		<form-login login-page='/login' login-processing-url="/j_spring_security_check"
 			default-target-url="/home" always-use-default-target="true"
-			authentication-failure-url="/loginfailed"/>
+			authentication-failure-url="/loginfailed" />
 
-		<logout logout-success-url="/logout"
-			delete-cookies="JSESSIONID" invalidate-session="true" />
-				
+		<logout logout-success-url="/logouts" delete-cookies="JSESSIONID"
+			invalidate-session="true" />
+
 	</http>
 
 	<authentication-manager alias="authenticationManager">

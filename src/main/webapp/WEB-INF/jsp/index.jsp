@@ -15,10 +15,14 @@
 							alt="image" /></a>
 					</div>
 					<h2>
-						<a href="product/productdetails/${product.productId}">${product.product_name}</a>
+
+						<a href="product/productdetails/${product.productId}">${product.product_name}<br />
+						Quantity available:${product.product_quantity}<br/>
+						Price:$ ${product.product_price}<br/>
+						</a>
 					</h2>
-					<p class="price">$30</p>
-				</div>
+					
+        </div>
 			</c:forEach>
 
 		</div>

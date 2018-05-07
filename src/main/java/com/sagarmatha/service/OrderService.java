@@ -9,4 +9,5 @@ public interface OrderService {
 	
 	public void saveOrder(Order order) ;
 
+	public void reduceStockAndSave(Order order);
 }

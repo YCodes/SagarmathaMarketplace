@@ -34,7 +34,7 @@
 							<tr>
 								<th scope="row">${product.productId}</th>
 								<td>${product.product_name }</td>
-								<td>${product.product_category }</td>
+								<td>${product.category.categoryName }</td>
 								<td>${product.product_description }</td>
 								<td>${product.product_quantity }</td>
 								<td>${product.product_image }</td>
