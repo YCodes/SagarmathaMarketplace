@@ -30,8 +30,20 @@ public class Order implements Serializable {
 	@JoinColumn(name = "CUSTOMER_ID")
 	private Customer customer;
 	
+	@OneToOne
+	private Address shippingAddress;
+	
+	public Address getShippingAddress() {
+		return shippingAddress;
+	}
+
+	public void setShippingAddress(Address shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
 	@Column(name = "TOTAL_PRICE")
 	private double totalPrice;
+	
 	
 	public Order() {
 		super();

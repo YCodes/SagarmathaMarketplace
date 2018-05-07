@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.sagarmatha.domain.Address;
 import com.sagarmatha.domain.Order;
 import com.sagarmatha.model.SubmitForm;
 import com.sagarmatha.service.OrderService;
@@ -43,7 +44,8 @@ public class OrderController {
 	}*/
 	
 	@GetMapping("checkout/submit")
-	public String getcheckoutCustomerOrder(@ModelAttribute("paymentForm") SubmitForm paymentForm) {
+	public String getcheckoutCustomerOrder(Model model,@ModelAttribute("paymentForm") SubmitForm paymentForm) {
+		model.addAttribute("total", 1500);
 		return "submitorder";
 
 	}
@@ -51,6 +53,15 @@ public class OrderController {
 	@PostMapping("checkout/submit")
 	public String checkoutCustomerOrder(Model model, @ModelAttribute("paymentForm") SubmitForm paymentForm,
 			@RequestParam("month") String month, @RequestParam("year") String year) {
+		/*Order order = new Order();
+		Address shippingAddress = new Address();
+		shippingAddress.setCity(paymentForm.getCity());
+		shippingAddress.setCountry(paymentForm.getCountry());
+		shippingAddress.setState(paymentForm.getState());
+		shippingAddress.setStreet(paymentForm.getStreet());
+		shippingAddress.setZipCode(paymentForm.getZipCode());
+		order.setShippingAddress(shippingAddress);*/
+					
 		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s", ""));
 		paymentForm.setCardExpirationDate(month + "/" + year);
 
@@ -70,6 +81,7 @@ public class OrderController {
 			model.addAttribute("error", "Transaction Amount Not Sufficient");
 			return "submitorder";
 		}
+		//orderService.reduceStockAndSave(order);
 		return "ordersuccess";
 
 	}
