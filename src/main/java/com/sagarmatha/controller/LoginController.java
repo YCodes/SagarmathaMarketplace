@@ -44,6 +44,10 @@ public class LoginController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/logout")
+	public String logoutSuccessful() {
+		return "redirect:/login";
+	}
 
 	@RequestMapping("/403")
 	public String errorPage() {
@@ -57,14 +61,14 @@ public class LoginController {
 		}
 		User user = userService.findByEmail(principal.getName());	
 		if (user != null) {
-			if (user.getRole().equals(Role.Customer)) {
+			if (user.getRole().equals(Role.ROLE_CUSTOMER)) {
 				return "redirect:homepage";
-			} else if (user.getRole().equals(Role.Vendor)) {
+			} else if (user.getRole().equals(Role.ROLE_VENDOR)) {
 				Vendor vendor = vendorService.findVendorByEmail(principal.getName());
 				return "redirect:vendor/dashboard/"+vendor.getId();
 			}
-			else if(user.getRole().equals(Role.Admin)) {
-				return "redirect:admin/admindashboard";
+			else if(user.getRole().equals(Role.ROLE_ADMIN)) {
+				return "redirect:admin/addAdmin";
 			}
 		}
 

@@ -18,7 +18,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = EmailExistValidator.class)
 @Documented
 public @interface EmailExist {
-	String message() default "Email Already Exist";
+	String message() default "Email already exists";
 	Class<?>[] groups() default {};
 	public abstract Class<? extends Payload>[] payload() default {};
 

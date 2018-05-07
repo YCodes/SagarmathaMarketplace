@@ -26,7 +26,7 @@ public class AdminServiceImpl implements AdminService {
 		BCryptPasswordEncoder passworEncoder = new BCryptPasswordEncoder();
 		User user = admin.getUser();
 		user.setUserName(admin.getEmail());
-		user.setRole(Role.Admin);
+		user.setRole(Role.ROLE_ADMIN);
 		user.setPassword(passworEncoder.encode(user.getPassword()));
 		user.setEnabled(true);
 		adminRepository.save(admin);
