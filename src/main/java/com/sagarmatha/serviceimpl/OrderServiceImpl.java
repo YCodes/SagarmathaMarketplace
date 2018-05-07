@@ -1,16 +1,22 @@
 package com.sagarmatha.serviceimpl;
 
+import java.awt.PageAttributes.MediaType;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sagarmatha.domain.Order;
 import com.sagarmatha.model.TransactionRequest;
 import com.sagarmatha.repository.OrderRepository;
 import com.sagarmatha.service.OrderService;
+import com.sagarmatha.util.JsonConverter;
 
 @Service
 @Transactional
@@ -35,17 +41,23 @@ public class OrderServiceImpl implements OrderService{
 		
 		TransactionRequest transactionRequest = new TransactionRequest(txnId, srcCardNo, expirationDate, nameOnCard, CVV, zipCode, amount, dstCardNo,destinatioinscard);
          
-	/*	String sendData;
+	   String sendData = null;
 		try {
 			sendData = JsonConverter.<TransactionRequest>objectToJson(transactionRequest);
 		} catch (JsonProcessingException e) {
 		
 			e.printStackTrace();
-		}*/
+		}
 		
+		String encodedString = Base64.getEncoder().encodeToString(sendData.getBytes());
 		String resultReceive;
 		
-		resultReceive=restTemplate.postForObject(uri, transactionRequest,String.class);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
+		
+		HttpEntity<String> entity = new HttpEntity<String>(encodedString, headers);
+		
+		resultReceive=restTemplate.postForObject(uri, entity,String.class);
 	
 		System.out.println(resultReceive);
 		return resultReceive;

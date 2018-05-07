@@ -1,5 +1,7 @@
 package com.sagarmatha.rest;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +23,14 @@ public class BTransactionRestController {
 	 
 	 @PostMapping(value="/bank/mock/transaction/api")
 		public ResponseEntity<String> doTransaction(@RequestBody String requestString){
+		 System.out.println("TR - " + requestString);
+		 byte[] decodedBytes = Base64.getDecoder().decode(requestString);
+		 String decodedString = new String(decodedBytes);
 			System.out.println("******************************");
-			 System.out.println("TR - " + requestString);
-			 String receviceresponse = btransactionservice.doTransaction(requestString);
+			 System.out.println("TR - " + decodedString);
+			 String receviceresponse = btransactionservice.doTransaction(decodedString);
 			return new ResponseEntity<String>(receviceresponse,HttpStatus.OK);
 		}
 	
-	@GetMapping(value="/bank/mock/transaction/api")
-	public ResponseEntity<String> doTransaction(){
-		System.out.println("******************************");
-	     
-		
-		return new ResponseEntity<String>("3",HttpStatus.OK);
-	}
 
 }
