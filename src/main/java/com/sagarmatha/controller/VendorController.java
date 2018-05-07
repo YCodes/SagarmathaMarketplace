@@ -130,7 +130,7 @@ public class VendorController {
 
 		@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
 		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,MultipartFile product_image) throws IOException {
-			
+			/*
 			if (product_image != null) {
 	                  
 	                System.out.println("Saving file: " + product_image.getOriginalFilename());
@@ -142,9 +142,9 @@ public class VendorController {
 		            fos.write(bytes);
 		            fos.close();   
 	                               
-	        }
+	        }*/
 			//product.setProduct_image(fileName);
-			
+			System.out.println("ADD PRODUCT");
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";
 			
