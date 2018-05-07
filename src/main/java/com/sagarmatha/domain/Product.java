@@ -1,11 +1,17 @@
 package com.sagarmatha.domain;
 
+import java.util.Arrays;
+
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.Lob;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
@@ -43,6 +49,7 @@ public class Product {
 	public void setProduct_price(int product_price) {
 		this.product_price = product_price;
 	}
+
 	
 	public int getPrice() {
 		return product_price;
@@ -50,6 +57,8 @@ public class Product {
 	public void setPrice(int price) {
 		this.product_price = price;
 	}
+	private String product_image;
+	private int vendorId;
 	
 	private boolean isActive;
 	
@@ -78,6 +87,7 @@ public class Product {
 		this.product_name = product_name;
 	}
 
+
 	public String getProduct_description() {
 		return product_description;
 	}
@@ -90,10 +100,10 @@ public class Product {
 	public void setProduct_quantity(int product_quantity) {
 		this.product_quantity = product_quantity;
 	}
-	public MultipartFile getProduct_image() {
+	public String getProduct_image() {
 		return product_image;
 	}
-	public void setProduct_image(MultipartFile product_image) {
+	public void setProduct_image(String product_image) {
 		this.product_image = product_image;
 	}
 	@Override

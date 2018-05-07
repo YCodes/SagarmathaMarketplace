@@ -9,8 +9,6 @@
 	
 		<div class="col col_2">
 			<h3>Address</h3>
-			
-			<form:form id="submit-payment" modelAttribute="paymentForm" method="post" action="submit">
 			<div class="form-group">
 				<input type="text" name="address.street" id="street"
 					class="form-control input-sm" placeholder="Street"
@@ -22,7 +20,7 @@
 					style="width: 300px;">
 			</div>
 			<div class="form-group">
-				<input type="text" name="address.zipCode" id="zipcode"
+				<input type="number" name="address.zipCode" id="zipcode"
 					class="form-control input-sm" placeholder="Zip Code"
 					style="width: 300px;">
 			</div>
@@ -41,13 +39,17 @@
 			<br />
 			
 			<h3>Secure Payment</h3>
+			<form:form role="form" action="confirmPayment" method="POST"
+				modelAttribute="payment">
 				<div class="form-group">
-					<label>Card Holder</label><form:input path="cardHolderName" class="form-control" style="width: 300px;" /> 
-					<label>CVV</label><form:input path="cvv" class="form-control" style="width: 300px;" />
-					<label>Card Number : 16 digits number</label><form:input path="cardNumber" class="form-control" 
-						style="width: 300px;" pattern="[0-9]{16}"/> 
+					<label>Card Holder</label><input type="text" class="form-control"
+						name="cardHolder" id="cardHolder" style="width: 300px;"> 
+					<label>CVV</label><input type="text" class="form-control" name="cvv" id="cvv"
+						style="width: 300px;">
+					<label>Card Number</label><input type="text" class="form-control" name="cardNumber" id="cardNumber"
+						style="width: 300px;"> 
 					<label>Expiration Date</label>
-					<select style="margin-bottom: 10px; margin-right: 10px; width: 200px" name="month" id='expireMM'>
+					<select style="margin-bottom: 10px; margin-right: 10px; width: 200px" name='expireMM' id='expireMM'>
 						<option value=''>Month</option>
 						<option value='01'>January</option>
 						<option value='02'>February</option>
@@ -62,7 +64,7 @@
 						<option value='11'>November</option>
 						<option value='12'>December</option>
 					</select>
-					<select style="margin-bottom: 10px; width: 90px"  name="year" id='expireYY'>
+					<select style="margin-bottom: 10px; width: 90px" name='expireYY' id='expireYY'>
 						<option value=''>Year</option>
 						<option value='18'>2018</option>
 						<option value='19'>2019</option>
@@ -71,13 +73,13 @@
 						<option value='22'>2022</option>
 						<option value='23'>2023</option>
 					</select>
-					<label>Zip Code</label>  <form:input path="cardZipcode" class="form-control"  pattern="^\d{5}$" style="width: 300px;" /> 
+					<label>Zip Code</label><input type="text" class="form-control"
+						name="zipcode" id="zipcode" pattern="^\d{5}$" style="width: 300px;"> 
 				</div>
 				<br />
 				<input type="submit" value="Submit" class="btn btn-info" />
 
 			</form:form>
-			<h5>${error}</h5>
 		</div>
 		
 		<div class="col col_2">
