@@ -1,27 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<link href="<c:url value='/resources/css/login.css'/>" rel="stylesheet" />
-
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
-</head>
-<body>
-	<div class="container">
+<%@ include file="headerForSignup.jsp"%>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div id="tooplate_main">
+	<span class="main_border main_border_t"></span><span
+		class="main_border main_border_b"></span>
 		<div class="row centered-form">
 			<div
 				class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -56,7 +41,7 @@
 							<div class="form-group">
 								<input type="email" name="email" id="email"
 									class="form-control input-sm" placeholder="Email Address">
-									<form:errors path="email" cssClass="error"/>
+									<form:errors path="email" class="error"/>
 							</div>
 
 							<div class="row">
@@ -64,6 +49,7 @@
 									<div class="form-group">
 										<input type="password" name="user.password" id="password"
 											class="form-control input-sm" placeholder="Password">
+											<form:errors path="password" class="error"/>
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
@@ -126,6 +112,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
-</html>
+	<div class="clear"></div>
+</div>
+<!-- END of main -->
+
+
+<%@ include file="footer.jsp"%>

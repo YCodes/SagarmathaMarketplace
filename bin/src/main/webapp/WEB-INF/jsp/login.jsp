@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +34,7 @@
 						<strong> Sign in to continue</strong>
 					</div>
 					<div class="panel-body">
-						<form role="form" action="#" method="POST">
+						<form role="form" action="j_spring_security_check" method="POST">
 							<fieldset>
 								<div class="row">
 									<div>
@@ -47,7 +50,7 @@
 												<span class="input-group-addon"> <i
 													class="glyphicon glyphicon-user"></i>
 												</span> <input class="form-control" placeholder="Username"
-													name="loginname" type="text" autofocus>
+													name="username" type="text" autofocus>
 											</div>
 										</div>
 										<div class="form-group">
@@ -58,26 +61,37 @@
 													name="password" type="password" value="">
 											</div>
 										</div>
+										<c:if test="${not empty error}">
+											<p class="error">
+												<spring:message
+													code="AbstractUserDetailsAuthenticationProvider.badCredentials" />
+											</p>
+										</c:if>
 										<div class="form-group">
 											<input type="submit" class="btn btn-lg btn-primary btn-block"
-												value="Sign in">
+												value="Sign in" name="login-btn">
 										</div>
 									</div>
 								</div>
 							</fieldset>
+								<security:csrfInput />
 						</form>
 					</div>
 					<div class="panel-footer ">
-						Don't have an account!<a data-toggle="collapse" href="#demo">Sign Up Here</a>
+						Don't have an account!<a data-toggle="collapse" href="#demo">Sign
+							Up Here</a>
 					</div>
 					<div id="demo" class="collapse">
-							<a href="customer/customerSignup" class="btn btn-primary">Customer</a>
-							<a href="#" class="btn btn-info collapseButton">Vendor</a>
+
+						<a href="customerSignup" class="btn btn-primary">Customer</a> <a
+							href="vendorsignup" class="btn btn-info collapseButton">Vendor</a>
+
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 
