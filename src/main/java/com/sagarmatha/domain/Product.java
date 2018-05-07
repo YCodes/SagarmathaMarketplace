@@ -9,10 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import javax.validation.Valid;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,9 +27,9 @@ public class Product {
 	
 	private String product_name;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@Valid
-	private Category product_category;
+	@ManyToOne()
+    @JoinColumn(name = "categoryId")
+    private Category category;
 	private String product_description;
 	private int product_quantity;
 	private int product_price;
@@ -35,6 +37,19 @@ public class Product {
 	private MultipartFile product_image;
 	private int vendorId;
 	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public int getProduct_price() {
+		return product_price;
+	}
+	public void setProduct_price(int product_price) {
+		this.product_price = product_price;
+	}
+
 	
 	public int getPrice() {
 		return product_price;
@@ -42,6 +57,8 @@ public class Product {
 	public void setPrice(int price) {
 		this.product_price = price;
 	}
+	private String product_image;
+	private int vendorId;
 	
 	private boolean isActive;
 	
@@ -69,12 +86,8 @@ public class Product {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
-	public Category getProduct_category() {
-		return product_category;
-	}
-	public void setProduct_category(Category product_category) {
-		this.product_category = product_category;
-	}
+
+
 	public String getProduct_description() {
 		return product_description;
 	}
@@ -87,20 +100,21 @@ public class Product {
 	public void setProduct_quantity(int product_quantity) {
 		this.product_quantity = product_quantity;
 	}
-	public MultipartFile getProduct_image() {
+	public String getProduct_image() {
 		return product_image;
 	}
-	public void setProduct_image(MultipartFile product_image) {
+	public void setProduct_image(String product_image) {
 		this.product_image = product_image;
 	}
-	
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", product_name=" + product_name + ", product_category="
-				+ product_category + ", product_description=" + product_description + ", product_quantity="
-				+ product_quantity + ", product_price=" + product_price + ", product_image="
-				+ product_image + ", vendorId=" + vendorId + ", isActive=" + isActive + "]";
+		return "Product [productId=" + productId + ", product_name=" + product_name + ", category=" + category
+				+ ", product_description=" + product_description + ", product_quantity=" + product_quantity
+				+ ", product_price=" + product_price + ", product_image=" + product_image + ", vendorId=" + vendorId
+				+ ", isActive=" + isActive + "]";
 	}
+	
+	
 	
 
 }

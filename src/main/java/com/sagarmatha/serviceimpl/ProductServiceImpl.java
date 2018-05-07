@@ -1,5 +1,6 @@
 package com.sagarmatha.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
 		Product product_db = productRepository.findOne(Id);
 		
 		product_db.setProduct_name(product.getProduct_name());
-		product_db.setProduct_category(product.getProduct_category());
+		product_db.setCategory(product.getCategory());
 		product_db.setProduct_description(product.getProduct_description());
 		product_db.setProduct_quantity(product.getProduct_quantity());
 		product_db.setProduct_image(product.getProduct_image());
@@ -70,6 +71,13 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product findProductById(Long id) {
 		return productRepository.findOne(id);
+	}
+
+	@Override
+	public List<Product> findByCategoryId(Long productCategory) {
+		 List<Product>productList = new ArrayList<>();
+	        productList.addAll(productRepository.findByCategory_CategoryId(productCategory));
+	        return productList;
 	}
 
 }

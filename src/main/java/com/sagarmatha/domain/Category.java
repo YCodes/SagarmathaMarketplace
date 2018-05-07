@@ -1,12 +1,17 @@
 package com.sagarmatha.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Category implements Serializable{
@@ -21,6 +26,17 @@ public class Category implements Serializable{
 	
 	@Column(name ="category_description")
 	private String categoryDescription;
+	
+	@OneToMany(mappedBy = "category",fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<Product> products;
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 
 	public Long getCategoryId() {
 		return categoryId;
