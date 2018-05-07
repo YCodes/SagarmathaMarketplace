@@ -144,7 +144,7 @@ public class VendorController {
 	                               
 	        }*/
 			//product.setProduct_image(fileName);
-			
+			System.out.println("ADD PRODUCT");
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";
 			
