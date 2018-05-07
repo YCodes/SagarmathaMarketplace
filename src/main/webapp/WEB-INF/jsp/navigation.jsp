@@ -110,7 +110,6 @@
 							type="submit" name="Search" value=" " alt="Search"
 							id="searchbutton" title="Search" class="sub_btn" />
 					</form>
-
 					<tags:header></tags:header>
 				</div>
 			</div>

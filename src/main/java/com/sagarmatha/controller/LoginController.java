@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.sagarmatha.domain.Category;
 import com.sagarmatha.domain.Product;
@@ -45,7 +46,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/logout")
-	public String logoutSuccessful() {
+	public String logoutSuccessful(SessionStatus sessionStatus) {
+		sessionStatus.setComplete();
 		return "redirect:/login";
 	}
 
@@ -54,15 +56,20 @@ public class LoginController {
 		return "403error";
 	}
 
-	@RequestMapping("/home")
-	public String getHome(Principal principal) {
+	@RequestMapping(value= {"/home","/homepage"})
+	public String getHome(Model model, Principal principal) {
+		
 		if (principal == null) {
-			return "redirect:login";
+			return "redirect:/login";
 		}
 		User user = userService.findByEmail(principal.getName());	
 		if (user != null) {
 			if (user.getRole().equals(Role.ROLE_CUSTOMER)) {
-				return "redirect:homepage";
+				List<Category>categories = categoryService.viewAllCategory();
+				List<Product> product = productService.viewAllProduct();
+				model.addAttribute("categories",categories);
+				model.addAttribute("products", product);
+				return "index";
 			} else if (user.getRole().equals(Role.ROLE_VENDOR)) {
 				Vendor vendor = vendorService.findVendorByEmail(principal.getName());
 				return "redirect:vendor/dashboard/"+vendor.getId();
@@ -75,13 +82,13 @@ public class LoginController {
 		return "customerPage";
 	}
 	
-	@RequestMapping(value = "/homepage")
+	/*@RequestMapping(value = "/homepage")
 	public String showHomepage(Model model) {
 		List<Category>categories = categoryService.viewAllCategory();
 		List<Product> product = productService.viewAllProduct();
 		model.addAttribute("categories",categories);
 		model.addAttribute("products", product);
 		return "index";
-	}
+	}*/
 
 }
