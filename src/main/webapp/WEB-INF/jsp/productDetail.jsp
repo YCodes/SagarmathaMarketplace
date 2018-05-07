@@ -16,72 +16,75 @@
 </head>
 <body>
 	<div class="container">
-		<form:form action="productDetail" method="post"
-			modelAttribute="product">
-			<div class="card">
-				<div class="row">
-					<aside class="col-sm-5 border-right">
-						<article class="gallery-wrap">
-							<div class="img-big-wrap">
-								<div>
-									<a href="#"><img
-										src="https://s9.postimg.org/tupxkvfj3/image.jpg"></a>
-								</div>
+		<%
+			
+		%>
+		<%-- <form:form action="../addToCart/${orderLine.product.productId}" method="post"> --%>
+		<div class="card">
+			<div class="row">
+				<aside class="col-sm-5 border-right">
+					<article class="gallery-wrap">
+						<div class="img-big-wrap">
+							<div>
+								<a href="#"><img
+									src="https://s9.postimg.org/tupxkvfj3/image.jpg"> </a>
 							</div>
-							<!-- slider-product.// -->
-						</article>
-						<!-- gallery-wrap .end// -->
-					</aside>
-					<aside class="col-sm-7">
-						<article class="card-body">
-							<h3 class="title mb-3">Original Version of Some product name</h3>
+						</div>
+						<!-- slider-product.// -->
+					</article>
+					<!-- gallery-wrap .end// -->
+				</aside>
+				<aside class="col-sm-7">
+					<article class="card-body">
+						<h3 class="title mb-3">${orderLine.product.product_name}</h3>
 
-							<p class="price-detail-wrap">
-								<span class="price h3 text-warning"> <span
-									class="currency">US $</span><span class="num">1299</span>
-								</span>
-							</p>
-							<!-- price-detail-wrap .// -->
-							<dl class="item-property">
-								<dt>Description</dt>
-								<dd>
-									<p>This is the description field</p>
-								</dd>
-							</dl>
-							<hr>
-							<div class="row">
-								<div class="col-sm-12">
-									<dl class="param param-inline">
-										<dt>Quantity:</dt>
-										<dd>
-											<select class="form-control form-control-sm"
-												style="width: 70px;">
-												<option> 1 </option>
-												<option> 2 </option>
-												<option> 3 </option>
-											</select>
-										</dd>
-									</dl>
-									<!-- item-property .// -->
-								</div>
-								<!-- col.// -->
+						<p class="price-detail-wrap">
+							<span class="price h3 text-warning"> </span> 
+							<span class="currency">US</span> 
+							<%-- <span class="num">${orderLine.product.product_price}</span> --%>
+						</p>
+						<!-- price-detail-wrap .// -->
+						<dl class="item-property">
+							<dt>Description</dt>
+							<dd>
+								<p>${orderLine.product.product_description}</p>
+							</dd>
+						</dl>
+						<hr>
+						<div class="row">
+							<div class="col-sm-12">
+								<dl class="param param-inline">
+									<dt>Quantity:</dt>
+									<dd>
+										<select class="form-control form-control-sm"
+											style="width: 70px;">
+											<option> 1 </option>
+											<option> 2 </option>
+											<option> 3 </option>
+										</select>
+									</dd>
+								</dl>
+								<!-- item-property .// -->
 							</div>
+							<!-- col.// -->
+						</div>
 
-							<hr>
-							<a href="#" class="btn btn-lg btn-outline-primary text-uppercase">
-								<i class="fas fa-shopping-cart"></i> Add to cart
-							</a>
-						</article>
-						<!-- card-body.// -->
-					</aside>
-					<!-- col.// -->
-				</div>
-				<!-- row.// -->
+						<hr>
+						<a href="<c:url value='/product/addToCart/${orderLine.product.productId}'/>"><button
+								class="btn btn-lg btn-outline-primary text-uppercase"
+								value="Add to cart">Add To Cart</button></a>
+
+					</article>
+					<!-- card-body.// -->
+				</aside>
+				<!-- col.// -->
 			</div>
-			<!-- card.// -->
+			<!-- row.// -->
+		</div>
+		<!-- card.// -->
 
 
-		</form:form>
+		<%-- </form:form> --%>
 
 
 
