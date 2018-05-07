@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sagarmatha.domain.Order;
+import com.sagarmatha.domain.OrderLine;
 import com.sagarmatha.model.TransactionRequest;
 import com.sagarmatha.repository.OrderRepository;
 import com.sagarmatha.service.OrderService;
@@ -61,6 +62,17 @@ public class OrderServiceImpl implements OrderService{
 	
 		System.out.println(resultReceive);
 		return resultReceive;
+	}
+
+	@Override
+	public void reduceStockAndSave(Order order) {
+
+		for(OrderLine ol : order.getOrderLine()) {
+			int stock = ol.getProduct().getProduct_quantity();
+			int quantity = ol.getQuantity();
+			ol.getProduct().setProduct_quantity(stock-quantity);
+		}
+		orderRepository.save(order);
 	}
 
 }
