@@ -38,7 +38,7 @@ public class VendorController {
 
 	@Autowired
 	CategoryService categoryService;
-	
+
 	@Autowired
 	ServletContext context;
 
@@ -95,10 +95,11 @@ public class VendorController {
 
 	@RequestMapping("/vendor/listproduct")
 	public String vendorListProduct(Principal principal, ModelMap model) {
-		// Vendor vendor = vendorService.findVendorByEmail(principal.getName());
-		// System.out.println(vendor);
-		// List<Product> products = productService.viewActiveProducts(vendor.getId());
-		// System.out.println(products);
+		
+		Long vendorId = vendorService.findVendorByEmail(principal.getName()).getId();
+		Vendor vendor_db = vendorService.findVendorById(vendorId);
+
+		model.addAttribute("vendorId", vendor_db.getId());
 
 		List<Product> products = productService.viewAllProduct();
 		model.addAttribute("products", products);
@@ -109,9 +110,10 @@ public class VendorController {
 		return "listproduct";
 	}
 
-	@RequestMapping(value = "/vendor/product/update/{id}", method = RequestMethod.POST)
-	public String updateProduct(@PathVariable("id") Long id, @ModelAttribute("vendorUpdate") @Valid Product product) {
-		productService.updateProduct((Long) id, product);
+	@RequestMapping(value = "/vendor/product/update", method = RequestMethod.POST)
+	public String updateProduct(@ModelAttribute("vendorUpdate") @Valid Product product) {
+		Long id = product.getProductId();
+		productService.updateProduct(id, product);
 		return "redirect:/vendor/listproduct";
 	}
 
@@ -138,22 +140,23 @@ public class VendorController {
 	// Vendor Add Products from Vendor Dashboard
 
 	@RequestMapping(value = "/vendor/addproduct", method = RequestMethod.POST)
-	public String vendorAddProduct(@Validated Product productimg, @ModelAttribute("product") @Valid Product product,
-			BindingResult result, ModelMap model) throws IOException {
+	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,
+			ModelMap model) throws IOException {
 
-//		if (result.hasErrors()) {
-//			System.out.println("validation errors");
-//			return "addproduct";
-//		} else {
-//			System.out.println("Fetching file");
-//			MultipartFile multipartFile = productimg.getProduct_image();
-//			String uploadPath = context.getRealPath("") + File.separator + "products" + File.separator;
-//			// Now do something with file...
-//			FileCopyUtils.copy(productimg.getProduct_image().getBytes(),
-//					new File(uploadPath + product.getProduct_image().getOriginalFilename()));
-//			String fileName = multipartFile.getOriginalFilename();
-//
-//		}
+		// if (result.hasErrors(s)) {
+		// System.out.println("validation errors");
+		// return "addproduct";
+		// } else {
+		// System.out.println("Fetching file");
+		// MultipartFile multipartFile = productimg.getProduct_image();
+		// String uploadPath = context.getRealPath("") + File.separator + "products" +
+		// File.separator;
+		// // Now do something with file...
+		// FileCopyUtils.copy(productimg.getProduct_image().getBytes(),
+		// new File(uploadPath + product.getProduct_image().getOriginalFilename()));
+		// String fileName = multipartFile.getOriginalFilename();
+		//
+		// }
 
 		// System.out.println("base 1");
 
