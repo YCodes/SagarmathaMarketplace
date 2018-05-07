@@ -4,15 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.sagarmatha.domain.Address;
 import com.sagarmatha.domain.Order;
 import com.sagarmatha.domain.User;
+import com.sagarmatha.model.SubmitForm;
 import com.sagarmatha.service.OrderService;
 import com.sagarmatha.service.UserService;
 
@@ -43,16 +47,11 @@ public class OrderController {
 	}
 
 	
-	/*@RequestMapping(value="/order", method=RequestMethod.POST)
-	public String createOrder(Order order) {
-		orderService.saveOrder(order);
-		return "redirect:/";
-	}*/
-	
 	@GetMapping("checkout/submit")
 	public String getcheckoutCustomerOrder(Model model,@ModelAttribute("paymentForm") SubmitForm paymentForm) {
 		model.addAttribute("total", 1500);
 		return "submitorder";
+	}
 
 
 	@RequestMapping(value = "/shoppingcart", method = RequestMethod.GET)
@@ -64,12 +63,17 @@ public class OrderController {
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
 		model.addAttribute("orderedQuantities", totalQuantities);
 		model.addAttribute("totalPrice", totalPrice);
+		if (order.getOrderLine().size() == 0)
+			return "redirect:/homepage";
+		else
+			return "cartPage";
+	}
 
 	@PostMapping("checkout/submit")
 	public String checkoutCustomerOrder(Model model, @ModelAttribute("paymentForm") SubmitForm paymentForm,
 			@RequestParam("month") String month, @RequestParam("year") String year) {
-		/*Order order = new Order();
-		Address shippingAddress = new Address();
+		Order order = new Order();
+		/*Address shippingAddress = new Address();
 		shippingAddress.setCity(paymentForm.getCity());
 		shippingAddress.setCountry(paymentForm.getCountry());
 		shippingAddress.setState(paymentForm.getState());
@@ -79,7 +83,6 @@ public class OrderController {
 					
 		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s", ""));
 		paymentForm.setCardExpirationDate(month + "/" + year);
-r
 
 		if (order.getOrderLine().size() == 0)
 			return "redirect:/homepage";
@@ -91,14 +94,14 @@ r
 	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
 	public String confirmOrder(Model model, @ModelAttribute("order") Order order) {
 
-		if (responseCode.equals("5")) {
+		/*if (responseCode.equals("5")) {
 			model.addAttribute("error", "Please Enter the Correct Card Detail");
 			return "paymentDetail";
 		}
 		if (responseCode.equals("6")) {
 			model.addAttribute("error", "Transaction Amount Not Sufficient");
-			return "submitorder";
-		}
+			return "submitorder";*/
+		//}
 		//orderService.reduceStockAndSave(order);
 	//	return "ordersuccess";
 
@@ -112,11 +115,7 @@ r
 		
 		return "confirmedOrder";
 	}
-	/*
-	 * @RequestMapping(value="/order", method=RequestMethod.POST) public String
-	 * createOrder(Order order) { orderService.saveOrder(order); return
-	 * "redirect:/"; }
-	 */
+	
 	
 	@RequestMapping(value = "/place-order", method = RequestMethod.GET)
 	public String placeOrder(Model model, @ModelAttribute("order") Order order, SessionStatus sessionStatus, Authentication principal) {
