@@ -1,10 +1,15 @@
 package com.sagarmatha.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import javax.validation.Valid;
 
@@ -16,6 +21,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -37,7 +47,13 @@ public class VendorController {
 	
 	@Autowired
 	CategoryService categoryService;
+
+	@Autowired
+	ServletContext context;
 	
+	private static final String UPLOAD_DIRECTORY ="/products";
+
+
 	@RequestMapping("/vendorsignup")
 	public String vendorSignup() {
 		return "vendorRegistration";
@@ -91,18 +107,27 @@ public class VendorController {
 //		List<Product> products = productService.viewActiveProducts(vendor.getId());
 //		System.out.println(products);
 
+		//List<Product> products = productService.viewActiveProducts(vendorId);
 		List<Product> products = productService.viewAllProduct();
 		model.addAttribute("products", products);
 		
 		List<Category> categories = categoryService.viewAllCategory();
 		model.addAttribute("categories", categories);
 		
+		Long vendorId = vendorService.findVendorByEmail(principal.getName()).getId();
+		Vendor vendor_db = vendorService.findVendorById(vendorId);
+
+		model.addAttribute("vendorId", vendor_db.getId());
+		
 		return "listproduct";
 	}
-	
-	@RequestMapping(value = "/vendor/product/update/{id}", method = RequestMethod.POST)
-	public String updateProduct(@PathVariable("id") Long id, @ModelAttribute("vendorUpdate") @Valid Product product) {
-		productService.updateProduct((Long) id, product);
+
+	@RequestMapping(value = "/vendor/product/update", method = RequestMethod.POST)
+	public String updateProduct(@ModelAttribute("updateproduct") @Valid Product product , BindingResult result) {
+		Long id = product.getProductId();
+		System.out.println(id);
+		productService.updateProduct(id, product);
+
 		return "redirect:/vendor/listproduct";
 	}
 
@@ -128,9 +153,10 @@ public class VendorController {
 	
 	// Vendor Add Products from Vendor Dashboard
 
+
 		@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
 		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,MultipartFile product_image) throws IOException {
-			
+			/*
 			if (product_image != null) {
 	                  
 	                System.out.println("Saving file: " + product_image.getOriginalFilename());
@@ -142,9 +168,9 @@ public class VendorController {
 		            fos.write(bytes);
 		            fos.close();   
 	                               
-	        }
+	        }*/
 			//product.setProduct_image(fileName);
-			
+
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";
 			

@@ -20,7 +20,7 @@
 		<intercept-url pattern="/**,/login,/logouts, /customerSignup, /vendorSignup,/home"
 			access="permitAll" />
 		<!-- <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" /> -->
-		<intercept-url pattern="/customer/**" access="hasRole('CUSTOMER')" />
+		<intercept-url pattern="/customer/**,/shoppingcart" access="hasRole('CUSTOMER')" />
 		<intercept-url pattern="/vendor/**" access="hasRole('VENDOR')" />
 		<intercept-url pattern="/test"
 			access="hasRole('IS_AUTHENICATED_ANONYMOUSLY')" />
