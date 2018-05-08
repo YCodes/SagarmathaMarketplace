@@ -12,6 +12,4 @@ public interface CategoryService {
 	public void addCategory(Category category);
 
 	public List<Category> viewAllCategory();
-	
-	public Category findOne(Long Id);
 }

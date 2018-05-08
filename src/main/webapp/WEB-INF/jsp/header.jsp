@@ -26,7 +26,7 @@
 <link href="<c:url value='/resources/css/admindashboard.css'/>"
 	rel="stylesheet" />
 
-<link href="<c:url value='/resources/css/login.css'/>" rel="stylesheet" />
+
 
 <script type="text/javascript"
 	src="<c:url value='/resources/js/jquery.min.js'/>"></script>

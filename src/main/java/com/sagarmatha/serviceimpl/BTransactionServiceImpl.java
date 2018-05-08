@@ -55,11 +55,6 @@ public class BTransactionServiceImpl implements BTransactionService {
 		BAccount requestaccount =  new BAccount(openRequestString.getSrcCardNo(), openRequestString.getExpirationDate(), openRequestString.getNameOnCard(), openRequestString.getCVV(), openRequestString.getZipCode());
 		
 		
-		
-		//Testing with Repository
-		/*List<BAccount> getSameCardno = baccountrepository.findByCardNo(openRequestString.getSrcCardNo());
-		getSameCardno.forEach(a->System.out.println(a));
-		System.out.println(findSaveAccount);*/
 		logger.info("Get the source account from the DB.");
 		
 		BAccount getSrcAccount = baccountrepository.getByCardNoAndNameAndCvvAndZipCode(openRequestString.getSrcCardNo(), openRequestString.getNameOnCard(), openRequestString.getZipCode(), openRequestString.getCVV());

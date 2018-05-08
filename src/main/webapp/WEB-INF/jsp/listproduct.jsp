@@ -3,7 +3,7 @@
 
 <div id="header_bottom">
 	<p>
-		<a href="<c:url value='/vendor/dashboard/${vendorId}'/>">Vendor Dashboard  |</a> <a
+		<a href="<c:url value='/vendor/dashboard'/>">Vendor Dashboard  |</a> <a
 			href="<c:url value='/vendor/listproduct'/>">List Product | </a><a
 			href="<c:url value='/vendor/addproduct'/>">Add Product</a>
 	</p>
@@ -34,7 +34,7 @@
 							<tr>
 								<th scope="row">${product.productId}</th>
 								<td>${product.product_name }</td>
-								<td>${product.product_category }</td>
+								<td>${product.category.categoryName }</td>
 								<td>${product.product_description }</td>
 								<td>${product.product_quantity }</td>
 								<td>${product.product_image }</td>
@@ -56,12 +56,14 @@
 										</div>
 										<div class="modal-body">
 											<div class="panel-body">
+
 												<form:form action="product/update"
 													method="post" modelAttribute="updateproduct" enctype="multipart/form-data">
+                          
 													<div class="row">
 														<div class="col-xs-6 col-sm-6 col-md-6">
 															<div class="form-group">
-																<input type="hidden" name="productId" value="${product.productId}"/>
+                                <input type="hidden" name="productId" value="${product.productId}"/>
 																<input type="text" name="product_name" id="edit_product_name"
 																	class="form-control input-sm"
 																	placeholder="Product Name"
