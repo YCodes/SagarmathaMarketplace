@@ -69,12 +69,11 @@
 										</c:if>
 										<div class="form-group">
 											<input type="submit" class="btn btn-lg btn-primary btn-block"
-												value="Sign in" name="login-btn">
+												value="Sign in">
 										</div>
 									</div>
 								</div>
 							</fieldset>
-								<security:csrfInput />
 						</form>
 					</div>
 					<div class="panel-footer ">
@@ -85,7 +84,7 @@
 
 						<a href="customerSignup" class="btn btn-primary">Customer</a> <a
 							href="vendorsignup" class="btn btn-info collapseButton">Vendor</a>
-
+            
 					</div>
 
 				</div>

@@ -16,4 +16,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query("Select p from Product p where p.vendorId = ?1")
 	public List<Product> findActiveProducts(Long Id);
 
+	 public List<Product> findByCategory_CategoryId(Long productCategory);    
 }

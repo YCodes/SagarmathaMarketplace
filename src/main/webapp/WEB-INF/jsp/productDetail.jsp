@@ -16,8 +16,8 @@
 </head>
 <body>
 	<div class="container">
-		<form:form action="productDetail" method="post"
-			modelAttribute="product">
+		<%-- <form:form action="productDetail" method="post"
+			modelAttribute="product"> --%>
 			<div class="card">
 				<div class="row">
 					<aside class="col-sm-5 border-right">
@@ -34,18 +34,18 @@
 					</aside>
 					<aside class="col-sm-7">
 						<article class="card-body">
-							<h3 class="title mb-3">Original Version of Some product name</h3>
+							<h3 class="title mb-3">${orderLine.product.product_name}</h3>
 
 							<p class="price-detail-wrap">
 								<span class="price h3 text-warning"> <span
-									class="currency">US $</span><span class="num">1299</span>
+									class="currency">US $</span><span class="num">${orderLine.product.price}</span>
 								</span>
 							</p>
 							<!-- price-detail-wrap .// -->
 							<dl class="item-property">
 								<dt>Description</dt>
 								<dd>
-									<p>This is the description field</p>
+									<p>${orderLine.product.product_description}</p>
 								</dd>
 							</dl>
 							<hr>
@@ -68,9 +68,9 @@
 							</div>
 
 							<hr>
-							<a href="#" class="btn btn-lg btn-outline-primary text-uppercase">
-								<i class="fas fa-shopping-cart"></i> Add to cart
-							</a>
+							<a href="<c:url value='/product/addToCart/${orderLine.product.productId}'/>"><button
+								class="btn btn-lg btn-outline-primary text-uppercase"
+								value="Add to cart">Add To Cart</button></a>
 						</article>
 						<!-- card-body.// -->
 					</aside>
@@ -81,8 +81,8 @@
 			<!-- card.// -->
 
 
-		</form:form>
-
+		<%-- </form:form>
+ --%>
 
 
 	</div>

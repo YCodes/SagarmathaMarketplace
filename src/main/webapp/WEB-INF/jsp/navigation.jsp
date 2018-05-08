@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,7 +66,7 @@
 
 <link href="<c:url value='/resources/css/slimbox2.css'/>"
 	rel="stylesheet" media="screen" />
-	
+
 <link href="<c:url value='/resources/css/homenavigation.css'/>"
 	rel="stylesheet" media="screen" />
 <script type="text/javascript"
@@ -87,7 +87,7 @@
 
 							<ul>
 								<c:forEach var="category" items="${categories}">
-									<li><a href="<c:url value='/? ${category.categoryId}' />">${category.categoryName}</a></li>
+									<li><a href="<c:url value='/home?categoryId=${category.categoryId}' />">${category.categoryName}</a></li>
 								</c:forEach>
 							</ul>
 					</ul>
@@ -99,9 +99,9 @@
 
 			<div id="header_bottom">
 				<p>
-					<a href="<c:url value='/shoppingcart'/>">My Cart</a> 
+					<a href="<c:url value='/shoppingcart'/>">My Cart</a>
 				</p>
-				
+
 				<div id="tooplate_search">
 					<form action="#" method="get">
 						<input type="text" value=" " name="keyword" id="keyword"
