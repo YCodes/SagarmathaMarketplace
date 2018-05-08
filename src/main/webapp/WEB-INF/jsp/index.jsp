@@ -6,7 +6,7 @@
 		<span class="main_border main_border_t"></span><span
 			class="main_border main_border_b"></span>
 		<div class="product">
-			<h1>New Products</h1>
+			<h1>Products</h1>
 			<c:forEach var="product" items="${products}">
 				<div class="product_box">
 					<div class="img_box">

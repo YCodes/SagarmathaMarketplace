@@ -113,7 +113,7 @@ $(document).ready(function(){
 		<div id="tooplate_header">
 			<div id="header_top">
 				<div id="site_title">
-					<a href="<c:url value='/'/>">Sagarmatha Marketplace</a>
+					<a href="<c:url value='/home'/>">Sagarmatha Marketplace</a>
 				</div>
 				<div id="tooplate_menu" class="ddsmoothmenu">
 					<ul>
