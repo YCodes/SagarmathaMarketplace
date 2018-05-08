@@ -27,4 +27,6 @@ public interface ProductService {
 
 	public List<Product> findByCategoryId(Long long1);
 
+	public List<Product> searchByProductName(String str);
+
 }

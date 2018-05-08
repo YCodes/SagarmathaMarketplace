@@ -1,5 +1,6 @@
 package com.sagarmatha.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,11 +15,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.sagarmatha.validator.EmailExist;
 
 
 @Entity(name="customer")
-public class Customer {
+public class Customer implements Serializable{
 	
 	
 	@Id
@@ -26,15 +29,19 @@ public class Customer {
 	@Column(name = "customer_id")
 	private Long customerId;
 	
+	@NotEmpty
 	@Column(name="firstname")
 	private String firstName;
 	
+	@NotEmpty
 	@Column(name="lastname")
 	private String lastName;
 	
+	@NotEmpty
 	@Column(name="phonenumber")
 	private String phoneNumber;
 	
+	@NotEmpty
 	@Column(name="email")
 	@EmailExist(message="Email already exists")
 	private String email;
