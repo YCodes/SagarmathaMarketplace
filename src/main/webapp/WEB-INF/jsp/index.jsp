@@ -10,19 +10,21 @@
 			<c:forEach var="product" items="${products}">
 				<div class="product_box">
 					<div class="img_box">
-						<span></span> <a href="productdetail.html"><img
+						<a href="productdetail.html"> <img id="product_image"
+							src="<c:url value="/src/main/webapp/resources/MultipleFileUpload/${product.product_name}.jpg"></c:url>"
+							alt="Product Image" /> <span></span> <%-- <img
 							src="<c:url value='/resources/images/product/01.jpg'/>"
-							alt="image" /></a>
+							alt="image" /></a> --%>
 					</div>
 					<h2>
 
 						<a href="product/productdetails/${product.productId}">${product.product_name}<br />
-						Quantity available:${product.product_quantity}<br/>
-						Price:$ ${product.product_price}<br/>
+							Quantity available:${product.product_quantity}<br /> Price:$
+							${product.product_price}<br />
 						</a>
 					</h2>
-					
-        </div>
+
+				</div>
 			</c:forEach>
 
 		</div>

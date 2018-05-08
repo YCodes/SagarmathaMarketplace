@@ -14,27 +14,27 @@
 			<div class="form-group">
 				<form:input path="street"
 					class="form-control input-sm" placeholder="Street"
-					style="width: 300px;" />
+					style="width: 300px;" required="required"/>
 			</div>
 			<div class="form-group">
 				<form:input path="city"
 					class="form-control input-sm" placeholder="City"
-					style="width: 300px;" />
+					style="width: 300px;" required="required" />
 			</div>
 			<div class="form-group">
 				<form:input path="zipCode"
 					class="form-control input-sm" placeholder="Zip Code"
-					style="width: 300px;" />
+					style="width: 300px;" required="required" pattern="^\d{5}$"/>
 			</div>
 			<div class="form-group">
 				<form:input path="state"
 					class="form-control input-sm" placeholder="State"
-					style="width: 300px;" />
+					style="width: 300px;" required="required"/>
 			</div>
 			<div class="form-group">
 				<form:input path="country"
 					class="form-control input-sm" placeholder="Country"
-					style="width: 300px;" />
+					style="width: 300px;" required="required"/>
 			</div>
 			
 			<br />

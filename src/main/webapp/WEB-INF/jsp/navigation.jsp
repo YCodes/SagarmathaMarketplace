@@ -71,10 +71,10 @@
 	rel="stylesheet" media="screen" />
 <script type="text/javascript"
 	src="<c:url value='/resources/js/slimbox2.js'/>"></script>
-<<<<<<< HEAD
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-=======
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -109,7 +109,7 @@ $(document).ready(function(){
 };
 
 </script> -->
->>>>>>> 6c1b97a904079a7a63765c2f7057de76f3611fac
+
 
 
 </head>
