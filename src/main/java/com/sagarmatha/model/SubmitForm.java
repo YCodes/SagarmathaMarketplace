@@ -1,30 +1,22 @@
 package com.sagarmatha.model;
 
-import javax.persistence.Column;
-
 public class SubmitForm {
 
 	private Integer cardId;
-    private String cardType;
-    private String cardHolderName;
-    private String cardNumber;
-    private String last4Digit;
-    private String cardExpirationDate;
-    private String cvv;
-    private String cardZipcode;
-    private Double total;
-    private String street;
+	private String cardType;
+	private String cardHolderName;
+	private String cardNumber;
+	private String last4Digit;
+	private String cardExpirationDate;
+	private String cvv;
+	private String cardZipcode;
+	private String street;
 
 	private String city;
 	private String zipCode;
+	private String state;
 
-	public Double getTotal() {
-		return total;
-	}
-
-	public void setTotal(Double total) {
-		this.total = total;
-	}
+	private String country;
 
 	public String getStreet() {
 		return street;
@@ -66,74 +58,70 @@ public class SubmitForm {
 		this.country = country;
 	}
 
-	private String state;
+	public SubmitForm() {
+	}
 
-	private String country;
+	public Integer getCardId() {
+		return cardId;
+	}
 
+	public void setCardId(Integer cardId) {
+		this.cardId = cardId;
+	}
 
-    public SubmitForm(){}
+	public String getCardType() {
+		return cardType;
+	}
 
-    public Integer getCardId() {
-        return cardId;
-    }
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
+	}
 
-    public void setCardId(Integer cardId) {
-        this.cardId = cardId;
-    }
+	public String getCardHolderName() {
+		return cardHolderName;
+	}
 
-    public String getCardType() {
-        return cardType;
-    }
+	public void setCardHolderName(String cardHolderName) {
+		this.cardHolderName = cardHolderName;
+	}
 
-    public void setCardType(String cardType) {
-        this.cardType = cardType;
-    }
+	public String getCardNumber() {
+		return cardNumber;
+	}
 
-    public String getCardHolderName() {
-        return cardHolderName;
-    }
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
 
-    public void setCardHolderName(String cardHolderName) {
-        this.cardHolderName = cardHolderName;
-    }
+	public String getLast4Digit() {
+		return last4Digit;
+	}
 
-    public String getCardNumber() {
-        return cardNumber;
-    }
+	public void setLast4Digit(String last4Digit) {
+		this.last4Digit = last4Digit;
+	}
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
+	public String getCardExpirationDate() {
+		return cardExpirationDate;
+	}
 
-    public String getLast4Digit() {
-        return last4Digit;
-    }
+	public void setCardExpirationDate(String cardExpirationDate) {
+		this.cardExpirationDate = cardExpirationDate;
+	}
 
-    public void setLast4Digit(String last4Digit) {
-        this.last4Digit = last4Digit;
-    }
+	public String getCvv() {
+		return cvv;
+	}
 
-    public String getCardExpirationDate() {
-        return cardExpirationDate;
-    }
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
+	}
 
-    public void setCardExpirationDate(String cardExpirationDate) {
-        this.cardExpirationDate = cardExpirationDate;
-    }
+	public String getCardZipcode() {
+		return cardZipcode;
+	}
 
-    public String getCvv() {
-        return cvv;
-    }
-
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
-    }
-
-    public String getCardZipcode() {
-        return cardZipcode;
-    }
-
-    public void setCardZipcode(String cardZipcode) {
-        this.cardZipcode = cardZipcode;
-    }
+	public void setCardZipcode(String cardZipcode) {
+		this.cardZipcode = cardZipcode;
+	}
 }

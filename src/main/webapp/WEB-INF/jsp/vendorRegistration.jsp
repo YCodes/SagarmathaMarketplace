@@ -1,4 +1,4 @@
-<%@ include file="header.jsp"%>
+<%@ include file="headerForSignup.jsp"%>
 <div id="tooplate_main">
 	<span class="main_border main_border_t"></span><span
 		class="main_border main_border_b"></span>
@@ -37,6 +37,7 @@
 						<div class="form-group">
 							<input type="email" name="email" id="email"
 								class="form-control input-sm" placeholder="Email Address">
+								<form:errors path="email" class="error"/>
 						</div>
 
 						<div class="row">

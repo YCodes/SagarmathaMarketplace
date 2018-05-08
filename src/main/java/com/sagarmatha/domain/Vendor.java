@@ -10,6 +10,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.sagarmatha.validator.EmailExist;
+
 @Entity
 public class Vendor {
 	
@@ -23,6 +28,10 @@ public class Vendor {
 	private String first_name;
 	private String last_name;
 	private String phone_number;
+	
+	@Email
+	@EmailExist(message="Email already exists")
+	@NotEmpty
 	private String email;
 	private boolean vendorFee;
 

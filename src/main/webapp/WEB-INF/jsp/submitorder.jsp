@@ -12,29 +12,29 @@
 			
 			<form:form id="submit-payment" modelAttribute="paymentForm" method="post" action="submit">
 			<div class="form-group">
-				<input type="text" name="address.street" id="street"
+				<form:input path="street"
 					class="form-control input-sm" placeholder="Street"
-					style="width: 300px;">
+					style="width: 300px;" />
 			</div>
 			<div class="form-group">
-				<input type="text" name="address.city" id="city"
+				<form:input path="city"
 					class="form-control input-sm" placeholder="City"
-					style="width: 300px;">
+					style="width: 300px;" />
 			</div>
 			<div class="form-group">
-				<input type="text" name="address.zipCode" id="zipcode"
+				<form:input path="zipCode"
 					class="form-control input-sm" placeholder="Zip Code"
-					style="width: 300px;">
+					style="width: 300px;" />
 			</div>
 			<div class="form-group">
-				<input type="text" name="address.state" id="state"
+				<form:input path="state"
 					class="form-control input-sm" placeholder="State"
-					style="width: 300px;">
+					style="width: 300px;" />
 			</div>
 			<div class="form-group">
-				<input type="text" name="address.country" id="country"
+				<form:input path="country"
 					class="form-control input-sm" placeholder="Country"
-					style="width: 300px;">
+					style="width: 300px;" />
 			</div>
 			
 			<br />
@@ -84,69 +84,58 @@
 		<!--REVIEW ORDER-->
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h3 style="display: inline-block">Review Order</h3> <div class="pull-right"><small><a class="afix-1" href="#">Edit Cart</a></small></div>
+                            <h3 style="display: inline-block">Review Order</h3>
                         </div>
                         
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="col-sm-3 col-xs-3">
-                                    <img class="img-responsive" src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
-                                </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="col-xs-12">Product name</div>
-                                    <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
-                                </div>
-                                <div class="col-sm-3 col-xs-3 text-right">
-                                    <h6><span>$</span>25.00</h6>
-                                </div>
-                            </div>
-                            <div class="form-group"><hr /></div>
-                            <div class="form-group">
-                                <div class="col-sm-3 col-xs-3">
-                                    <img class="img-responsive" src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
-                                </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="col-xs-12">Product name</div>
-                                    <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
-                                </div>
-                                <div class="col-sm-3 col-xs-3 text-right">
-                                    <h6><span>$</span>25.00</h6>
-                                </div>
-                            </div>
-                            <div class="form-group"><hr /></div>
-                            <div class="form-group">
-                                <div class="col-sm-3 col-xs-3">
-                                    <img class="img-responsive" src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
-                                </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="col-xs-12">Product name</div>
-                                    <div class="col-xs-12"><small>Quantity:<span>2</span></small></div>
-                                </div>
-                                <div class="col-sm-3 col-xs-3 text-right">
-                                    <h6><span>$</span>50.00</h6>
-                                </div>
-                            </div>
-                            <div class="form-group"><hr /></div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <strong>Subtotal</strong>
-                                    <div class="pull-right"><span>$</span><span>200.00</span></div>
-                                </div>
-                                <div class="col-xs-12">
-                                    <small>Shipping</small>
-                                    <div class="pull-right"><span>-</span></div>
-                                </div>
-                            </div>
-                            <div class="form-group"><hr /></div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <strong>Order Total</strong>
-                                    <div class="pull-right"><span>$</span><span>150.00</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--REVIEW ORDER END-->
+                        <div class="container">
+		<table id="cart" class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th style="width: 30%">Product</th>
+					<th style="width: 0%">Price</th>
+					<th style="width: 8%">Quantity</th>
+					<th style="width: 22%" class="text-center">Subtotal</th>
+					<th style="width: 10%"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="orderline" items="${order.orderLine}">
+					<tr>
+						<td data-th="Product">
+							<div class="row">
+								<!-- <div class="col-sm-2 hidden-xs">
+									<img src="http://placehold.it/100x100" alt="..."
+										class="img-responsive" />
+								</div> -->
+								<div class="col-sm-10">
+									<h4 class="nomargin" align="center">${orderline.product.product_name}</h4>
+									<%-- <p>${orderline.product.product_description}</p> --%>
+								</div>
+							</div>
+						</td>
+						<td data-th="Price">${orderline.product.price}</td>
+						<td data-th="Price" align="center">${orderline.quantity}</td>
+						<%-- <td data-th="Quantity"><input type="number"
+							class="form-control text-center" value="${orderline.quantity}"></td> --%>
+						<td data-th="Subtotal" class="text-center" align="center">${orderline.product.price * orderline.quantity}</td>
+						
+					</tr>
+				</c:forEach>
+			</tbody>
+			<tfoot>
+				<!-- <tr class="visible-xs">
+					<td class="text-center"><strong>totalPrice</strong></td>
+				</tr> -->
+				<tr>
+					</br>
+					<td colspan="2" class="hidden-xs"></td>
+					<td class="hidden-xs text-center" align="center"><strong>Total  $${totalPrice}</strong></td>
+					
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+                    
 		</div>
 		
 	</div>
