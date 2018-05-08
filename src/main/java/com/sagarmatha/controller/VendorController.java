@@ -155,22 +155,24 @@ public class VendorController {
 
 
 		@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
-		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,MultipartFile product_image) throws IOException {
-			/*
-			if (product_image != null) {
-	                  
-	                System.out.println("Saving file: " + product_image.getOriginalFilename());
-	                
-	                byte[] bytes = product_image.getBytes();
-	                String fileName = product_image.getOriginalFilename();
-	                String fileLocation = new File("src/main/webapp/static/images").getAbsolutePath() + "\\" + fileName;
-	                FileOutputStream fos = new FileOutputStream(fileLocation);
-		            fos.write(bytes);
-		            fos.close();   
-	                               
-	        }*/
-			//product.setProduct_image(fileName);
+		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,@RequestParam("product_image") MultipartFile[] files, ModelMap model) throws IOException {
+			 // Save file on system
+		    
+			for (MultipartFile file : files) {
+		         if (!file.getOriginalFilename().isEmpty()) {
+		            BufferedOutputStream outputStream = new BufferedOutputStream(
+		                  new FileOutputStream(
+		                        new File("D:/MultipleFileUpload", file.getOriginalFilename())));
 
+		            outputStream.write(file.getBytes());
+		            outputStream.flush();
+		            outputStream.close();
+		         } else {
+		            model.addAttribute("msg", "Please select at least one file..");
+		            return "fileUploadForm";
+		         }
+		      }
+		   
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";
 			
