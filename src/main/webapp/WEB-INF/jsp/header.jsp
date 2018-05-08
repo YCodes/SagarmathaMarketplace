@@ -25,7 +25,8 @@
 	rel="stylesheet" />
 <link href="<c:url value='/resources/css/admindashboard.css'/>"
 	rel="stylesheet" />
-
+<link href="<c:url value='/resources/css/error.css'/>"
+	rel="stylesheet" />
 
 
 <script type="text/javascript"
