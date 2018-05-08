@@ -16,15 +16,15 @@
 
 	<http use-expressions="true">
 		<csrf disabled="true" />
-
+<!-- 
 		<intercept-url pattern="/**,/login,/logouts, /customerSignup, /vendorSignup,/home"
 			access="permitAll" />
-		<!-- <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" /> -->
-		<intercept-url pattern="/customer/**" access="hasRole('CUSTOMER')" />
+		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/customer/**,/checkout/**" access="hasRole('CUSTOMER')" />
 		<intercept-url pattern="/vendor/**" access="hasRole('VENDOR')" />
 		<intercept-url pattern="/test"
 			access="hasRole('IS_AUTHENICATED_ANONYMOUSLY')" />
-
+ -->
 		<access-denied-handler error-page="/403" />
 
 		<form-login login-page='/login' login-processing-url="/j_spring_security_check"

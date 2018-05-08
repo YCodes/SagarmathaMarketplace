@@ -1,3 +1,5 @@
-INSERT INTO `sagarmatha`.`user`(`username`, `password`, `enabled`, `role`) VALUES ('admin@mum.edu', 'admin', True, 'Admin');
-INSERT INTO `sagarmatha`.`admin`(`email`, `firstname`, `lastname`, `phonenumber`, `addressid`, `user_id`) VALUES ('admin@mum.edu','admin','admin','1234','1','1');
-INSERT INTO `sagarmatha`.`address`(`city`, `country`, `state`, `street`,'zip_code') VALUES ('Fairfield', 'US', 'IA', '1000 N','52557');
+INSERT INTO BAccount VALUES (1, "10000","1111111111111111","2008-11-11","111","01/2018","Eshan","52557");
+INSERT INTO BAccount VALUES (2, "20000","2222222222222222","2008-11-11","222","02/2018","Niroj","52557");
+INSERT INTO BAccount VALUES (3, "30000","3333333333333333","2008-11-11","333","03/2018","Vendor-Rolex","52557");
+INSERT INTO BAccount VALUES (3, "30000","4444444444444444","2008-11-11","444","04/2018","Vendor-RayBan","52557");
+INSERT INTO BAccount VALUES (4, "10000","5555555555555555","2008-11-11","555","05/2018","Admin","52557");

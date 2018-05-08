@@ -23,11 +23,11 @@ public class BTransactionRestController {
 	 
 	 @PostMapping(value="/bank/mock/transaction/api")
 		public ResponseEntity<String> doTransaction(@RequestBody String requestString){
-		 System.out.println("TR - " + requestString);
+		 System.out.println("Encoded Coming From CLient- " + requestString);
 		 byte[] decodedBytes = Base64.getDecoder().decode(requestString);
 		 String decodedString = new String(decodedBytes);
 			System.out.println("******************************");
-			 System.out.println("TR - " + decodedString);
+			 System.out.println("Decoded For Showing - " + decodedString);
 			 String receviceresponse = btransactionservice.doTransaction(decodedString);
 			return new ResponseEntity<String>(receviceresponse,HttpStatus.OK);
 		}
