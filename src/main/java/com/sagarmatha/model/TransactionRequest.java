@@ -14,10 +14,9 @@ public class TransactionRequest {
     private String dstCardNo;
     private List<String> destinationCard;
 	
-	public TransactionRequest(String txnId, String srcCardNo, String expirationDate, String nameOnCard, String cVV,
+	public TransactionRequest(String srcCardNo, String expirationDate, String nameOnCard, String cVV,
 			String zipCode, Double amount, String dstCardNo, List<String> destinationCard) {
 		super();
-		this.txnId = txnId;
 		this.srcCardNo = srcCardNo;
 		this.expirationDate = expirationDate;
 		this.nameOnCard = nameOnCard;
