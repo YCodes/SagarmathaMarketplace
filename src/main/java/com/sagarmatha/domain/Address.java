@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Address {
@@ -13,9 +14,11 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "address_id")
 	private Long addressId;
-
+    
+	@NotNull
 	private String street;
-
+    
+	@NotNull
 	private String city;
 
 	@Column(name = "zip_code")
