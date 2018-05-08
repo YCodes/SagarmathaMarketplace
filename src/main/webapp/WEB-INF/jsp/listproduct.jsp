@@ -56,11 +56,22 @@
 										</div>
 										<div class="modal-body">
 											<div class="panel-body">
-												<form:form action="product/update/${product.productId}"
-													method="post" modelAttribute="updateproduct">
+
+												<form:form action="product/update"
+													method="post" modelAttribute="updateproduct" enctype="multipart/form-data">
+
+
 													<div class="row">
 														<div class="col-xs-6 col-sm-6 col-md-6">
 															<div class="form-group">
+															<input type="hidden" name="productId" value="${product.productId}"/>
+
+                          
+													<div class="row">
+														<div class="col-xs-6 col-sm-6 col-md-6">
+															<div class="form-group">
+                                <input type="hidden" name="productId" value="${product.productId}"/>
+
 																<input type="text" name="product_name" id="edit_product_name"
 																	class="form-control input-sm"
 																	placeholder="Product Name"
