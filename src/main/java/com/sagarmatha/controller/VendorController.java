@@ -114,6 +114,11 @@ public class VendorController {
 		List<Category> categories = categoryService.viewAllCategory();
 		model.addAttribute("categories", categories);
 		
+		Long vendorId = vendorService.findVendorByEmail(principal.getName()).getId();
+		Vendor vendor_db = vendorService.findVendorById(vendorId);
+
+		model.addAttribute("vendorId", vendor_db.getId());
+		
 		return "listproduct";
 	}
 
