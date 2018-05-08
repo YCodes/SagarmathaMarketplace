@@ -117,7 +117,6 @@ public class VendorController {
 		return "listproduct";
 	}
 
-
 	@RequestMapping(value = "/vendor/product/update", method = RequestMethod.POST)
 	public String updateProduct(@ModelAttribute("updateproduct") @Valid Product product , BindingResult result) {
 		Long id = product.getProductId();
@@ -166,7 +165,7 @@ public class VendorController {
 	                               
 	        }*/
 			//product.setProduct_image(fileName);
-			
+
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";
 			
