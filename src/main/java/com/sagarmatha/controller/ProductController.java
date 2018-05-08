@@ -61,17 +61,9 @@ public class ProductController {
 	// Product details page
 	@RequestMapping("/product/productdetails/{productId}")
 	public String getProductDetailsPage(Model model, @PathVariable("productId") Long ProductId) {
-//		OrderLine orderLine = new OrderLine();
 		Product product = productService.findProductById(ProductId);
 		model.addAttribute("orderLine", product);
-//		orderLine.setQuantity(product.getProduct_quantity());
-//		orderLine.setProduct(product);
-//		model.addAttribute("orderLine", orderLine);
-//		List<Integer> quantities = new ArrayList<Integer>();
-//		for (int i = 1; i <= orderLine.getQuantity(); i++) {
-//			quantities.add(i);
-//		}
-//		model.addAttribute("quantities", quantities);
+	
 		return "productDetail";
 	}
 
