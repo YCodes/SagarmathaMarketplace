@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.sagarmatha.domain.Address;
 import com.sagarmatha.domain.Order;
 import com.sagarmatha.domain.User;
 import com.sagarmatha.model.SubmitForm;
+import com.sagarmatha.service.OrderLineService;
 import com.sagarmatha.service.OrderService;
 import com.sagarmatha.service.UserService;
 
@@ -34,6 +35,8 @@ public class OrderController {
 	
 	@Autowired
 	public UserService userService;
+	
+	
 	
 
 	@RequestMapping("/shoppingcart")
@@ -94,18 +97,6 @@ public class OrderController {
 	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
 	public String confirmOrder(Model model, @ModelAttribute("order") Order order) {
 
-		/*if (responseCode.equals("5")) {
-			model.addAttribute("error", "Please Enter the Correct Card Detail");
-			return "paymentDetail";
-		}
-		if (responseCode.equals("6")) {
-			model.addAttribute("error", "Transaction Amount Not Sufficient");
-			return "submitorder";*/
-		//}
-		//orderService.reduceStockAndSave(order);
-	//	return "ordersuccess";
-
-
 		model.addAttribute("order", order);
 		int totalQuantities = order.getOrderLine().stream().mapToInt(or -> or.getQuantity()).sum();
 		double totalPrice = order.getOrderLine().stream()
@@ -141,4 +132,13 @@ public class OrderController {
 		
 		return "redirect:/homepage";
 	}
+/*	
+	@RequestMapping(value="/remove-from-cart/{productId}")
+	public String removeCartItem(@PathVariable("productId") Long id, SessionStatus sessionStatus, Authentication principal) {
+		
+		String email = principal.getName();
+		
+		User user = user*/
+		
+	
 }

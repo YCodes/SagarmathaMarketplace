@@ -48,10 +48,10 @@
 							class="form-control text-center" value="${orderline.quantity}"></td>
 						<td data-th="Subtotal" class="text-center">${orderline.product.price * orderline.quantity}</td>
 						<td class="actions" data-th="">
-							<button class="btn btn-info btn-sm">
+							<!-- <button class="btn btn-info btn-sm">
 								<i class="fa fa-refresh"></i>
-							</button>
-							<button class="btn btn-danger btn-sm">
+							</button> -->
+							<button class="btn btn-danger btn-sm" value="Remove">
 								<i class="fa fa-trash-o"></i>
 							</button>
 						</td>

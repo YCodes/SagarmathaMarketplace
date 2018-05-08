@@ -2,28 +2,34 @@
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+	<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sagarmatha Marketplace</title>
+<title>Sagarmatha Marketplace - Admin</title>
 
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
 <link href="<c:url value='/resources/css/tooplate_style.css'/>"
 	rel="stylesheet" />
 <link href="<c:url value='/resources/css/ddsmoothmenu.css'/>"
 	rel="stylesheet" />
+<link href="<c:url value='/resources/css/admindashboard.css'/>"
+	rel="stylesheet" />
+
 
 
 <script type="text/javascript"
 	src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script type="text/javascript"
 	src="<c:url value='/resources/js/ddsmoothmenu.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/resources/js/custom.js'/>"></script>
 
 
 <script type="text/javascript">
@@ -66,56 +72,18 @@
 
 <link href="<c:url value='/resources/css/slimbox2.css'/>"
 	rel="stylesheet" media="screen" />
-
-<link href="<c:url value='/resources/css/homenavigation.css'/>"
-	rel="stylesheet" media="screen" />
 <script type="text/javascript"
 	src="<c:url value='/resources/js/slimbox2.js'/>"></script>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
 
 </head>
-<body class="homepage navigationbar">
+<body>
 	<div id="tooplate_wrapper">
 		<div id="tooplate_header">
 			<div id="header_top">
 				<div id="site_title">
 					<a href="<c:url value='/'/>">Sagarmatha Marketplace</a>
 				</div>
-				<div id="tooplate_menu" class="ddsmoothmenu">
-					<ul>
-						<li><a href="<c:url value='/products'/>">Category</a>
-
-							<ul>
-								<c:forEach var="category" items="${categories}">
-									<li><a href="<c:url value='/home?categoryId=${category.categoryId}' />">${category.categoryName}</a></li>
-								</c:forEach>
-							</ul>
-					</ul>
-					<br style="clear: left" />
-				</div>
-				<!-- end of tooplate_menu -->
+				<tags:header></tags:header>
 			</div>
+			
 			<!-- END of header top -->
-
-			<div id="header_bottom">
-				<p>
-					<a href="<c:url value='/shoppingcart'/>">My Cart</a>
-				</p>
-
-				<div id="tooplate_search">
-					<form action="#" method="get">
-						<input type="text" value=" " name="keyword" id="keyword"
-							title="keyword" onfocus="clearText(this)"
-							onblur="clearText(this)" class="txt_field" /> <input
-							type="submit" name="Search" value=" " alt="Search"
-							id="searchbutton" title="Search" class="sub_btn" />
-					</form>
-
-					<tags:header></tags:header>
-				</div>
-			</div>
-			<!-- END of header bottom -->
-		</div>
-		<!-- END of header -->
