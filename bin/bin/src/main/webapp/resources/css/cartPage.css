@@ -1,0 +1,10 @@
+.container{
+	margin: 30px;
+	border: 2px solid lightgrey;
+}
+
+.table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+
+

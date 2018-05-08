@@ -1,5 +1,6 @@
 package com.sagarmatha.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -37,59 +38,56 @@ public class ProductController {
 
 	// Vendor Add Products from Vendor Dashboard
 
-	/*@RequestMapping(value = "/vendor/addproduct", method = RequestMethod.POST)
-	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,
-			@RequestParam CommonsMultipartFile[] product_image) {
-
-		if (product_image != null && product_image.length > 0) {
-			for (CommonsMultipartFile aFile : product_image) {
-
-				System.out.println("Saving file: " + aFile.getOriginalFilename());
-
-				Product uploadFile = new Product();
-//				product.setProduct_image(aFile.getBytes());
-			}
-		}
-
-		productService.addProduct(product);
-		return "redirect:/vendor/listproduct";
-
-	}*/
+	/*
+	 * @RequestMapping(value = "/vendor/addproduct", method = RequestMethod.POST)
+	 * public String vendorAddProduct(@ModelAttribute("product") @Valid Product
+	 * product, BindingResult result,
+	 * 
+	 * @RequestParam CommonsMultipartFile[] product_image) {
+	 * 
+	 * if (product_image != null && product_image.length > 0) { for
+	 * (CommonsMultipartFile aFile : product_image) {
+	 * 
+	 * System.out.println("Saving file: " + aFile.getOriginalFilename());
+	 * 
+	 * Product uploadFile = new Product(); //
+	 * product.setProduct_image(aFile.getBytes()); } }
+	 * 
+	 * productService.addProduct(product); return "redirect:/vendor/listproduct";
+	 * 
+	 * }
+	 */
 
 	// Product details page
 	@RequestMapping("/product/productdetails/{productId}")
 	public String getProductDetailsPage(Model model, @PathVariable("productId") Long ProductId) {
-		OrderLine orderLine = new OrderLine();
-		orderLine.setQuantity(1);
-		orderLine.setProduct(productService.findProductById(ProductId));
-		model.addAttribute("orderLine", orderLine);
+		Product product = productService.findProductById(ProductId);
+		model.addAttribute("orderLine", product);
+	
 		return "productDetail";
 	}
 
-	@RequestMapping(value = "/product/addToCart/{productId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/addToCart/{productId}", method = RequestMethod.POST)
 	public String addProductToCart(Model model, @ModelAttribute("order") Order order,
-			// @RequestParam("quantity") int quantity,
-			@PathVariable Long productId) {
+			@RequestParam("quantity") int quantity, @PathVariable Long productId) {
 
-		System.out.println(productId);
+		System.out.println(quantity);
 		List<OrderLine> orderLines = order.getOrderLine();
 		Boolean orderLineExists = false;
 		for (OrderLine orderLine : orderLines) {
 			if (orderLine.getProduct().getProductId() == productId) {
-				orderLine.setQuantity(1);
+				orderLine.setQuantity(quantity);
 				orderLineExists = true;
 			}
 		}
 		if (!orderLineExists) {
 			OrderLine orderLine = new OrderLine();
 			orderLine.setProduct(productService.findProductById(productId));
-			orderLine.setQuantity(1);
+			orderLine.setQuantity(quantity);
 			orderLines.add(orderLine);
 			order.setOrderLine(orderLines);
 		}
 		return "redirect:/homepage";
 	}
-	
-	
 
 }

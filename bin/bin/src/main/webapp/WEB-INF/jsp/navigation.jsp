@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+	<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,50 +66,11 @@
 
 <link href="<c:url value='/resources/css/slimbox2.css'/>"
 	rel="stylesheet" media="screen" />
-
+	
 <link href="<c:url value='/resources/css/homenavigation.css'/>"
 	rel="stylesheet" media="screen" />
 <script type="text/javascript"
 	src="<c:url value='/resources/js/slimbox2.js'/>"></script>
-<<<<<<< HEAD
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-=======
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- <script type="text/javascript">
-$(document).ready(function(){
-
-	   var getAppointments = $("#btnSearch").click(function() {
-	        const searchString=$("#txtSearch").val();
-	        $.ajax({
-	            url: "/sagarmathamarketplace/search",
-	            method: "get",
-	            data: {'str': searchString},
-
-	            success: function (data) {
-	                var products = "";
-	                $.each(data, function (key, value) {
-
-	                    products += "<tr >" +
-	                        "<td  >" + value.product_name + "</td>" +
-	                        /* "<td  >" + value.time + "</td>" +
-	                        "<td  >" + value.description + "</td>" + */
-	                        "</tr>";
-	                });
-	                $("#product_box").html(products);
-	                /* $("#appointmentTable").closest("#hidden").show(); */
-	            },
-	            /* error: function( textStatus) {
-	             console.log("Status: " + textStatus);
-	             }*/
-	        });
-	    })
-};
-
-</script> -->
->>>>>>> 6c1b97a904079a7a63765c2f7057de76f3611fac
 
 
 </head>
@@ -126,8 +87,7 @@ $(document).ready(function(){
 
 							<ul>
 								<c:forEach var="category" items="${categories}">
-									<li><a
-										href="<c:url value='/home?categoryId=${category.categoryId}' />">${category.categoryName}</a></li>
+									<li><a href="<c:url value='/? ${category.categoryId}' />">${category.categoryName}</a></li>
 								</c:forEach>
 							</ul>
 					</ul>
@@ -139,10 +99,9 @@ $(document).ready(function(){
 
 			<div id="header_bottom">
 				<p>
-					<a href="<c:url value='/shoppingcart'/>">My Cart</a>
+					<a href="<c:url value='/shoppingcart'/>">My Cart</a> 
 				</p>
-
-
+				
 				<div id="tooplate_search">
 					<form action="#" method="get">
 						<input type="text" value=" " name="keyword" id="keyword"
@@ -153,8 +112,8 @@ $(document).ready(function(){
 					</form>
 
 					<tags:header></tags:header>
-
 				</div>
-				<!-- END of header bottom -->
 			</div>
-			<!-- END of header -->
+			<!-- END of header bottom -->
+		</div>
+		<!-- END of header -->
