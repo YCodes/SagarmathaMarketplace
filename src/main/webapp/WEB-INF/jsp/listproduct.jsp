@@ -57,7 +57,7 @@
 										<div class="modal-body">
 											<div class="panel-body">
 												<form:form action="product/update"
-													method="post" modelAttribute="updateproduct">
+													method="post" modelAttribute="updateproduct" enctype="multipart/form-data">
 													<div class="row">
 														<div class="col-xs-6 col-sm-6 col-md-6">
 															<div class="form-group">

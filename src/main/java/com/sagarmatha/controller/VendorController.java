@@ -1,24 +1,27 @@
 package com.sagarmatha.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sagarmatha.domain.Category;
 import com.sagarmatha.domain.Product;
@@ -41,6 +44,8 @@ public class VendorController {
 
 	@Autowired
 	ServletContext context;
+	
+	private static final String UPLOAD_DIRECTORY ="/products";
 
 	@RequestMapping("/vendorsignup")
 	public String vendorSignup() {
@@ -101,6 +106,7 @@ public class VendorController {
 
 		model.addAttribute("vendorId", vendor_db.getId());
 
+		//List<Product> products = productService.viewActiveProducts(vendorId);
 		List<Product> products = productService.viewAllProduct();
 		model.addAttribute("products", products);
 
@@ -111,8 +117,9 @@ public class VendorController {
 	}
 
 	@RequestMapping(value = "/vendor/product/update", method = RequestMethod.POST)
-	public String updateProduct(@ModelAttribute("vendorUpdate") @Valid Product product) {
+	public String updateProduct(@ModelAttribute("updateproduct") @Valid Product product , BindingResult result) {
 		Long id = product.getProductId();
+		System.out.println(id);
 		productService.updateProduct(id, product);
 		return "redirect:/vendor/listproduct";
 	}
@@ -143,31 +150,10 @@ public class VendorController {
 	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,
 			ModelMap model) throws IOException {
 
-		// if (result.hasErrors(s)) {
-		// System.out.println("validation errors");
-		// return "addproduct";
-		// } else {
-		// System.out.println("Fetching file");
-		// MultipartFile multipartFile = productimg.getProduct_image();
-		// String uploadPath = context.getRealPath("") + File.separator + "products" +
-		// File.separator;
-		// // Now do something with file...
-		// FileCopyUtils.copy(productimg.getProduct_image().getBytes(),
-		// new File(uploadPath + product.getProduct_image().getOriginalFilename()));
-		// String fileName = multipartFile.getOriginalFilename();
-		//
-		// }
-
-		// System.out.println("base 1");
-
-		// product.setProduct_category(categoryService.findOne(product_category));
-
-		// System.out.println("base 2" +
-		// product.getProduct_category().getCategoryName());
-
 		productService.addProduct(product);
 		return "redirect:/vendor/listproduct";
 
 	}
+	
 
 }
