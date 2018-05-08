@@ -53,11 +53,6 @@
 								class="form-control input-sm" placeholder="Password"
 								style="width: 300px;">
 						</div>
-						<div class="form-group">
-							<input type="password" name="password_confirmation"
-								id="password_confirmation" class="form-control input-sm"
-								placeholder="Confirm Password" style="width: 300px;">
-						</div>
 						<br />
 
 					</div>
