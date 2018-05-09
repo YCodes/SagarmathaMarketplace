@@ -110,7 +110,7 @@ public class OrderController {
 			o.getProduct().getPrice();
 		}
 		
-		model.addAttribute("User", "heee");
+		model.addAttribute("User", principal.getName());
 		 List<String> destionationscard = new ArrayList<>();
 	       destionationscard.add("12333333334444");
 	       destionationscard.add("12112121221444");
