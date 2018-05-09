@@ -18,6 +18,9 @@ public class AspectClass {
 	@Autowired
 	EmailService emailService;
    
+	/*Email after admin signup*/
+	
+	
 	@After("execution( * com.sagarmatha.controller.AdminController.addAdmin(..)) && args(admin, result)")
     public void traceMethodForAdmin(Admin admin, BindingResult result){
 
@@ -33,6 +36,8 @@ public class AspectClass {
     } 
 	
 
+	/*Email after customer signup*/
+
     @After("execution( * com.sagarmatha.controller.CustomerController.saveCustomer(..)) && args(customer, result)")
     public void traceMethodForCustomer(Customer customer, BindingResult result){
 
@@ -46,6 +51,9 @@ public class AspectClass {
     	} 	
        
     } 
+    
+
+	/*Email after vendor signup*/
     
     @After("execution( * com.sagarmatha.controller.VendorController.addVendorSignup(..)) && args(vendor, result,model)")
     public void traceMethodForVendor(Vendor vendor, BindingResult result, ModelMap model){

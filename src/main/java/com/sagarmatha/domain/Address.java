@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Address {
@@ -14,18 +15,21 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "address_id")
 	private Long addressId;
-    
-	@NotNull
+
+
+	@NotEmpty
 	private String street;
-    
-	@NotNull
+
 	private String city;
 
+	@NotEmpty
 	@Column(name = "zip_code")
 	private String zipCode;
 
+	@NotEmpty
 	private String state;
 
+	@NotEmpty
 	private String country;
 
 	public Long getAddressId() {

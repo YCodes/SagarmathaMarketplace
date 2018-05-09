@@ -12,6 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.sagarmatha.validator.EmailExist;
+
 
 @Entity(name="admin")
 public class Admin{
@@ -22,14 +27,20 @@ public class Admin{
 	private Long adminId;
 	
 	@Column(name="firstname")
+	@NotEmpty
 	private String firstName;
 	
 	@Column(name="lastname")
+	@NotEmpty
 	private String lastName;
 	
 	@Column(name="phonenumber")
+	@NotEmpty
 	private String phoneNumber;
 	
+	@Email
+	@EmailExist(message="Email already exists")
+	@NotEmpty
 	@Column(name="email")
 	private String email;
 	

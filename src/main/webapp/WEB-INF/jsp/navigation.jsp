@@ -71,6 +71,45 @@
 	rel="stylesheet" media="screen" />
 <script type="text/javascript"
 	src="<c:url value='/resources/js/slimbox2.js'/>"></script>
+<<<<<<< HEAD
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+=======
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- <script type="text/javascript">
+$(document).ready(function(){
+
+	   var getAppointments = $("#btnSearch").click(function() {
+	        const searchString=$("#txtSearch").val();
+	        $.ajax({
+	            url: "/sagarmathamarketplace/search",
+	            method: "get",
+	            data: {'str': searchString},
+
+	            success: function (data) {
+	                var products = "";
+	                $.each(data, function (key, value) {
+
+	                    products += "<tr >" +
+	                        "<td  >" + value.product_name + "</td>" +
+	                        /* "<td  >" + value.time + "</td>" +
+	                        "<td  >" + value.description + "</td>" + */
+	                        "</tr>";
+	                });
+	                $("#product_box").html(products);
+	                /* $("#appointmentTable").closest("#hidden").show(); */
+	            },
+	            /* error: function( textStatus) {
+	             console.log("Status: " + textStatus);
+	             }*/
+	        });
+	    })
+};
+
+</script> -->
+>>>>>>> 6c1b97a904079a7a63765c2f7057de76f3611fac
 
 
 </head>
@@ -79,7 +118,7 @@
 		<div id="tooplate_header">
 			<div id="header_top">
 				<div id="site_title">
-					<a href="<c:url value='/'/>">Sagarmatha Marketplace</a>
+					<a href="<c:url value='/home'/>">Sagarmatha Marketplace</a>
 				</div>
 				<div id="tooplate_menu" class="ddsmoothmenu">
 					<ul>
@@ -87,7 +126,8 @@
 
 							<ul>
 								<c:forEach var="category" items="${categories}">
-									<li><a href="<c:url value='/home?categoryId=${category.categoryId}' />">${category.categoryName}</a></li>
+									<li><a
+										href="<c:url value='/home?categoryId=${category.categoryId}' />">${category.categoryName}</a></li>
 								</c:forEach>
 							</ul>
 					</ul>
@@ -102,6 +142,7 @@
 					<a href="<c:url value='/shoppingcart'/>">My Cart</a>
 				</p>
 
+
 				<div id="tooplate_search">
 					<form action="#" method="get">
 						<input type="text" value=" " name="keyword" id="keyword"
@@ -112,8 +153,8 @@
 					</form>
 
 					<tags:header></tags:header>
+
 				</div>
+				<!-- END of header bottom -->
 			</div>
-			<!-- END of header bottom -->
-		</div>
-		<!-- END of header -->
+			<!-- END of header -->

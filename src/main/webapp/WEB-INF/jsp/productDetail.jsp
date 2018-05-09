@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+
 <html>
 <head>
 <link
@@ -16,8 +17,8 @@
 </head>
 <body>
 	<div class="container">
-		<%-- <form:form action="productDetail" method="post"
-			modelAttribute="product"> --%>
+		<c:url var="post_url" value = "/product/addToCart/${orderLine.productId}" />
+		<form:form action="${post_url}"	method="post">
 			<div class="card">
 				<div class="row">
 					<aside class="col-sm-5 border-right">
@@ -34,18 +35,18 @@
 					</aside>
 					<aside class="col-sm-7">
 						<article class="card-body">
-							<h3 class="title mb-3">${orderLine.product.product_name}</h3>
+							<h3 class="title mb-3">${orderLine.product_name}</h3>
 
 							<p class="price-detail-wrap">
 								<span class="price h3 text-warning"> <span
-									class="currency">US $</span><span class="num">${orderLine.product.price}</span>
+									class="currency">US $</span><span class="num">${orderLine.price}</span>
 								</span>
 							</p>
 							<!-- price-detail-wrap .// -->
 							<dl class="item-property">
 								<dt>Description</dt>
 								<dd>
-									<p>${orderLine.product.product_description}</p>
+									<p>${orderLine.product_description}</p>
 								</dd>
 							</dl>
 							<hr>
@@ -54,12 +55,13 @@
 									<dl class="param param-inline">
 										<dt>Quantity:</dt>
 										<dd>
-											<select class="form-control form-control-sm"
-												style="width: 70px;">
-												<option> 1 </option>
-												<option> 2 </option>
-												<option> 3 </option>
-											</select>
+											<input name = "quantity" type= "number" class = "form-control" id="quantity" value = "1" />
+											<%-- <select name="product-quantityDetail" id="product-quantity"
+												class="form-control form-control-sm" style="width: 70px;">
+												<c:forEach var="quantity" items="${quantities}">
+													<option value="${quantity}">${quantity}</option>
+												</c:forEach>
+											</select> --%>
 										</dd>
 									</dl>
 									<!-- item-property .// -->
@@ -68,9 +70,11 @@
 							</div>
 
 							<hr>
-							<a href="<c:url value='/product/addToCart/${orderLine.product.productId}'/>"><button
-								class="btn btn-lg btn-outline-primary text-uppercase"
-								value="Add to cart">Add To Cart</button></a>
+							<a<%-- href="<c:url value='/product/addToCart/${orderLine.product.productId}'/>" --%>
+						>
+								<button class="btn btn-lg btn-outline-primary text-uppercase"
+									value="Add to cart">Add To Cart</button>
+							</a>
 						</article>
 						<!-- card-body.// -->
 					</aside>
@@ -81,14 +85,8 @@
 			<!-- card.// -->
 
 
-		<%-- </form:form>
- --%>
+		</form:form>
 
 
 	</div>
-	<!--container.//-->
-
-
-
-</body>
-</html>
+<%@ include file="footer.jsp"%>

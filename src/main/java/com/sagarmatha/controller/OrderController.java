@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,9 +20,14 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.sagarmatha.domain.Address;
 import com.sagarmatha.domain.Order;
+import com.sagarmatha.domain.OrderLine;
 import com.sagarmatha.domain.User;
 import com.sagarmatha.model.SubmitForm;
+
+import com.sagarmatha.service.OrderLineService;
+
 import com.sagarmatha.repository.AddressRepository;
+
 import com.sagarmatha.service.OrderService;
 import com.sagarmatha.service.UserService;
 
@@ -39,9 +45,10 @@ public class OrderController {
 	
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	AddressRepository addressRepository; 
+
 
 	@RequestMapping("/shoppingcart")
 	public String createOrderPage(Model model, @ModelAttribute("order") Order order) {
@@ -87,7 +94,7 @@ public class OrderController {
 			@ModelAttribute Order order,SessionStatus sessionStatus) {
 		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s",""));
         paymentForm.setCardExpirationDate(month + "/" + year);
-        
+        model.addAttribute("order", order);
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
 	   
@@ -98,6 +105,10 @@ public class OrderController {
 		shippingAddress.setStreet(paymentForm.getStreet());
 		shippingAddress.setZipCode(paymentForm.getZipCode());
 		
+		List<OrderLine> ol = order.getOrderLine();
+		for(OrderLine o : ol) {
+			o.getProduct().getPrice();
+		}
 		
 		model.addAttribute("User", "heee");
 		 List<String> destionationscard = new ArrayList<>();
@@ -169,4 +180,13 @@ public class OrderController {
 		
 		return "redirect:/homepage";
 	}
+/*	
+	@RequestMapping(value="/remove-from-cart/{productId}")
+	public String removeCartItem(@PathVariable("productId") Long id, SessionStatus sessionStatus, Authentication principal) {
+		
+		String email = principal.getName();
+		
+		User user = user*/
+		
+	
 }
