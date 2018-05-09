@@ -13,7 +13,7 @@
 
 	<aop:aspectj-autoproxy />
 
-	<mvc:annotation-driven />
+	<mvc:annotation-driven validator="validator"/>
 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<bean id="viewResolver"
@@ -64,5 +64,6 @@
 		<property name="maxUploadSize" value="100000" />
 
 	</bean>
+	<mvc:annotation-driven validator="validator" />
 
 </beans>

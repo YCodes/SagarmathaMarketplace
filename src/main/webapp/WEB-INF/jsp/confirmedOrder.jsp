@@ -58,7 +58,7 @@
 							class="fa fa-angle-left"></i> Continue Shopping</a></td>
 					<td colspan="2" class="hidden-xs"></td> --%>
 					<td class="hidden-xs text-center"><strong>Total  $${totalPrice}</strong></td>
-					<td><a href="<c:url value='/place-order'/>" class="btn btn-success btn-block">Confirm Order
+					<td><a href="<c:url value='/checkout/submit'/>" class="btn btn-success btn-block">Confirm Order
 							<i class="fa fa-angle-right"></i>
 					</a></td>
 				</tr>

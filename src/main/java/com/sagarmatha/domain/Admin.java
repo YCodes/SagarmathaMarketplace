@@ -39,9 +39,9 @@ public class Admin{
 	private String phoneNumber;
 	
 	@Email
-	@EmailExist
-	@Column(name="email")
+	@EmailExist(message="Email already exists")
 	@NotEmpty
+	@Column(name="email")
 	private String email;
 	
 	

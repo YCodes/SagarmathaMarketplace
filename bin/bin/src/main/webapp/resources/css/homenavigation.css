@@ -1,0 +1,21 @@
+
+.homepage.navigationbar #tooplate_search {
+    float: left;
+    width: 250px;
+    margin-left: 176px;
+    height: 24px;
+}
+
+.homepage.navigationbar #header_bottom p {
+    float: left;
+    width: 230px;
+}
+
+.homepage.navigationbar #header {
+    width: 225px;
+    margin-top: -35px;
+    margin-left: 280px;
+    display: inline-block;
+    float: left;
+    color: wheat;
+}

@@ -7,10 +7,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
-
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.sagarmatha.domain.Category;
 import com.sagarmatha.domain.Product;
@@ -145,7 +137,7 @@ public class VendorController {
 		
 		List<Category> categories = categoryService.viewAllCategory();
 		model.addAttribute("categories", categories);
-		
+
 		return "addproduct";
 	}
 	
@@ -170,6 +162,7 @@ public class VendorController {
 //		            return "fileUploadForm";
 //		         }
 //		      }
+
 		   
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";
