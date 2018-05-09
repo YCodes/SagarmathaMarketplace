@@ -30,8 +30,8 @@
 	<field name="Price" class="java.lang.Integer"/>
 	<field name="VendorId" class="java.lang.Long"/>
 	<field name="TotalPrice" class="java.lang.Integer"/>
-	<variable name="TotalPrice1" class="java.lang.Integer" resetType="Column" calculation="Sum">
-		<variableExpression><![CDATA[$F{TotalPrice}]]></variableExpression>
+	<variable name="TotalQuantity" class="java.lang.Integer" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{Quantity}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -151,7 +151,7 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="58" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<staticText>
 				<reportElement x="390" y="5" width="53" height="15" uuid="76eea962-3078-47c5-afd2-7b698a052300"/>
 				<text><![CDATA[Total Qty:]]></text>
@@ -160,6 +160,10 @@
 				<reportElement x="484" y="5" width="53" height="15" uuid="aa95634c-ebca-4109-b6f7-fffbd7eb6b2f"/>
 				<text><![CDATA[Total Price:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="390" y="23" width="80" height="18" uuid="ca8893d6-4844-4470-9e7a-b6ebb9a154d9"/>
+				<textFieldExpression><![CDATA[$V{TotalQuantity}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>
