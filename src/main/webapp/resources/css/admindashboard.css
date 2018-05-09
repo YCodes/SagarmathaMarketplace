@@ -8,5 +8,9 @@
 }
 
 input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].btn-block {
-    width: 33.5%;
+    width: 50.5%;
+}
+
+.edit-product.modal-footer {
+    margin-top: 285px;
 }
