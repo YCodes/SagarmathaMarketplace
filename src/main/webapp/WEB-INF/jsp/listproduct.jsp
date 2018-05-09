@@ -80,11 +80,11 @@
 														</div>
 														<div class="col-xs-6 col-sm-6 col-md-6">
 															<div class="form-group">
-																<select name="product_category" id="edit_product_category"
+																<select name="category.categoryId" id="edit_product_category"
 																	class="form-control input-sm"
 																	placeholder="Product category">
 																	<c:forEach var="category" items="${categories}">
-																		<option value="${category.categoryName}">${category.categoryName}</option>
+																		<option value="${category.categoryId}">${category.categoryName}</option>
 																	</c:forEach>
 
 																</select>

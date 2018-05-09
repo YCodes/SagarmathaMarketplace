@@ -94,13 +94,11 @@ public class VendorController {
 	
 	@RequestMapping("/vendor/listproduct")
 	public String vendorListProduct(Principal principal, ModelMap model) {
-//		Vendor vendor = vendorService.findVendorByEmail(principal.getName());
-//		System.out.println(vendor);
-//		List<Product> products = productService.viewActiveProducts(vendor.getId());
-//		System.out.println(products);
+	
+		Vendor vendor = vendorService.findVendorByEmail(principal.getName());
 
-		//List<Product> products = productService.viewActiveProducts(vendorId);
-		List<Product> products = productService.viewAllProduct();
+		boolean isActive = false;
+	 	List<Product> products = productService.viewActiveProducts(vendor.getId(), isActive);
 		model.addAttribute("products", products);
 		
 		List<Category> categories = categoryService.viewAllCategory();
@@ -149,21 +147,22 @@ public class VendorController {
 		@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
 		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,@RequestParam("product_image") MultipartFile[] files, ModelMap model) throws IOException {
 			 // Save file on system
-		    String imageName = product.getProduct_name()+".jpg";
-			for (MultipartFile file : files) {
-		         if (!file.getOriginalFilename().isEmpty()) {
-		            BufferedOutputStream outputStream = new BufferedOutputStream(
-		                  new FileOutputStream(
-		                        new File("D:\\SagarmathaMarketplace\\src\\main\\webapp\\resources\\MultipleFileUpload", imageName)));
+		    
+//			for (MultipartFile file : files) {
+//		         if (!file.getOriginalFilename().isEmpty()) {
+//		            BufferedOutputStream outputStream = new BufferedOutputStream(
+//		                  new FileOutputStream(
+//		                        new File("D:/MultipleFileUpload", file.getOriginalFilename())));
+//
+//		            outputStream.write(file.getBytes());
+//		            outputStream.flush();
+//		            outputStream.close();
+//		         } else {
+//		            model.addAttribute("msg", "Please select at least one file..");
+//		            return "fileUploadForm";
+//		         }
+//		      }
 
-		            outputStream.write(file.getBytes());
-		            outputStream.flush();
-		            outputStream.close();
-		         } else {
-		            model.addAttribute("msg", "Please select at least one file..");
-		            return "fileUploadForm";
-		         }
-		      }
 		   
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";
