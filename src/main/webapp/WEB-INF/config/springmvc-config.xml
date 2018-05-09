@@ -64,5 +64,6 @@
 		<property name="maxUploadSize" value="100000" />
 
 	</bean>
+	<mvc:annotation-driven validator="validator" />
 
 </beans>
