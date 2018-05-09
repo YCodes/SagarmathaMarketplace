@@ -24,9 +24,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<Product> viewActiveProducts(Long Id) {
+	public List<Product> viewActiveProducts(Long Id, boolean value) {
 		
-		return productRepository.findActiveProducts(Id);
+		return productRepository.findActiveProducts(Id, value);
 		
 	}
 

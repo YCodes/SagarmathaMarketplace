@@ -29,7 +29,7 @@ public class Product {
 	private int product_price;
 	@Transient
 	private MultipartFile product_image;
-	private int vendorId;
+	private Long vendorId;
 	
 	public Category getCategory() {
 		return category;
@@ -59,10 +59,10 @@ public class Product {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-	public int getVendorId() {
+	public Long getVendorId() {
 		return vendorId;
 	}
-	public void setVendorId(int vendorId) {
+	public void setVendorId(Long vendorId) {
 		this.vendorId = vendorId;
 	}
 	public Long getProductId() {
