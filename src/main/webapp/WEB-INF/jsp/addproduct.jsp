@@ -59,13 +59,13 @@
 						</div>
 
 						<div class="form-group">
-							<input type="number" name="product_quantity"
+							<input type="number" min="0" name="product_quantity"
 								id="product_quantity" class="form-control input-sm"
 								placeholder="Product quantity">
 						</div>
 						
 						<div class="form-group">
-							<input type="number" name="product_price"
+							<input type="number" min="0" name="product_price"
 								id="product_price" class="form-control input-sm"
 								placeholder="Product price">
 						</div>
