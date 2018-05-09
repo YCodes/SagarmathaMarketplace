@@ -28,7 +28,7 @@
 	<field name="Category" class="java.lang.String"/>
 	<field name="Quantity" class="java.lang.Integer"/>
 	<field name="Price" class="java.lang.Integer"/>
-	<field name="VendorId" class="java.lang.Integer"/>
+	<field name="VendorId" class="java.lang.Long"/>
 	<field name="TotalPrice" class="java.lang.Integer"/>
 	<variable name="TotalPrice1" class="java.lang.Integer" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{TotalPrice}]]></variableExpression>
@@ -74,7 +74,7 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="58" y="48" width="68" height="17" uuid="314269ba-d2fb-42ab-ad1b-a1fda5af3e91"/>
+				<reportElement x="54" y="49" width="66" height="13" uuid="4a818edf-3093-4db3-ac5f-d23791a02997"/>
 				<textFieldExpression><![CDATA[$F{VendorId}]]></textFieldExpression>
 			</textField>
 		</band>
