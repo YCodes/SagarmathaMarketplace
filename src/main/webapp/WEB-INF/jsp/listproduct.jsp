@@ -114,6 +114,15 @@
 
 
 													<div class="form-group">
+
+														<%-- <input type="file" name="product_image" id="edit_product_image"
+															class="form-control input-sm" placeholder="Product Image"
+															value="value="${product.product_image}">
+															 --%>
+															<img class="img-circle"  src="${pageContext.request.contextPath}/resources/images/${product.photoURL}.png" width="100"/>
+	                										</div>
+															
+
 														<input type="number" min="0" name="product_price"
 															id="product_price" class="form-control input-sm"
 															placeholder="Product price" value="${product.product_price}">

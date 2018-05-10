@@ -3,7 +3,6 @@
 
 <%@ include file="navigation.jsp"%>
 
-
 <div class="container">
 	<c:url var="post_url" value="/product/addToCart/${orderLine.productId}" />
 	<form:form action="${post_url}" method="post">

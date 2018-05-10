@@ -73,10 +73,6 @@
 								placeholder="Product price">
 						</div>
 
-						<!-- <div class="form-group">
-							<input type="file" name="product_image" id="product_image"
-								class="form-control input-sm" placeholder="Product Image">
-						</div> -->
 
 						<div class="container">
 							<div class="col-md-6">
@@ -88,8 +84,12 @@
 									</div>
 								</div>
 							</div>
-						</div>
 
+						</div>
+						
+							
+                        
+                        
 						<input type="submit" value="Add Product"
 							class="btn btn-info btn-block">
 

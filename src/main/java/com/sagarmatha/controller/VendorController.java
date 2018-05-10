@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.UUID;
 
 import java.util.UUID;
 
@@ -147,7 +148,6 @@ public class VendorController {
 	}
 
 	// Vendor Add Products from Vendor Dashboard
-
 	@RequestMapping(value = "/vendor/addproduct", method = RequestMethod.POST)
 	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,
 			@RequestParam("photo") MultipartFile[] files, ModelMap model) throws IOException {
@@ -174,6 +174,7 @@ public class VendorController {
 				throw new RuntimeException("Employee photo saving failed", e);
 				// throw new UnableToUploadPhotoException("Employee photo saving failed");
 			}
+
 		}
 
 		productService.addProduct(product);

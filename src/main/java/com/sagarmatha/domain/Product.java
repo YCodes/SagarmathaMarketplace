@@ -128,4 +128,28 @@ public class Product {
 		this.product_quantity = product_quantity;
 	}
 
+	public String getPhotoURL() {
+		return photoURL;
+	}
+	public void setPhotoURL(String photoURL) {
+		this.photoURL = photoURL;
+	}
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", product_name=" + product_name + ", category=" + category
+				+ ", product_description=" + product_description + ", product_quantity=" + product_quantity
+				+ ", product_price=" + product_price + ", photoURL=" + photoURL + ", photo=" + photo + ", vendorId="
+				+ vendorId + ", isActive=" + isActive + "]";
+	}
+	
+	
+	
+
+
 }
