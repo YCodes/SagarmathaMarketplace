@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
@@ -36,15 +37,14 @@ public class VendorController {
 
 	@Autowired
 	ProductService productService;
-	
+
 	@Autowired
 	CategoryService categoryService;
 
 	@Autowired
 	ServletContext context;
-	
-	private static final String UPLOAD_DIRECTORY ="/products";
 
+	private static final String UPLOAD_DIRECTORY = "/products";
 
 	@RequestMapping("/vendorsignup")
 	public String vendorSignup() {
@@ -52,7 +52,8 @@ public class VendorController {
 	}
 
 	@RequestMapping(value = "/vendorsignup", method = RequestMethod.POST)
-	public String addVendorSignup(@ModelAttribute("vendor") @Valid Vendor vendor, BindingResult result, ModelMap model) {
+	public String addVendorSignup(@ModelAttribute("vendor") @Valid Vendor vendor, BindingResult result,
+			ModelMap model) {
 
 		if (result.hasErrors()) {
 			return "redirect:vendorsignup";
@@ -62,58 +63,61 @@ public class VendorController {
 		vendorService.saveVendor(vendor);
 
 		return "redirect:/login";
-		
+
 	}
 
 	@RequestMapping("/vendor/dashboard/{vendorId}")
 
 	public String vendorDashboard(@PathVariable("vendorId") Long vendorId, ModelMap model) {
-		
+
 		Vendor vendor_db = vendorService.findVendorById(vendorId);
-		model.addAttribute("vendor",vendor_db);
-		
-//		List<Product> products = productService.viewProductByVendorId(vendor_db.getId());
-		
+		model.addAttribute("vendor", vendor_db);
+
+		// List<Product> products =
+		// productService.viewProductByVendorId(vendor_db.getId());
+
 		List<Product> products = productService.viewAllProduct();
-		model.addAttribute("products",products);
-		
+		model.addAttribute("products", products);
+
 		return "vendorDashboard";
 	}
 
 	@RequestMapping(value = "/vendor/update", method = RequestMethod.POST)
-	public String vendorUpdate(@ModelAttribute("vendorUpdate") @Valid Vendor vendor,
-			BindingResult result, ModelMap model) {
+	public String vendorUpdate(@ModelAttribute("vendorUpdate") @Valid Vendor vendor, BindingResult result,
+			ModelMap model) {
 		if (result.hasErrors()) {
 			return "redirect:/vendor/dashboard";
 		}
 		Long id = vendor.getId();
 		vendorService.updateVendor(id, vendor);
 
-		return "redirect:/vendor/dashboard/"+id;
+		return "redirect:/vendor/dashboard/" + id;
 	}
-	
+
 	@RequestMapping("/vendor/listproduct")
 	public String vendorListProduct(Principal principal, ModelMap model) {
+
 	
 		Vendor vendor = vendorService.findVendorByEmail(principal.getName());
 
 		boolean isActive = false;
 	 	List<Product> products = productService.viewActiveProducts(vendor.getId(), isActive);
+
 		model.addAttribute("products", products);
-		
+
 		List<Category> categories = categoryService.viewAllCategory();
 		model.addAttribute("categories", categories);
-		
+
 		Long vendorId = vendorService.findVendorByEmail(principal.getName()).getId();
 		Vendor vendor_db = vendorService.findVendorById(vendorId);
 
 		model.addAttribute("vendorId", vendor_db.getId());
-		
+
 		return "listproduct";
 	}
 
 	@RequestMapping(value = "/vendor/product/update", method = RequestMethod.POST)
-	public String updateProduct(@ModelAttribute("updateproduct") @Valid Product product , BindingResult result) {
+	public String updateProduct(@ModelAttribute("updateproduct") @Valid Product product, BindingResult result) {
 		Long id = product.getProductId();
 		System.out.println(id);
 		productService.updateProduct(id, product);
@@ -126,47 +130,53 @@ public class VendorController {
 		productService.deleteProduct(id);
 		return "redirect:/vendor/listproduct";
 	}
-	
+
 	@RequestMapping("/vendor/addproduct")
 	public String vendorAddProduct(Principal principal, ModelMap model) {
-		
+
 		Long vendorId = vendorService.findVendorByEmail(principal.getName()).getId();
 		Vendor vendor_db = vendorService.findVendorById(vendorId);
 
 		model.addAttribute("vendorId", vendor_db.getId());
-		
+
 		List<Category> categories = categoryService.viewAllCategory();
 		model.addAttribute("categories", categories);
 
 		return "addproduct";
 	}
-	
+
 	// Vendor Add Products from Vendor Dashboard
 
 
-		@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
-		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,@RequestParam("product_image") MultipartFile[] files, ModelMap model) throws IOException {
-			 // Save file on system
-		    
-//			for (MultipartFile file : files) {
-//		         if (!file.getOriginalFilename().isEmpty()) {
-//		            BufferedOutputStream outputStream = new BufferedOutputStream(
-//		                  new FileOutputStream(
-//		                        new File("D:/MultipleFileUpload", file.getOriginalFilename())));
-//
-//		            outputStream.write(file.getBytes());
-//		            outputStream.flush();
-//		            outputStream.close();
-//		         } else {
-//		            model.addAttribute("msg", "Please select at least one file..");
-//		            return "fileUploadForm";
-//		         }
-//		      }
+	@RequestMapping(value = "/vendor/addproduct", method = RequestMethod.POST)
+	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,
+			@RequestParam("photo") MultipartFile[] files, ModelMap model) throws IOException {
 
-		   
-			productService.addProduct(product);
-			return "redirect:/vendor/listproduct";
-			
-		}
+		MultipartFile photo = product.getPhoto();
+		System.out.println("*AddPHOTO");
 
+		String rootDirectory = context.getRealPath("/");
+		System.out.println();
+		String userUID = UUID.randomUUID().toString();
+		System.out.println(userUID);
+		if (photo != null && !photo.isEmpty()) {
+			try {
+				System.out.println("Checking add photo");
+				String photoURL = rootDirectory + "resources\\images\\" + userUID + ".png";
+				System.out.println("Checking URL");
+				System.out.println(photoURL);
+				photo.transferTo(new File(photoURL));
+				// photo.transferTo(new File(rootDirectory + "\\resources\\MultipleFileUpload\\"
+				// + userUID + ".png"));
+				product.setPhotoURL(userUID);
+
+			} catch (Exception e) {
+				throw new RuntimeException("Employee photo saving failed", e);
+				// throw new UnableToUploadPhotoException("Employee photo saving failed");
+			}
+
+		productService.addProduct(product);
+		return "redirect:/vendor/listproduct";
+
+	}
 }

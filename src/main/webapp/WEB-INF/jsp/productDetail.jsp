@@ -17,22 +17,15 @@
 </head>
 <body>
 	<div class="container">
-		<c:url var="post_url" value = "/product/addToCart/${orderLine.productId}" />
-		<form:form action="${post_url}"	method="post">
+		<c:url var="post_url"
+			value="/product/addToCart/${orderLine.productId}" />
+		<form:form action="${post_url}" method="post">
 			<div class="card">
 				<div class="row">
 					<aside class="col-sm-5 border-right">
-						<article class="gallery-wrap">
-							<div class="img-big-wrap">
-								<div>
-									<a href="#"><img
-										src="https://s9.postimg.org/tupxkvfj3/image.jpg"></a>
-								</div>
-							</div>
-							<!-- slider-product.// -->
-						</article>
-						<!-- gallery-wrap .end// -->
-					</aside>
+						<img class="img-circle"
+							src="${pageContext.request.contextPath}/resources/images/${orderLine.photoURL}.png"
+							width="456" />					</aside>
 					<aside class="col-sm-7">
 						<article class="card-body">
 							<h3 class="title mb-3">${orderLine.product_name}</h3>
@@ -55,7 +48,8 @@
 									<dl class="param param-inline">
 										<dt>Quantity:</dt>
 										<dd>
-											<input name = "quantity" type= "number" class = "form-control" id="quantity" value = "1" />
+											<input name="quantity" type="number" class="form-control"
+												id="quantity" value="1" />
 											<%-- <select name="product-quantityDetail" id="product-quantity"
 												class="form-control form-control-sm" style="width: 70px;">
 												<c:forEach var="quantity" items="${quantities}">
@@ -89,4 +83,4 @@
 
 
 	</div>
-<%@ include file="footer.jsp"%>
+	<%@ include file="footer.jsp"%>
