@@ -1,4 +1,4 @@
-<%@ include file="header.jsp"%>
+<%@ include file="headerForSignup.jsp"%>
 
 <div id="tooplate_main">
 	<span class="main_border main_border_t"></span><span

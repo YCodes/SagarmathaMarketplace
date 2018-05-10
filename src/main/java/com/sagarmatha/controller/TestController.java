@@ -8,6 +8,6 @@ public class TestController {
 
 	@RequestMapping("aa")
 	public String getPage() {
-		return "abc";
+		return "test";
 	}
 }

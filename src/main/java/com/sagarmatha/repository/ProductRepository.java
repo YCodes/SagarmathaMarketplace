@@ -11,10 +11,11 @@ import com.sagarmatha.domain.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 	
+	@Query("Select p from Product p where vendorId = ?1")
 	public List<Product> findByVendorId(Long Id);
 	
-	@Query("Select p from Product p where p.vendorId = ?1")
-	public List<Product> findActiveProducts(Long Id);
+	@Query("Select p from Product p where vendorId = ?1 and isActive = ?2")
+	public List<Product> findActiveProducts(Long Id, boolean value);
 
 	 public List<Product> findByCategory_CategoryId(Long productCategory);
 

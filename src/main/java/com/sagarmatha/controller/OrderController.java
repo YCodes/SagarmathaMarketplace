@@ -20,6 +20,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.sagarmatha.domain.Address;
 import com.sagarmatha.domain.Order;
+import com.sagarmatha.domain.OrderLine;
 import com.sagarmatha.domain.User;
 import com.sagarmatha.model.SubmitForm;
 
@@ -85,13 +86,16 @@ public class OrderController {
 			return "cartPage";
 	}
 
+
+
 	@PostMapping("checkout/submit")
 	public String checkoutCustomerOrder(Model model, @ModelAttribute("paymentForm") SubmitForm paymentForm,
 			@RequestParam("month") String month, @RequestParam("year") String year, Principal principal,
-			@ModelAttribute Order order, SessionStatus sessionStatus) {
-		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s", ""));
-		paymentForm.setCardExpirationDate(month + "/" + year);
 
+			@ModelAttribute Order order,SessionStatus sessionStatus) {
+		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s",""));
+        paymentForm.setCardExpirationDate(month + "/" + year);
+        model.addAttribute("order", order);
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
 
@@ -101,36 +105,42 @@ public class OrderController {
 		shippingAddress.setState(paymentForm.getState());
 		shippingAddress.setStreet(paymentForm.getStreet());
 		shippingAddress.setZipCode(paymentForm.getZipCode());
-
-		model.addAttribute("User", "heee");
-		List<String> destionationscard = new ArrayList<>();
-		destionationscard.add("1233333333");
-		destionationscard.add("12112121221");
-		destionationscard.add("1212121221");
-		String responseCode = orderService.doTransaction(paymentForm.getCardNumber(),
-				paymentForm.getCardExpirationDate(), paymentForm.getCardHolderName(), paymentForm.getCvv(),
-				paymentForm.getCardZipcode(), totalPrice, "2222222222222222", destionationscard);
-
-		if (responseCode.equals("5")) {
-			model.addAttribute("error", "Please Enter the Correct Card Detail");
-			return "submitorder";
+	
+		List<OrderLine> ol = order.getOrderLine();
+		for(OrderLine o : ol) {
+			o.getProduct().getPrice();
 		}
-		if (responseCode.equals("6")) {
-			model.addAttribute("error", "Transaction Amount Not Sufficient");
-			return "submitorder";
-		}
-
-		addressRepository.save(shippingAddress);
-		order.setShippingAddress(addressRepository.findOne(shippingAddress.getAddressId()));
-		order.setTotalPrice(totalPrice);
-		orderService.saveOrder(order);
-		sessionStatus.setComplete();
-
-		return "ordersuccess";
-
-	}
-
-	@RequestMapping(value = "/change", method = RequestMethod.GET)
+		
+		model.addAttribute("User", principal.getName());
+		 List<String> destionationscard = new ArrayList<>();
+	       destionationscard.add("12333333334444");
+	       destionationscard.add("12112121221444");
+	       destionationscard.add("12121212214444");
+	        String responseCode = orderService.doTransaction(paymentForm.getCardNumber(),
+	            paymentForm.getCardExpirationDate(), paymentForm.getCardHolderName(), paymentForm.getCvv(),
+	            paymentForm.getCardZipcode(), totalPrice, "3333333333333333",destionationscard);
+	        
+	        if(responseCode.equals("5")){
+	        	model.addAttribute("error", "Please Enter the Correct Card Detail");
+	        	return "submitorder";
+	        }
+	        if(responseCode.equals("6")) {
+	        	model.addAttribute("error", "Transaction Amount Not Sufficient");
+	        	return "submitorder";
+	        }
+	        
+	        addressRepository.save(shippingAddress);
+	        order.setShippingAddress(addressRepository.findOne(shippingAddress.getAddressId()));
+	        order.setTotalPrice(totalPrice);
+	    	orderService.saveOrder(order);
+	    	sessionStatus.setComplete();
+			
+	        
+			return "ordersuccess";
+	    	
+	    }
+    
+  @RequestMapping(value = "/change", method = RequestMethod.GET)
 	public String changeOrderDetails(Model model, @ModelAttribute("order") Order order,
 			@RequestParam("quantity") int quantity, @RequestParam("orderLineIndex") int orderLineIndex) {
 

@@ -131,16 +131,17 @@ $(document).ready(function(){
 		<div id="tooplate_header">
 			<div id="header_top">
 				<div id="site_title">
-					<a href="<c:url value='/'/>">Sagarmatha Marketplace</a>
+					<a href="<c:url value='/homepage'/>">Sagarmatha Marketplace</a>
 				</div>
 				<div id="tooplate_menu" class="ddsmoothmenu">
 					<ul>
-						<li><a href="<c:url value='/products'/>">Category</a>
+						<li><a href="<c:url value='/homepage'/>">Category</a>
 
 							<ul>
 								<c:forEach var="category" items="${categories}">
 									<li><a
-										href="<c:url value='/home?categoryId=${category.categoryId}' />">${category.categoryName}</a></li>
+										href="<c:url value='/homepage?categoryId=${category.categoryId}' />">${category.categoryName}</a>
+									</li>
 								</c:forEach>
 							</ul>
 					</ul>
