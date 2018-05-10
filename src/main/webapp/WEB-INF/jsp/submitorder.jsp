@@ -133,7 +133,7 @@
 				<tr>
 					</br>
 					<td colspan="2" class="hidden-xs"></td>
-					<td class="hidden-xs text-center" align="center"><strong>Total  $${totalPrice}</strong></td>
+					<td class="hidden-xs text-center" align="center"  style="width: 150px" colspan="3"><strong>Total  $${totalPrice}</strong></td>
 					
 				</tr>
 			</tfoot>
