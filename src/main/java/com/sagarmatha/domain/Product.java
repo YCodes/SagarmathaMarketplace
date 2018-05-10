@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,6 +24,8 @@ public class Product {
 	@JoinColumn(name = "categoryId")
 	private Category category;
 	private String product_description;
+	
+	
 	private int product_quantity;
 	private int product_price;
 	
@@ -35,23 +36,6 @@ public class Product {
 	private MultipartFile photo;
 
 	private Long vendorId;
-
-
-	public MultipartFile getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(MultipartFile photo) {
-		this.photo = photo;
-	}
-
-	public String getPhotoURL() {
-		return photoURL;
-	}
-
-	public void setPhotoURL(String photoURL) {
-		this.photoURL = photoURL;
-	}
 
 	public Category getCategory() {
 		return category;
@@ -125,5 +109,29 @@ public class Product {
 	public void setProduct_quantity(int product_quantity) {
 		this.product_quantity = product_quantity;
 	}
+
+	public String getPhotoURL() {
+		return photoURL;
+	}
+	public void setPhotoURL(String photoURL) {
+		this.photoURL = photoURL;
+	}
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", product_name=" + product_name + ", category=" + category
+				+ ", product_description=" + product_description + ", product_quantity=" + product_quantity
+				+ ", product_price=" + product_price + ", photoURL=" + photoURL + ", photo=" + photo + ", vendorId="
+				+ vendorId + ", isActive=" + isActive + "]";
+	}
+	
+	
+	
+
 
 }

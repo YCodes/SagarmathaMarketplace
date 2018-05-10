@@ -73,14 +73,19 @@
 								placeholder="Product price">
 						</div>
 
+
 						<div class="form-group">
 							<label>Upload Image</label>
 							<div class="form-group">
 								<input type="file" id="imgInp" name="photo"
 									class="form-control btn btn-default">
 							</div>
-						</div>
 
+						</div>
+						
+							
+                        
+                        
 						<input type="submit" value="Add Product"
 							class="btn btn-info btn-block">
 

@@ -10,6 +10,9 @@ jQuery(document).ready(function(){
 		$(this).closest(".modal").hide();
 	});
 	
+	
+
+	
 	$(".modal-footer .btn.btn-secondary").click(function(){		
 		$(this).closest(".modal").hide();
 	});

@@ -17,11 +17,11 @@
 		<table id="cart" class="table table-hover table-condensed">
 			<thead>
 				<tr>
-					<th style="width: 30%">Product</th>
-					<th style="width: 0%">Price</th>
-					<th style="width: 8%">Quantity</th>
-					<th style="width: 22%" class="text-center">Subtotal</th>
-					<th style="width: 10%"></th>
+					<th style="width: 20%">Product</th>
+					<th style="width: 20%">Price</th>
+					<th style="width: 20%">Quantity</th>
+					<th style="width: 20%" class="text-center">Subtotal</th>
+					<th style="width: 20%"></th>
 				</tr>
 			</thead>
 			<tbody>
