@@ -43,6 +43,8 @@ public class LoginController {
 
 	@Autowired
 	CategoryService categoryService;
+	
+	
 
 	@RequestMapping(value = { "/login" })
 	public String getLoginPage() {
