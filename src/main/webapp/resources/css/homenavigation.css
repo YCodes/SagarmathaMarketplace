@@ -11,16 +11,23 @@
     width: 230px;
 }
 
+#header_bottom {
+    padding: 29px 40px;
+}
+
 .homepage.navigationbar #header {
     width: 240px;
-    margin-top: -35px;
+    margin-top: -25px;
     margin-left: 280px;
     display: inline-block;
     float: left;
     color: wheat;
 }
+.product h1{
+	color:#b04b2f;
+}
 .product .product_box {
-    width: 240px;
+    width: 260px;
    
 }
 
