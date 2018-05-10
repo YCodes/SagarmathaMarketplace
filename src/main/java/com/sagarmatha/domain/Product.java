@@ -32,7 +32,6 @@ public class Product {
 	
 	@JsonIgnore
 	@Transient
-
 	private MultipartFile photo;
 
 	private Long vendorId;

@@ -10,7 +10,6 @@
 			<c:forEach var="product" items="${products}">
 				<div class="product_box">
 					<div class="img_box">
-
 						<img class="img-circle"
 							src="${pageContext.request.contextPath}/resources/images/${product.photoURL}.png"
 							width="100" />
