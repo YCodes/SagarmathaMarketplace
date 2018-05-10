@@ -174,9 +174,9 @@ public class VendorController {
 				throw new RuntimeException("Employee photo saving failed", e);
 				// throw new UnableToUploadPhotoException("Employee photo saving failed");
 			}
+		}
 
 		productService.addProduct(product);
 		return "redirect:/vendor/listproduct";
-
 	}
 }

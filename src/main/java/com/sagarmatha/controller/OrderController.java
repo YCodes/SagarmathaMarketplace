@@ -97,7 +97,7 @@ public class OrderController {
         model.addAttribute("order", order);
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
-	   
+		model.addAttribute("totalPrice", totalPrice);
 		Address shippingAddress = new Address();
 		shippingAddress.setCity(paymentForm.getCity());
 		shippingAddress.setCountry(paymentForm.getCountry());
