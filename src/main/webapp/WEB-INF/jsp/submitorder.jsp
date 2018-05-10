@@ -47,7 +47,7 @@
 			<h3>Secure Payment</h3>
 				<div class="form-group">
 					<label>Card Holder</label><form:input path="cardHolderName" class="form-control" style="width: 300px;" /> 
-					<label>CCV</label><form:input path="cvv" class="form-control" style="width: 300px;" />
+					<label>CCV</label><form:input path="cvv" class="form-control" style="width: 300px;" type="password"/>
 					<label>Card Number : 16 digits number</label><form:input path="cardNumber" class="form-control" 
 						style="width: 300px;" pattern="[0-9]{16}"/> 
 					<label>Expiration Date</label><br>
@@ -134,7 +134,10 @@
 					</br>
 					<td colspan="2" class="hidden-xs"></td>
 					<td class="hidden-xs text-center" align="center"  style="width: 150px" colspan="3"><strong>Total  $${totalPrice}</strong></td>
-					
+					<td class="hidden-xs text-center" align="center"><strong>Tax Amount
+								$${tax}</strong></td>	
+						<td class="hidden-xs text-center" align="center"><strong>Total Sum with Tax
+								$${sum}</strong></td>
 				</tr>
 			</tfoot>
 		</table>

@@ -33,4 +33,6 @@ public interface ProductService {
 
 	public void delete(Product savedProduct);
 
+	public List<Product> findActiveProductsHome(boolean b);
+
 }

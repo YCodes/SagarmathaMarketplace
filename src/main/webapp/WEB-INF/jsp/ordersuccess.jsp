@@ -4,10 +4,10 @@
 	<span class="main_border main_border_t"></span><span
 		class="main_border main_border_b"></span>
 
-	<h3>Thank you for Shopping ${User}. Your Order Detail :</h3>
+	<h3>Thank you for Shopping ${User}. Your Order has been Placed :</h3>
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3 style="display: inline-block">Review Order</h3>
+			<h3 style="display: inline-block">Your Order</h3>
 		</div>
 
 			<table id="cart" class="table table-hover table-condensed">
@@ -53,7 +53,10 @@
 						<td colspan="2" class="hidden-xs"></td>
 						<td class="hidden-xs text-center" align="center"><strong>Total
 								$${totalPrice}</strong></td>
-
+							<td class="hidden-xs text-center" align="center"><strong>Tax Amount
+								$${tax}</strong></td>	
+						<td class="hidden-xs text-center" align="center"><strong>Total Sum with Tax
+								$${sum}</strong></td>
 					</tr>
 				</tfoot>
 			</table>

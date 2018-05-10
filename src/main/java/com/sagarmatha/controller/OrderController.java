@@ -71,6 +71,10 @@ public class OrderController {
 		int totalQuantities = order.getOrderLine().stream().mapToInt(or -> or.getQuantity()).sum();
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
+		double tax = 0.07*totalPrice;
+		double sum = totalPrice+tax;
+		model.addAttribute("sum",sum);
+		model.addAttribute("tax",tax);
 		model.addAttribute("orderedQuantities", totalQuantities);
 		model.addAttribute("totalPrice", totalPrice);
 		return "submitorder";
@@ -105,6 +109,10 @@ public class OrderController {
         model.addAttribute("order", order);
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
+		double tax = 0.07*totalPrice;
+		double sum = totalPrice+tax;
+		model.addAttribute("sum",sum);
+		model.addAttribute("tax",tax);
 
 		model.addAttribute("totalPrice", totalPrice);
 		Address shippingAddress = new Address();
@@ -125,7 +133,7 @@ public class OrderController {
 	      
 	        String responseCode = orderService.doTransaction(paymentForm.getCardNumber(),
 	            paymentForm.getCardExpirationDate(), paymentForm.getCardHolderName(), paymentForm.getCvv(),
-	            paymentForm.getCardZipcode(), totalPrice, "3333333333333333",destionationscard);
+	            paymentForm.getCardZipcode(), sum, "3333333333333333",destionationscard);
 	        
 	        if(responseCode.equals("5")){
 	        	model.addAttribute("error", "Please Enter the Correct Card Detail");

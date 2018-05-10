@@ -75,7 +75,7 @@ public class LoginController {
 			if (categoryId.isPresent()) {
 				model.addAttribute("products", productService.findByCategoryId(categoryId.get()));
 			} else {
-				model.addAttribute("products", productService.viewAllProduct());
+				model.addAttribute("products", productService.findActiveProductsHome(false));
 			}
 			List<Category> categories = categoryService.viewAllCategory();
 
@@ -89,7 +89,7 @@ public class LoginController {
 					if (categoryId.isPresent()) {
 						model.addAttribute("products", productService.findByCategoryId(categoryId.get()));
 					} else {
-						model.addAttribute("products", productService.viewAllProduct());
+						model.addAttribute("products", productService.findActiveProductsHome(false));
 					}
 					List<Category> categories = categoryService.viewAllCategory();
 
@@ -115,7 +115,7 @@ public class LoginController {
 		if (categoryId.isPresent()) {
 			model.addAttribute("products", productService.findByCategoryId(categoryId.get()));
 		} else {
-			model.addAttribute("products", productService.viewAllProduct());
+			model.addAttribute("products", productService.findActiveProductsHome(false));
 		}
 		List<Category> categories = categoryService.viewAllCategory();
 
