@@ -5,7 +5,9 @@
     float: right;
     color: wheat;
 }
-
+#tooplate_wrapper {
+    width: 980px;
+}
 
 #tooplate_main {
     margin-top: 23px;
