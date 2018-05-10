@@ -25,8 +25,8 @@ public interface BAccountRepository extends JpaRepository<BAccount, Long> {
     BAccount getByCardNoAndNameAndCvvAndZipCode(String cardNo, String name, String zipCode, String cvv);*/
 	
 	
-	@Query("SELECT a FROM BAccount a WHERE a.cardNo = :cardNo AND a.name=:name AND a.zipCode=:zipCode AND a.cvv=:cvv")
-	BAccount getByCardNoAndNameAndCvvAndZipCode(@Param("cardNo") String cardNo,@Param("name") String name,@Param("zipCode") String zipCode,@Param("cvv") String ccv);
+	@Query("SELECT a FROM BAccount a WHERE a.cardNo = :cardNo AND a.name=:name AND a.zipCode=:zipCode AND a.cvv=:cvv AND a.expirationDate=:expirationDate")
+	BAccount getByCardNoAndNameAndCvvAndZipCode(@Param("cardNo") String cardNo,@Param("name") String name,@Param("zipCode") String zipCode,@Param("cvv") String ccv,@Param("expirationDate") String expirationDate);
 		
 
 }
