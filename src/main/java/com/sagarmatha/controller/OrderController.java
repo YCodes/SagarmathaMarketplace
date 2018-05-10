@@ -71,7 +71,7 @@ public class OrderController {
 		int totalQuantities = order.getOrderLine().stream().mapToInt(or -> or.getQuantity()).sum();
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
-		double tax = 0.07*totalPrice;
+		double tax = Math.round(0.07*totalPrice);
 		double sum = totalPrice+tax;
 		model.addAttribute("sum",sum);
 		model.addAttribute("tax",tax);
@@ -109,7 +109,7 @@ public class OrderController {
         model.addAttribute("order", order);
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
-		double tax = 0.07*totalPrice;
+		double tax = Math.round(0.07*totalPrice);
 		double sum = totalPrice+tax;
 		model.addAttribute("sum",sum);
 		model.addAttribute("tax",tax);
@@ -150,15 +150,17 @@ public class OrderController {
 	        order.setTotalPrice(totalPrice);
 	    	orderService.saveOrder(order);
 	    	sessionStatus.setComplete();
-	    	orderSuccessMethod(principal);			
+	    	orderSuccessMethod(principal,shippingAddress);			
 	        
 			return "ordersuccess";
 	    	
 	    }
 	
-	public void orderSuccessMethod(Principal principal) {
+	public void orderSuccessMethod(Principal principal, Address shippingAddress) {
 		System.out.println("order success method called1 "+principal.getName());
-		String body ="Congratulations!! \n Your order has been placed. \n It will be shipped soon";
+		String body ="Congratulations!! \n Your order has been placed."+"\n It will be shipped in the following address\n"+"\n"
+						+shippingAddress.getStreet()+" "+shippingAddress.getCity()+" "+shippingAddress.getState()+" "+shippingAddress.getZipCode()+" "
+						+shippingAddress.getCountry();
 		System.out.println("order success method called2 "+principal.getName());
 		emailService.sendEmailNotification(principal.getName(), "Order placed", body);
 	}
