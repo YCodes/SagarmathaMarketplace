@@ -1,7 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="navigation.jsp"%>
-<div class="container">
+<div id="tooplate_slider" class="section_content">
+
+	<div id="tooplate_main">
+		<span class="main_border main_border_t"></span><span
+			class="main_border main_border_b"></span>
 	<table id="cart" class="table table-hover table-condensed">
 		<thead>
 			<tr>
@@ -64,6 +68,7 @@
 			</tr>
 		</tfoot>
 	</table>
+	</div>
 </div>
 
 

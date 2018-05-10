@@ -1,5 +1,6 @@
 <%@ include file = "navigation.jsp" %>
     
+ <div id="tooplate_slider" class="section_content">
     <div id="tooplate_main"><span class="main_border main_border_t"></span><span class="main_border main_border_b"></span>
     	<div class="col col_1">
             <h1>Checkout</h1>

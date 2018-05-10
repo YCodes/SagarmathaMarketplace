@@ -3,7 +3,11 @@
 
 <%@ include file="navigation.jsp"%>
 
-<div class="container">
+<div id="tooplate_slider" class="section_content">
+
+	<div id="tooplate_main">
+		<span class="main_border main_border_t"></span><span
+			class="main_border main_border_b"></span>
 	<c:url var="post_url" value="/product/addToCart/${orderLine.productId}" />
 	<form:form action="${post_url}" method="post">
 		<div class="card">
@@ -68,6 +72,6 @@
 	</form:form>
 
 
-
+</div>
 	</div>
 	<%@ include file="footer.jsp"%>
