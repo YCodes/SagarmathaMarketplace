@@ -8,9 +8,14 @@
 
 
 #tooplate_main {
-    margin-top: 77px;
+    margin-top: 25px;
+    left: -25px;
 }
 
 #tooplate_slider {
     width: 960px;
+}
+
+.product .product_box h2 a {
+    color: #b04b2f
 }

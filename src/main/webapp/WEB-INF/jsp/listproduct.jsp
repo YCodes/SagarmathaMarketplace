@@ -25,7 +25,6 @@
 							<th scope="col">Category</th>
 							<th scope="col">Description</th>
 							<th scope="col">Quantity</th>
-							<th scope="col">Image</th>
 							<th scope="col">Manage</th>
 						</tr>
 					</thead>
@@ -133,6 +132,7 @@
 															id="edit_product_image" class="form-control input-sm"
 															placeholder="Product Image" value="value="${product.product_image}">
 													</div> --%>
+
 
 
 													<input type="submit" value="Update Product"

@@ -99,11 +99,10 @@ public class VendorController {
 	@RequestMapping("/vendor/listproduct")
 	public String vendorListProduct(Principal principal, ModelMap model) {
 
-	
 		Vendor vendor = vendorService.findVendorByEmail(principal.getName());
 
 		boolean isActive = false;
-	 	List<Product> products = productService.viewActiveProducts(vendor.getId(), isActive);
+		List<Product> products = productService.viewActiveProducts(vendor.getId(), isActive);
 
 		model.addAttribute("products", products);
 
@@ -176,7 +175,6 @@ public class VendorController {
 			}
 
 		}
-
 		productService.addProduct(product);
 		return "redirect:/vendor/listproduct";
 	}

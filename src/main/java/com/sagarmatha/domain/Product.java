@@ -37,7 +37,6 @@ public class Product {
 
 	private Long vendorId;
 
-
 	public Category getCategory() {
 		return category;
 	}

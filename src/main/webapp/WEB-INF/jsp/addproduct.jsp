@@ -4,10 +4,10 @@
 <div id="header_bottom">
 	<p>
 
-		<a href="<c:url value='/vendor/dashboard/${vendorId}'/>">Vendor Dashboard  |</a> <a
-			href="<c:url value='/vendor/listproduct'/>">List Product |</a><a
-			href="<c:url value='/vendor/addproduct'/>">Add Product |</a>
-			<a href="<c:url value='/report'/>">View Report</a>
+		<a href="<c:url value='/vendor/dashboard/${vendorId}'/>">Vendor
+			Dashboard |</a> <a href="<c:url value='/vendor/listproduct'/>">List
+			Product |</a><a href="<c:url value='/vendor/addproduct'/>">Add
+			Product |</a> <a href="<c:url value='/report'/>">View Report</a>
 
 	</p>
 
@@ -74,15 +74,11 @@
 						</div>
 
 
-						<div class="container">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Upload Image</label>
-									<div class="form-group">
-										<input type="file" id="imgInp" name="photo"
-											class="form-control btn btn-default">
-									</div>
-								</div>
+						<div class="form-group">
+							<label>Upload Image</label>
+							<div class="form-group">
+								<input type="file" id="imgInp" name="photo"
+									class="form-control btn btn-default">
 							</div>
 
 						</div>

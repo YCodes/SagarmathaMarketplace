@@ -2,7 +2,7 @@
 
 
 <div id="header_bottom">
-		<p><a href="<c:url value='/vendor/dashboard'/>">Vendor Dashboard  |</a>
+		<p><a href="<c:url value='/vendor/dashboard/${vendorId}'/>">Vendor Dashboard  |</a>
 		<a href="<c:url value='/vendor/listproduct'/>">List Product  |</a>
 		<a href="<c:url value='/vendor/addproduct'/>">Add Product |</a>
 		<a href="<c:url value='/report'/>">View Report</a></p>
