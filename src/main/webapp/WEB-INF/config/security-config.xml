@@ -21,7 +21,7 @@
 			pattern="/**,/login,/logouts, /customerSignup, /vendorSignup,/home"
 			access="permitAll" />
 
-		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+		<!-- <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" /> -->
 		<intercept-url pattern="/shoppingcart" access="hasRole('CUSTOMER')" />
 		<intercept-url pattern="/checkout/submit" access="hasRole('CUSTOMER')" />
 		<intercept-url pattern="/product/**" access="hasRole('CUSTOMER')" />

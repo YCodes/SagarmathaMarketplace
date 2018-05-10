@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
@@ -42,6 +43,7 @@ public class VendorController {
 
 	@Autowired
 	ServletContext context;
+	
 	
 	private static final String UPLOAD_DIRECTORY ="/products";
 
@@ -147,9 +149,9 @@ public class VendorController {
 
 
 		@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
-		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,@RequestParam("product_image") MultipartFile[] files, ModelMap model) throws IOException {
+		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,@RequestParam("photo") MultipartFile[] files, ModelMap model) throws IOException {
 			 // Save file on system
-		    String imageName = product.getProduct_name()+".jpg";
+		   /* String imageName = product.getProduct_name()+".jpg";
 			for (MultipartFile file : files) {
 		         if (!file.getOriginalFilename().isEmpty()) {
 		            BufferedOutputStream outputStream = new BufferedOutputStream(
@@ -163,8 +165,35 @@ public class VendorController {
 		            model.addAttribute("msg", "Please select at least one file..");
 		            return "fileUploadForm";
 		         }
-		      }
+		      }*/
+			
+			MultipartFile photo = product.getPhoto();
+			System.out.println("*AddPHOTO");
 		   
+			String rootDirectory = context.getRealPath("/");
+			System.out.println();
+			String userUID = UUID.randomUUID().toString();
+			System.out.println(userUID);
+			if (photo != null && !photo.isEmpty()) {
+				try {
+					System.out.println("Checking add photo");
+					String photoURL = rootDirectory + "resources\\images\\" + userUID + ".png";
+					System.out.println("Checking URL");
+					System.out.println(photoURL);
+					photo.transferTo(new File(photoURL));
+//					photo.transferTo(new File(rootDirectory + "\\resources\\MultipleFileUpload\\" + userUID + ".png"));
+					product.setPhotoURL(userUID);
+					
+					
+				
+					
+				} catch (Exception e) {
+					throw new RuntimeException("Employee photo saving failed", e);
+					//throw new UnableToUploadPhotoException("Employee photo saving failed");
+				}
+			}
+			System.out.println("***********************************");
+		    System.out.println(product);
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";
 			

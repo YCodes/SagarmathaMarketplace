@@ -1,8 +1,6 @@
 package com.sagarmatha.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Product {
@@ -27,8 +27,15 @@ public class Product {
 	private String product_description;
 	private int product_quantity;
 	private int product_price;
+/*	@Transient
+	private MultipartFile product_image;*/
+	
+	private String photoURL;
+	
+	@JsonIgnore
 	@Transient
-	private MultipartFile product_image;
+	private MultipartFile photo;
+	
 	private int vendorId;
 	
 	public Category getCategory() {
@@ -90,20 +97,27 @@ public class Product {
 	public void setProduct_quantity(int product_quantity) {
 		this.product_quantity = product_quantity;
 	}
-	public MultipartFile getProduct_image() {
-		return product_image;
+	public String getPhotoURL() {
+		return photoURL;
 	}
-	public void setProduct_image(MultipartFile product_image) {
-		this.product_image = product_image;
+	public void setPhotoURL(String photoURL) {
+		this.photoURL = photoURL;
 	}
-
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", product_name=" + product_name + ", category=" + category
 				+ ", product_description=" + product_description + ", product_quantity=" + product_quantity
-				+ ", product_price=" + product_price + ", product_image=" + product_image + ", vendorId=" + vendorId
-				+ ", isActive=" + isActive + "]";
+				+ ", product_price=" + product_price + ", photoURL=" + photoURL + ", photo=" + photo + ", vendorId="
+				+ vendorId + ", isActive=" + isActive + "]";
 	}
+	
+	
 	
 	
 	

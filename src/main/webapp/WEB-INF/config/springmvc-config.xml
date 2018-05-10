@@ -56,7 +56,8 @@
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
-
+<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources mapping="/images/**" location="/images/" />  
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 

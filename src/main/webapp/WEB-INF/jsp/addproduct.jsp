@@ -70,10 +70,14 @@
 						</div>
 
 						<div class="form-group">
-							<input type="file" name="product_image" id="product_image"
+							<input type="file" name="photo" id="photo"
 								class="form-control input-sm" placeholder="Product Image">
+								
 						</div>
-
+						
+							
+                        
+                        
 						<input type="submit" value="Add Product"
 							class="btn btn-info btn-block">
 

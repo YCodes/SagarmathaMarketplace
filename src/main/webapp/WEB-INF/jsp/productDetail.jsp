@@ -24,10 +24,7 @@
 					<aside class="col-sm-5 border-right">
 						<article class="gallery-wrap">
 							<div class="img-big-wrap">
-								<div>
-									<a href="#"><img
-										src="https://s9.postimg.org/tupxkvfj3/image.jpg"></a>
-								</div>
+							<img class="img-circle"  src="${pageContext.request.contextPath}/resources/images/${orderLine.photoURL}.png" width="100"/>
 							</div>
 							<!-- slider-product.// -->
 						</article>
