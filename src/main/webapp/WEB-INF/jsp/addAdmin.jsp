@@ -50,8 +50,9 @@
 						</div>
 						<div class="form-group">
 							<input type="password" name="user.password" id="password"
-								class="form-control input-sm" placeholder="Password"
+								class="form-control input-sm" placeholder="Password" pattern="^(?=.*[A-Z])[a-zA-Z\d]{6,}$"
 								style="width: 300px;">
+								<span>*Password must have at least one uppercase letter and at least 6 digits.</span>
 						</div>
 						<br />
 
