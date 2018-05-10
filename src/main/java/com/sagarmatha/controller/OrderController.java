@@ -41,13 +41,12 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-	
+
 	@Autowired
 	UserService userService;
 
 	@Autowired
-	AddressRepository addressRepository; 
-
+	AddressRepository addressRepository;
 
 	@RequestMapping("/shoppingcart")
 	public String createOrderPage(Model model, @ModelAttribute("order") Order order) {
@@ -59,9 +58,9 @@ public class OrderController {
 			return "cartPage";
 	}
 
-	
 	@GetMapping("checkout/submit")
-	public String getcheckoutCustomerOrder(Model model,@ModelAttribute("paymentForm") SubmitForm paymentForm,@ModelAttribute("order") Order order) {
+	public String getcheckoutCustomerOrder(Model model, @ModelAttribute("paymentForm") SubmitForm paymentForm,
+			@ModelAttribute("order") Order order) {
 		model.addAttribute("order", order);
 		int totalQuantities = order.getOrderLine().stream().mapToInt(or -> or.getQuantity()).sum();
 		double totalPrice = order.getOrderLine().stream()
@@ -70,7 +69,6 @@ public class OrderController {
 		model.addAttribute("totalPrice", totalPrice);
 		return "submitorder";
 	}
-
 
 	@RequestMapping(value = "/shoppingcart", method = RequestMethod.GET)
 	public String showCart(Model model, @ModelAttribute("order") Order order) {
@@ -90,98 +88,70 @@ public class OrderController {
 	@PostMapping("checkout/submit")
 	public String checkoutCustomerOrder(Model model, @ModelAttribute("paymentForm") SubmitForm paymentForm,
 			@RequestParam("month") String month, @RequestParam("year") String year, Principal principal,
-			@ModelAttribute Order order,SessionStatus sessionStatus) {
-		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s",""));
-        paymentForm.setCardExpirationDate(month + "/" + year);
-        
+			@ModelAttribute Order order, SessionStatus sessionStatus) {
+		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s", ""));
+		paymentForm.setCardExpirationDate(month + "/" + year);
+
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
-	   
+
 		Address shippingAddress = new Address();
 		shippingAddress.setCity(paymentForm.getCity());
 		shippingAddress.setCountry(paymentForm.getCountry());
 		shippingAddress.setState(paymentForm.getState());
 		shippingAddress.setStreet(paymentForm.getStreet());
 		shippingAddress.setZipCode(paymentForm.getZipCode());
-		
-		
+
 		model.addAttribute("User", "heee");
-		 List<String> destionationscard = new ArrayList<>();
-	       destionationscard.add("1233333333");
-	       destionationscard.add("12112121221");
-	       destionationscard.add("1212121221");
-	        String responseCode = orderService.doTransaction(paymentForm.getCardNumber(),
-	            paymentForm.getCardExpirationDate(), paymentForm.getCardHolderName(), paymentForm.getCvv(),
-	            paymentForm.getCardZipcode(), totalPrice, "2222222222222222",destionationscard);
-	        
-	        if(responseCode.equals("5")){
-	        	model.addAttribute("error", "Please Enter the Correct Card Detail");
-	        	return "submitorder";
-	        }
-	        if(responseCode.equals("6")) {
-	        	model.addAttribute("error", "Transaction Amount Not Sufficient");
-	        	return "submitorder";
-	        }
-	        
-	        addressRepository.save(shippingAddress);
-	        order.setShippingAddress(addressRepository.findOne(shippingAddress.getAddressId()));
-	        order.setTotalPrice(totalPrice);
-	    	orderService.saveOrder(order);
-	    	sessionStatus.setComplete();
-			
-	        
-			return "ordersuccess";
-	    	
-	    }
+		List<String> destionationscard = new ArrayList<>();
+		destionationscard.add("1233333333");
+		destionationscard.add("12112121221");
+		destionationscard.add("1212121221");
+		String responseCode = orderService.doTransaction(paymentForm.getCardNumber(),
+				paymentForm.getCardExpirationDate(), paymentForm.getCardHolderName(), paymentForm.getCvv(),
+				paymentForm.getCardZipcode(), totalPrice, "2222222222222222", destionationscard);
 
+		if (responseCode.equals("5")) {
+			model.addAttribute("error", "Please Enter the Correct Card Detail");
+			return "submitorder";
+		}
+		if (responseCode.equals("6")) {
+			model.addAttribute("error", "Transaction Amount Not Sufficient");
+			return "submitorder";
+		}
 
-	
+		addressRepository.save(shippingAddress);
+		order.setShippingAddress(addressRepository.findOne(shippingAddress.getAddressId()));
+		order.setTotalPrice(totalPrice);
+		orderService.saveOrder(order);
+		sessionStatus.setComplete();
+
+		return "ordersuccess";
+
+	}
+
+	@RequestMapping(value = "/change", method = RequestMethod.GET)
+	public String changeOrderDetails(Model model, @ModelAttribute("order") Order order,
+			@RequestParam("quantity") int quantity, @RequestParam("orderLineIndex") int orderLineIndex) {
+
+		int index = orderLineIndex - 1;
+
+		order.getOrderLine().get(index).setQuantity(quantity);
+
+		model.addAttribute("order", order);
+		return "confirmedOrder";
+	}
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
 	public String confirmOrder(Model model, @ModelAttribute("order") Order order) {
 
-		model.addAttribute("order", order);
 		int totalQuantities = order.getOrderLine().stream().mapToInt(or -> or.getQuantity()).sum();
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
 		model.addAttribute("orderedQuantities", totalQuantities);
 		model.addAttribute("totalPrice", totalPrice);
-		
+
 		return "confirmedOrder";
 	}
-	
-	
-	@RequestMapping(value = "/place-order", method = RequestMethod.GET)
-	public String placeOrder(Model model, @ModelAttribute("order") Order order, SessionStatus sessionStatus, Authentication principal) {
-		
-		double totalPrice = order.getOrderLine().stream()
-				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
-	
-		
-		String email = principal.getName();
-		User user = userService.findByEmail(email);
-		
-		
-//		Customer customer= (Customer)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		Customer customer = (Customer)user;
-		
-		order.setTotalPrice(totalPrice);
-//		order.setCustomer(customer);
-		
-		orderService.saveOrder(order);
-		
-		sessionStatus.setComplete();
-		
-		
-		return "redirect:/homepage";
-	}
-/*	
-	@RequestMapping(value="/remove-from-cart/{productId}")
-	public String removeCartItem(@PathVariable("productId") Long id, SessionStatus sessionStatus, Authentication principal) {
-		
-		String email = principal.getName();
-		
-		User user = user*/
-		
-	
+
 }

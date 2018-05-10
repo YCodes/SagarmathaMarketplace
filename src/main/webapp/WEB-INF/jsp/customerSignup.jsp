@@ -47,7 +47,7 @@
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input type="password" name="user.password" id="password"
-											class="form-control input-sm" placeholder="Password">
+											class="form-control input-sm" placeholder="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$" >
 											<form:errors path="user.password" class="error"/>
 									</div>
 								</div>

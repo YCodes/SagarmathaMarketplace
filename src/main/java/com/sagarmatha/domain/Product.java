@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,8 @@ public class Product {
     @JoinColumn(name = "categoryId")
     private Category category;
 	private String product_description;
+	
+	
 	private int product_quantity;
 	private int product_price;
 	@Transient

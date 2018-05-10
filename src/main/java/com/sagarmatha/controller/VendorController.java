@@ -157,7 +157,7 @@ public class VendorController {
 		@RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
 		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,@RequestParam("product_image") MultipartFile[] files, ModelMap model) throws IOException {
 			 // Save file on system
-		    
+		 /*   
 			for (MultipartFile file : files) {
 		         if (!file.getOriginalFilename().isEmpty()) {
 		            BufferedOutputStream outputStream = new BufferedOutputStream(
@@ -171,7 +171,7 @@ public class VendorController {
 		            model.addAttribute("msg", "Please select at least one file..");
 		            return "fileUploadForm";
 		         }
-		      }
+		      }*/
 		   
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";

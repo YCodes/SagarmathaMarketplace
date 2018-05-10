@@ -26,6 +26,21 @@
 	src="<c:url value='/resources/js/ddsmoothmenu.js'/>"></script>
 
 
+
+<!-- Cartpage frontend detail files -->
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="<c:url value='/resources/css/cartPage.css'/>"
+	rel="stylesheet" />
+
+
 <script type="text/javascript">
 	ddsmoothmenu.init({
 		mainmenuid : "tooplate_menu", //menu DIV id
@@ -71,10 +86,10 @@
 	rel="stylesheet" media="screen" />
 <script type="text/javascript"
 	src="<c:url value='/resources/js/slimbox2.js'/>"></script>
-<<<<<<< HEAD
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-=======
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -109,8 +124,6 @@ $(document).ready(function(){
 };
 
 </script> -->
->>>>>>> 6c1b97a904079a7a63765c2f7057de76f3611fac
-
 
 </head>
 <body class="homepage navigationbar">
@@ -158,3 +171,4 @@ $(document).ready(function(){
 				<!-- END of header bottom -->
 			</div>
 			<!-- END of header -->
+			
