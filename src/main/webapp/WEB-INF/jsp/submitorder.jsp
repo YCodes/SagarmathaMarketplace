@@ -21,7 +21,6 @@
 			<div class="form-group">
 				<form:input path="city"
 					class="form-control input-sm" placeholder="City"
-\
 					style="width: 300px;"  required="required"/>
 
 			</div>
