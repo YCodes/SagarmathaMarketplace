@@ -10,7 +10,6 @@
 			<h3 style="display: inline-block">Review Order</h3>
 		</div>
 
-		<div class="container">
 			<table id="cart" class="table table-hover table-condensed">
 				<thead>
 					<tr>
@@ -58,7 +57,6 @@
 					</tr>
 				</tfoot>
 			</table>
-		</div>
 
 	</div>
 
