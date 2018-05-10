@@ -38,4 +38,11 @@
 .product .product_box p {
     color: black;
 }
+
+@media (min-width: 768px){
+	.card .col-sm-6 {
+    margin-left: 20px;
+}
+}
+
     
