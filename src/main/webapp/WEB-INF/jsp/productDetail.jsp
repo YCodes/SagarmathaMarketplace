@@ -34,8 +34,8 @@
 								<dl class="param param-inline">
 									<dt>Quantity:</dt>
 									<dd>
-										<input name="quantity" type="text" class="form-control"
-											id="quantity" value="1" pattern="^[1-9][0-9]*$" />
+										<input name="quantity" type="number" class="form-control"
+											id="quantity" value="1" min="1" />
 										<%-- <select name="product-quantityDetail" id="product-quantity"
 												class="form-control form-control-sm" style="width: 70px;">
 												<c:forEach var="quantity" items="${quantities}">
