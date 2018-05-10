@@ -11,7 +11,7 @@
 				<div class="product_box">
 					<div class="img_box">
 						<a href="productdetail.html"> <img id="product_image"
-							src="<c:url value="/src/main/webapp/resources/MultipleFileUpload/${product.product_name}.jpg"></c:url>"
+							src="<c:url value="../resources/MultipleFileUpload/${product.product_name}.jpg"></c:url>"
 							alt="Product Image" /> <span></span> <%-- <img
 							src="<c:url value='/resources/images/product/01.jpg'/>"
 							alt="image" /></a> --%>

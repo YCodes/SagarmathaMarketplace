@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
@@ -148,22 +149,22 @@ public class VendorController {
 		public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,@RequestParam("product_image") MultipartFile[] files, ModelMap model) throws IOException {
 			 // Save file on system
 		    
-//			for (MultipartFile file : files) {
-//		         if (!file.getOriginalFilename().isEmpty()) {
-//		            BufferedOutputStream outputStream = new BufferedOutputStream(
-//		                  new FileOutputStream(
-//		                        new File("D:/MultipleFileUpload", file.getOriginalFilename())));
-//
-//		            outputStream.write(file.getBytes());
-//		            outputStream.flush();
-//		            outputStream.close();
-//		         } else {
-//		            model.addAttribute("msg", "Please select at least one file..");
-//		            return "fileUploadForm";
-//		         }
-//		      }
-
-		   
+			for (MultipartFile file : files) {
+		         if (!file.getOriginalFilename().isEmpty()) {
+		        	 Random rand = new Random(); 
+		        	 int value = rand.nextInt(999); 
+		            BufferedOutputStream outputStream = new BufferedOutputStream(
+		                  new FileOutputStream(
+		                        new File("D:/sagarmathamarketplace/src/main/webapp/resources/MultipleFileUpload", "vendor-"+value)));
+		            product.setProduct_image_url("D:/MultipleFileUpload/vendor-"+value);
+		            outputStream.write(file.getBytes());
+		            outputStream.flush();
+		            outputStream.close();
+		         } else {
+		            return "redirect:/vendor/addproduct";
+		         }
+		      }
+			
 			productService.addProduct(product);
 			return "redirect:/vendor/listproduct";
 			

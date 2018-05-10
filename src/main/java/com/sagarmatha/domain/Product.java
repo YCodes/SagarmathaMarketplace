@@ -29,6 +29,14 @@ public class Product {
 	private int product_price;
 	@Transient
 	private MultipartFile product_image;
+	private String product_image_url;
+	public String getProduct_image_url() {
+		return product_image_url;
+	}
+	public void setProduct_image_url(String product_image_url) {
+		this.product_image_url = product_image_url;
+	}
+
 	private Long vendorId;
 	
 	public Category getCategory() {
