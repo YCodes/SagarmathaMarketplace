@@ -2,7 +2,7 @@
 .homepage.navigationbar #tooplate_search {
     float: left;
     width: 250px;
-    margin-left: 110px;
+    margin-left: 36px;
     height: 24px;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .homepage.navigationbar #header {
-    width: 240px;
+    width: 270px;
     margin-top: -25px;
     margin-left: 280px;
     display: inline-block;
