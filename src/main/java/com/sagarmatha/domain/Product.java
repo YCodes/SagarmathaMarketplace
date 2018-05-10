@@ -53,8 +53,6 @@ public class Product {
 		this.photoURL = photoURL;
 	}
 
-	private int vendorId;
-
 	public Category getCategory() {
 		return category;
 	}

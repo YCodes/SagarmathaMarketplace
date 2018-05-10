@@ -25,7 +25,6 @@
 							<th scope="col">Category</th>
 							<th scope="col">Description</th>
 							<th scope="col">Quantity</th>
-							<th scope="col">Image</th>
 							<th scope="col">Manage</th>
 						</tr>
 					</thead>
@@ -57,10 +56,6 @@
 										</div>
 										<div class="modal-body">
 											<div class="panel-body">
-
-												<form:form action="product/update"
-													method="post" modelAttribute="updateproduct" enctype="multipart/form-data">
-
 
 									<form:form action="product/update" method="post"
 										modelAttribute="updateproduct" enctype="multipart/form-data">
@@ -122,13 +117,6 @@
 															id="product_price" class="form-control input-sm"
 															placeholder="Product price" value="${product.product_price}">
 													</div>
-
-													<div class="form-group">
-														<input type="file" name="product_image"
-															id="edit_product_image" class="form-control input-sm"
-															placeholder="Product Image" value="value="${product.product_image}">
-													</div>
-
 
 													<input type="submit" value="Update Product"
 														class="btn btn-info btn-block">

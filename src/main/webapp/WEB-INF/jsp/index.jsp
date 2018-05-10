@@ -14,13 +14,10 @@
 							src="${pageContext.request.contextPath}/resources/images/${product.photoURL}.png"
 							width="100" />
 					</div>
-					<h2>
-
-						<a href="product/productdetails/${product.productId}">${product.product_name}<br />
-							Quantity available:${product.product_quantity}<br /> Price:$
-							${product.product_price}<br />
-						</a>
-					</h2>
+					<h2><a href="product/productdetails/${product.productId}">${product.product_name}</a></h2>
+							<p>Quantity available:${product.product_quantity}</p>
+							<p>Price: ${product.product_price}</p>
+					
 
 				</div>
 			</c:forEach>
