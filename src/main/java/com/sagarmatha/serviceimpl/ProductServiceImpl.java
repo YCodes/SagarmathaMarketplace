@@ -98,4 +98,10 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
+	@Override
+	public List<Product> findActiveProductsHome(boolean b) {
+		
+		return productRepository.findActiveProductsHome(b);
+	}
+
 }

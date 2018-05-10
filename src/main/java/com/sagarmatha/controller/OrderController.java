@@ -71,6 +71,10 @@ public class OrderController {
 		int totalQuantities = order.getOrderLine().stream().mapToInt(or -> or.getQuantity()).sum();
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
+		double tax = Math.round(0.07*totalPrice);
+		double sum = totalPrice+tax;
+		model.addAttribute("sum",sum);
+		model.addAttribute("tax",tax);
 		model.addAttribute("orderedQuantities", totalQuantities);
 		model.addAttribute("totalPrice", totalPrice);
 		return "submitorder";
@@ -105,6 +109,10 @@ public class OrderController {
         model.addAttribute("order", order);
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
+		double tax = Math.round(0.07*totalPrice);
+		double sum = totalPrice+tax;
+		model.addAttribute("sum",sum);
+		model.addAttribute("tax",tax);
 
 		model.addAttribute("totalPrice", totalPrice);
 		Address shippingAddress = new Address();
@@ -125,7 +133,7 @@ public class OrderController {
 	      
 	        String responseCode = orderService.doTransaction(paymentForm.getCardNumber(),
 	            paymentForm.getCardExpirationDate(), paymentForm.getCardHolderName(), paymentForm.getCvv(),
-	            paymentForm.getCardZipcode(), totalPrice, "3333333333333333",destionationscard);
+	            paymentForm.getCardZipcode(), sum, "3333333333333333",destionationscard);
 	        
 	        if(responseCode.equals("5")){
 	        	model.addAttribute("error", "Please Enter the Correct Card Detail");
@@ -142,15 +150,17 @@ public class OrderController {
 	        order.setTotalPrice(totalPrice);
 	    	orderService.saveOrder(order);
 	    	sessionStatus.setComplete();
-	    	orderSuccessMethod(principal);			
+	    	orderSuccessMethod(principal,shippingAddress);			
 	        
 			return "ordersuccess";
 	    	
 	    }
 	
-	public void orderSuccessMethod(Principal principal) {
+	public void orderSuccessMethod(Principal principal, Address shippingAddress) {
 		System.out.println("order success method called1 "+principal.getName());
-		String body ="Congratulations!! \n Your order has been placed. \n It will be shipped soon";
+		String body ="Congratulations!! \n Your order has been placed."+"\n It will be shipped in the following address\n"+"\n"
+						+shippingAddress.getStreet()+" "+shippingAddress.getCity()+" "+shippingAddress.getState()+" "+shippingAddress.getZipCode()+" "
+						+shippingAddress.getCountry();
 		System.out.println("order success method called2 "+principal.getName());
 		emailService.sendEmailNotification(principal.getName(), "Order placed", body);
 	}

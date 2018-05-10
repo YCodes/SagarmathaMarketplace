@@ -8,7 +8,7 @@
 
 <div id="header">
 	<security:authorize access="isAnonymous()">
-		<a href="<spring:url value='/login' />" style="float:right">Login</a>
+		<a href="<spring:url value='/login' />" style="float:right">Login / SignUp</a>
 	</security:authorize>
 	<security:authorize access="isAuthenticated()">
 		<span><i><strong>User: <security:authentication
