@@ -12,11 +12,10 @@
 	<form:form action="${post_url}" method="post">
 		<div class="card">
 			<div class="row">
-				<aside class="col-sm-5 border-right">
-						<img class="img-circle"
-							src="${pageContext.request.contextPath}/resources/images/${orderLine.photoURL}.png"
-							width="456" />					</aside>
-				<aside class="col-sm-7">
+				<aside class="col-sm-4 border-right">
+						<img src="${pageContext.request.contextPath}/resources/images/${orderLine.photoURL}.png"
+							width="300px" />					</aside>
+				<aside class="col-sm-6">
 					<article class="card-body">
 						<h3 class="title mb-3">${orderLine.product_name}</h3>
 
