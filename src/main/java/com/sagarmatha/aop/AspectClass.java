@@ -4,30 +4,37 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.sagarmatha.domain.Address;
 import com.sagarmatha.domain.Admin;
 import com.sagarmatha.domain.Customer;
 import com.sagarmatha.domain.Order;
+import com.sagarmatha.domain.OrderLine;
 import com.sagarmatha.domain.Vendor;
 import com.sagarmatha.model.SubmitForm;
 import com.sagarmatha.service.OrderService;
 import com.sagarmatha.util.EmailService;
 
 @Aspect
+@SessionAttributes(value = "order")
 public class AspectClass {
 
 	@Autowired
 	EmailService emailService;
-	
+
 	@Autowired
 	OrderService orderService;
 
@@ -79,29 +86,13 @@ public class AspectClass {
 
 	}
 
-	/*@After("execution( * com.sagarmatha.controller.OrderController.checkoutCustomerOrder(..)) && args(model,paymentForm,month,year,principal,order,sessionStatus)")
-	public void traceMethodForOrderPlaced(Model model, SubmitForm paymentForm, String month, String year,
-			Principal principal, Order order, SessionStatus sessionStatus) {
-
-		double totalPrice = order.getOrderLine().stream()
-				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
-		List<String> destionationscard = new ArrayList<>();
-	       destionationscard.add("1233333333");
-	       destionationscard.add("12112121221");
-	       destionationscard.add("1212121221");
-		 String responseCode = orderService.doTransaction(paymentForm.getCardNumber(),
-		            paymentForm.getCardExpirationDate(), paymentForm.getCardHolderName(), paymentForm.getCvv(),
-		            paymentForm.getCardZipcode(), totalPrice, "3333333333333333",destionationscard);
-		 if(responseCode.equals("5")){
-			 emailService.sendEmailNotification(principal.getName(),"error", "Please Enter the Correct Card Detail");
-	        }
-	        if(responseCode.equals("6")) {
-	        	 emailService.sendEmailNotification(principal.getName(),"error", "Transaction Amount Not Sufficient");
-	        }
-		else {
-			emailService.sendEmailNotification(principal.getName(), "Welcome from Sagarmatha", "Your order has been placed \n Thanks for shopping with us.");
-		}
-
+	/*@Around("execution( * com.sagarmatha.controller.OrderController.orderSuccessMethod(..)) && args(principal)")
+	public void traceMethodForInvoice(Principal principal) {
+		String body ="Congratulations!! \n Your order has been placed. \n It will be shipped soon";
+		System.out.println("Order success method aop"+principal.getName());
+		emailService.sendEmailNotification(principal.getName(), "Order placed", body);
+		
+		
 	}*/
-
+	
 }

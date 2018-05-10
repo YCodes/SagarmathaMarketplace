@@ -31,6 +31,7 @@ import com.sagarmatha.repository.AddressRepository;
 
 import com.sagarmatha.service.OrderService;
 import com.sagarmatha.service.UserService;
+import com.sagarmatha.util.EmailService;
 
 @Controller
 @SessionAttributes(value = "order")
@@ -49,6 +50,9 @@ public class OrderController {
 
 	@Autowired
 	AddressRepository addressRepository;
+	
+	@Autowired
+	EmailService emailService;
 
 	@RequestMapping("/shoppingcart")
 	public String createOrderPage(Model model, @ModelAttribute("order") Order order) {
@@ -132,16 +136,24 @@ public class OrderController {
 	        	return "submitorder";
 	        }
 	        
+	        
 	        addressRepository.save(shippingAddress);
 	        order.setShippingAddress(addressRepository.findOne(shippingAddress.getAddressId()));
 	        order.setTotalPrice(totalPrice);
 	    	orderService.saveOrder(order);
 	    	sessionStatus.setComplete();
-			
+	    	orderSuccessMethod(principal);			
 	        
 			return "ordersuccess";
 	    	
 	    }
+	
+	public void orderSuccessMethod(Principal principal) {
+		System.out.println("order success method called1 "+principal.getName());
+		String body ="Congratulations!! \n Your order has been placed. \n It will be shipped soon";
+		System.out.println("order success method called2 "+principal.getName());
+		emailService.sendEmailNotification(principal.getName(), "Order placed", body);
+	}
     
   @RequestMapping(value = "/change", method = RequestMethod.GET)
 	public String changeOrderDetails(Model model, @ModelAttribute("order") Order order,
