@@ -85,4 +85,17 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findByProductName(str);
 	}
 
+	@Override
+	public Product add(Product product) {
+		// TODO Auto-generated method stub
+		return productRepository.save(product);
+	}
+
+	@Override
+	public void delete(Product savedProduct) {
+		// TODO Auto-generated method stub
+		productRepository.delete(savedProduct);
+		
+	}
+
 }
