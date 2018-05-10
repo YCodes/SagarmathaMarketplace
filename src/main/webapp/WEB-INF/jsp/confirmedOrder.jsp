@@ -1,23 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<html>
-<head>
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href="<c:url value='/resources/css/cartPage.css'/>"
-	rel="stylesheet" />
+<%@ include file="navigation.jsp"%>
+<div id="tooplate_slider" class="section_content">
 
-</head>
-<body>
-
-	<div class="container">
+	<div id="tooplate_main">
+		<span class="main_border main_border_t"></span><span
+			class="main_border main_border_b"></span>
 		<table id="cart" class="table table-hover table-condensed">
 			<thead>
 				<tr>
@@ -57,7 +45,7 @@
 					<%-- <td><a href="<c:url value='/homepage'/>" class="btn btn-warning"><i
 							class="fa fa-angle-left"></i> Continue Shopping</a></td>
 					<td colspan="2" class="hidden-xs"></td> --%>
-					<td class="hidden-xs text-center"><strong>Total  $${totalPrice}</strong></td>
+					<td class="hidden-xs text-center" ><strong>Total  $${totalPrice}</strong></td>
 					<td><a href="<c:url value='/checkout/submit'/>" class="btn btn-success btn-block">Confirm Order
 							<i class="fa fa-angle-right"></i>
 					</a></td>
@@ -65,6 +53,7 @@
 			</tfoot>
 		</table>
 	</div>
+</div>
 
 </body>
 </html>

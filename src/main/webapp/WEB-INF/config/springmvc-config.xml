@@ -16,6 +16,7 @@
 	<mvc:annotation-driven validator="validator"/>
 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources mapping="/images/**" location="/images/" />
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
@@ -56,7 +57,8 @@
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
-
+<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources mapping="/images/**" location="/images/" />  
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
@@ -64,5 +66,6 @@
 		<property name="maxUploadSize" value="100000" />
 
 	</bean>
+	<mvc:annotation-driven validator="validator" />
 
 </beans>

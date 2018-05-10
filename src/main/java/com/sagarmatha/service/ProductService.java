@@ -13,7 +13,7 @@ public interface ProductService {
 	
 	public List<Product> viewAllProduct();
 	
-	public List<Product> viewActiveProducts(Long Id);
+	public List<Product> viewActiveProducts(Long Id, boolean isActive);
 	
 	public void addProduct(Product product);
 	
@@ -28,5 +28,9 @@ public interface ProductService {
 	public List<Product> findByCategoryId(Long long1);
 
 	public List<Product> searchByProductName(String str);
+
+	public Product add(Product product);
+
+	public void delete(Product savedProduct);
 
 }

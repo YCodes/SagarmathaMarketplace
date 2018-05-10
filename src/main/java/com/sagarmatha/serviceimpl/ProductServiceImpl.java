@@ -24,9 +24,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<Product> viewActiveProducts(Long Id) {
+	public List<Product> viewActiveProducts(Long Id, boolean value) {
 		
-		return productRepository.findActiveProducts(Id);
+		return productRepository.findActiveProducts(Id, value);
 		
 	}
 
@@ -83,6 +83,19 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> searchByProductName(String str) {
 		
 		return productRepository.findByProductName(str);
+	}
+
+	@Override
+	public Product add(Product product) {
+		// TODO Auto-generated method stub
+		return productRepository.save(product);
+	}
+
+	@Override
+	public void delete(Product savedProduct) {
+		// TODO Auto-generated method stub
+		productRepository.delete(savedProduct);
+		
 	}
 
 }

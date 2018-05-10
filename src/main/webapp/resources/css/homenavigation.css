@@ -2,7 +2,7 @@
 .homepage.navigationbar #tooplate_search {
     float: left;
     width: 250px;
-    margin-left: 110px;
+    margin-left: 36px;
     height: 24px;
 }
 
@@ -11,15 +11,31 @@
     width: 230px;
 }
 
+#header_bottom {
+    padding: 29px 40px;
+}
+
 .homepage.navigationbar #header {
-    width: 240px;
-    margin-top: -35px;
+    width: 270px;
+    margin-top: -25px;
     margin-left: 280px;
     display: inline-block;
     float: left;
     color: wheat;
 }
+.product h1{
+	color:#b04b2f;
+}
 .product .product_box {
-    width: 240px;
+    width: 260px;
    
 }
+
+.product .product_box .img_box {
+    width: 225px;
+}
+
+.product .product_box p {
+    color: black;
+}
+    

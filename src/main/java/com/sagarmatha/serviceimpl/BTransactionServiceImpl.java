@@ -57,9 +57,9 @@ public class BTransactionServiceImpl implements BTransactionService {
 				openRequestString.getNameOnCard(), openRequestString.getCVV(), openRequestString.getZipCode());
 
 		logger.info("Get the source account from the DB.");
-
+        System.out.println(openRequestString.getExpirationDate());
 		BAccount getSrcAccount = baccountrepository.getByCardNoAndNameAndCvvAndZipCode(openRequestString.getSrcCardNo(),
-				openRequestString.getNameOnCard(), openRequestString.getZipCode(), openRequestString.getCVV());
+				openRequestString.getNameOnCard(), openRequestString.getZipCode(), openRequestString.getCVV(), openRequestString.getExpirationDate());
 		System.out.println(getSrcAccount);
 		if (getSrcAccount == null) {
 			errorCode = 5;
