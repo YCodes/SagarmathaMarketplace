@@ -26,6 +26,21 @@
 	src="<c:url value='/resources/js/ddsmoothmenu.js'/>"></script>
 
 
+
+<!-- Cartpage frontend detail files -->
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="<c:url value='/resources/css/cartPage.css'/>"
+	rel="stylesheet" />
+
+
 <script type="text/javascript">
 	ddsmoothmenu.init({
 		mainmenuid : "tooplate_menu", //menu DIV id
@@ -110,24 +125,23 @@ $(document).ready(function(){
 
 </script> -->
 
-
-
 </head>
 <body class="homepage navigationbar">
 	<div id="tooplate_wrapper">
 		<div id="tooplate_header">
 			<div id="header_top">
 				<div id="site_title">
-					<a href="<c:url value='/home'/>">Sagarmatha Marketplace</a>
+					<a href="<c:url value='/homepage'/>">Sagarmatha Marketplace</a>
 				</div>
 				<div id="tooplate_menu" class="ddsmoothmenu">
 					<ul>
-						<li><a href="<c:url value='/products'/>">Category</a>
+						<li><a href="<c:url value='/homepage'/>">Category</a>
 
 							<ul>
 								<c:forEach var="category" items="${categories}">
 									<li><a
-										href="<c:url value='/home?categoryId=${category.categoryId}' />">${category.categoryName}</a></li>
+										href="<c:url value='/homepage?categoryId=${category.categoryId}' />">${category.categoryName}</a>
+									</li>
 								</c:forEach>
 							</ul>
 					</ul>
@@ -158,3 +172,4 @@ $(document).ready(function(){
 				<!-- END of header bottom -->
 			</div>
 			<!-- END of header -->
+			

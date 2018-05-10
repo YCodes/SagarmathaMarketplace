@@ -23,10 +23,16 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="Id" class="java.lang.Integer"/>
+	<field name="Id" class="java.lang.Long"/>
 	<field name="Name" class="java.lang.String"/>
 	<field name="Category" class="java.lang.String"/>
 	<field name="Quantity" class="java.lang.Integer"/>
+	<field name="Price" class="java.lang.Integer"/>
+	<field name="VendorId" class="java.lang.Long"/>
+	<field name="TotalPrice" class="java.lang.Integer"/>
+	<variable name="TotalQuantity" class="java.lang.Integer" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{Quantity}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -56,13 +62,21 @@
 				<reportElement x="-20" y="45" width="595" height="1" uuid="a2c1aedf-534b-49e6-9e28-48e184d4bea5"/>
 			</line>
 			<staticText>
-				<reportElement x="5" y="48" width="100" height="17" uuid="077aafc7-b953-4726-a7c3-bbf202ca6067"/>
+				<reportElement x="5" y="48" width="55" height="17" uuid="077aafc7-b953-4726-a7c3-bbf202ca6067"/>
 				<text><![CDATA[Vendor Id: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="432" y="48" width="46" height="14" uuid="8de5c98e-454d-4b14-835a-05e8bea03e67"/>
 				<text><![CDATA[Date]]></text>
 			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="482" y="47" width="100" height="30" uuid="7d916b6c-b35d-4fc2-a420-ad57ea213056"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="49" width="66" height="13" uuid="4a818edf-3093-4db3-ac5f-d23791a02997"/>
+				<textFieldExpression><![CDATA[$F{VendorId}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -103,7 +117,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="34" splitType="Stretch">
+		<band height="46" splitType="Stretch">
 			<textField>
 				<reportElement x="95" y="5" width="80" height="20" uuid="5b9009e2-4534-4a68-8129-619d0d4a52c3">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe88c56d-69b5-4d9b-9c79-f80748887d33"/>
@@ -128,10 +142,16 @@
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{Quantity}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="484" y="5" width="100" height="30" uuid="f8898045-32ec-4ace-b760-2e5dbbe67abe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f0e76b2-7b66-4616-888b-848216b5fe07"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Price}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<staticText>
 				<reportElement x="390" y="5" width="53" height="15" uuid="76eea962-3078-47c5-afd2-7b698a052300"/>
 				<text><![CDATA[Total Qty:]]></text>
@@ -140,6 +160,10 @@
 				<reportElement x="484" y="5" width="53" height="15" uuid="aa95634c-ebca-4109-b6f7-fffbd7eb6b2f"/>
 				<text><![CDATA[Total Price:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="390" y="23" width="80" height="18" uuid="ca8893d6-4844-4470-9e7a-b6ebb9a154d9"/>
+				<textFieldExpression><![CDATA[$V{TotalQuantity}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>

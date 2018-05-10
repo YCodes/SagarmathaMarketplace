@@ -11,7 +11,7 @@
 		<h1>Access Denied!</h1>
 		<p>
 			It seems that you are in the wrong place! Click
-			<a href="<c:url value="/" />">here</a>
+			<a href="<c:url value="/homepage" />">here</a>
 			to go back!
 		</p>
 	</div>
