@@ -45,7 +45,7 @@
 					<%-- <td><a href="<c:url value='/homepage'/>" class="btn btn-warning"><i
 							class="fa fa-angle-left"></i> Continue Shopping</a></td>
 					<td colspan="2" class="hidden-xs"></td> --%>
-					<td class="hidden-xs text-center"><strong>Total  $${totalPrice}</strong></td>
+					<td class="hidden-xs text-center" ><strong>Total  $${totalPrice}</strong></td>
 					<td><a href="<c:url value='/checkout/submit'/>" class="btn btn-success btn-block">Confirm Order
 							<i class="fa fa-angle-right"></i>
 					</a></td>
