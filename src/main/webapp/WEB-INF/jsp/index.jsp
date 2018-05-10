@@ -33,8 +33,8 @@
 		<div class="clear"></div>
 	</div>
 	<!-- END of main -->
+	
+<%@ include file="footer.jsp"%>
 
 </div>
 <!-- END of wrapper -->
-
-<%@ include file="footer.jsp"%>
