@@ -7,10 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -40,21 +38,6 @@ public class Product {
 	private Long vendorId;
 
 
-	public MultipartFile getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(MultipartFile photo) {
-		this.photo = photo;
-	}
-
-	public String getPhotoURL() {
-		return photoURL;
-	}
-
-	public void setPhotoURL(String photoURL) {
-		this.photoURL = photoURL;
-	}
 	public Category getCategory() {
 		return category;
 	}
