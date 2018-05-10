@@ -87,7 +87,7 @@ public class ProductController {
 			orderLines.add(orderLine);
 			order.setOrderLine(orderLines);
 		}
-		return "redirect:/homepage";
+		return "redirect:/home";
 	}
 
 }

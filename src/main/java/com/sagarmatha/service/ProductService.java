@@ -29,4 +29,8 @@ public interface ProductService {
 
 	public List<Product> searchByProductName(String str);
 
+	public Product add(Product product);
+
+	public void delete(Product savedProduct);
+
 }

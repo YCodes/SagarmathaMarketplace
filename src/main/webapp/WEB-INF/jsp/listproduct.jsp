@@ -37,7 +37,7 @@
 								<td>${product.category.categoryName }</td>
 								<td>${product.product_description }</td>
 								<td>${product.product_quantity }</td>
-								<td>${product.product_image }</td>
+								<%-- <td>${product.product_image }</td> --%>
 								<td><a data-toggle="modal" data-target="#exampleModal${product.productId }" class="editLink"
 									href="#">Edit</a> <a
 									href="product/delete/${product.productId }">Delete</a></td>
@@ -107,11 +107,11 @@
 															value="${product.product_quantity}">
 													</div>
 
-													<div class="form-group">
+													<%-- <div class="form-group">
 														<input type="file" name="product_image" id="edit_product_image"
 															class="form-control input-sm" placeholder="Product Image"
 															value="value="${product.product_image}">
-													</div>
+													</div> --%>
 
 													<input type="submit" value="Update Product"
 														class="btn btn-info btn-block">

@@ -3,9 +3,10 @@
 
 <div id="header_bottom">
 	<p>
-		<a href="<c:url value='/vendor/dashboard/${vendorId}'/>">Vendor Dashboard  |</a> <a
-			href="<c:url value='/vendor/listproduct'/>">List Product | </a><a
-			href="<c:url value='/vendor/addproduct'/>">Add Product</a>
+		<a href="<c:url value='/vendor/dashboard/${vendorId}'/>">Vendor
+			Dashboard |</a> <a href="<c:url value='/vendor/listproduct'/>">List
+			Product | </a><a href="<c:url value='/vendor/addproduct'/>">Add
+			Product</a>
 	</p>
 
 </div>
@@ -33,8 +34,8 @@
 								<div class="form-group">
 									<input type="hidden" name="vendorId" id="vendor_id"
 										class="form-control input-sm" placeholder="Vendor Id"
-										value="${vendorId}"> <input
-										type="text" name="product_name" id="product_name"
+										value="${vendorId}"> <input type="text"
+										name="product_name" id="product_name"
 										class="form-control input-sm" placeholder="Product Name">
 								</div>
 							</div>
@@ -62,16 +63,27 @@
 								id="product_quantity" class="form-control input-sm"
 								placeholder="Product quantity">
 						</div>
-						
-						<div class="form-group">
-							<input type="number" name="product_price"
-								id="product_price" class="form-control input-sm"
-								placeholder="Product price">
-						</div>
 
 						<div class="form-group">
+							<input type="number" name="product_price" id="product_price"
+								class="form-control input-sm" placeholder="Product price">
+						</div>
+
+						<!-- <div class="form-group">
 							<input type="file" name="product_image" id="product_image"
 								class="form-control input-sm" placeholder="Product Image">
+						</div> -->
+
+						<div class="container">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Upload Image</label>
+									<div class="form-group">
+										<input type="file" id="imgInp" name="photo"
+											class="form-control btn btn-default">
+									</div>
+								</div>
+							</div>
 						</div>
 
 						<input type="submit" value="Add Product"
