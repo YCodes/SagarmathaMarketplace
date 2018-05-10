@@ -47,7 +47,7 @@
 			<h3>Secure Payment</h3>
 				<div class="form-group">
 					<label>Card Holder</label><form:input path="cardHolderName" class="form-control" style="width: 300px;" /> 
-					<label>CVV</label><form:input path="cvv" class="form-control" style="width: 300px;" />
+					<label>CCV</label><form:input path="cvv" class="form-control" style="width: 300px;" />
 					<label>Card Number : 16 digits number</label><form:input path="cardNumber" class="form-control" 
 						style="width: 300px;" pattern="[0-9]{16}"/> 
 					<label>Expiration Date</label><br>

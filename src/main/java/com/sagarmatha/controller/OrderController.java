@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -93,8 +94,10 @@ public class OrderController {
 			@RequestParam("month") String month, @RequestParam("year") String year, Principal principal,
 
 			@ModelAttribute Order order,SessionStatus sessionStatus) {
+//		BCryptPasswordEncoder Encoder = new BCryptPasswordEncoder();
 		paymentForm.setCardNumber(paymentForm.getCardNumber().replaceAll("\\s",""));
         paymentForm.setCardExpirationDate(month + "/" + year);
+//        paymentForm.setCvv(Encoder.encode(paymentForm.getCvv()));
         model.addAttribute("order", order);
 		double totalPrice = order.getOrderLine().stream()
 				.mapToDouble(orderLine -> orderLine.getQuantity() * orderLine.getProduct().getPrice()).sum();
@@ -114,9 +117,8 @@ public class OrderController {
 		
 		model.addAttribute("User", principal.getName());
 		 List<String> destionationscard = new ArrayList<>();
-	       destionationscard.add("12333333334444");
-	       destionationscard.add("12112121221444");
-	       destionationscard.add("12121212214444");
+	       destionationscard.add("4444444444444444");
+	      
 	        String responseCode = orderService.doTransaction(paymentForm.getCardNumber(),
 	            paymentForm.getCardExpirationDate(), paymentForm.getCardHolderName(), paymentForm.getCvv(),
 	            paymentForm.getCardZipcode(), totalPrice, "3333333333333333",destionationscard);
