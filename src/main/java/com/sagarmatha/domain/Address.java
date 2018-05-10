@@ -16,10 +16,10 @@ public class Address {
 	@Column(name = "address_id")
 	private Long addressId;
 
+
 	@NotEmpty
 	private String street;
 
-	@NotEmpty
 	private String city;
 
 	@NotEmpty

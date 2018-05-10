@@ -96,13 +96,13 @@ public class VendorController {
 
 	@RequestMapping("/vendor/listproduct")
 	public String vendorListProduct(Principal principal, ModelMap model) {
-		// Vendor vendor = vendorService.findVendorByEmail(principal.getName());
-		// System.out.println(vendor);
-		// List<Product> products = productService.viewActiveProducts(vendor.getId());
-		// System.out.println(products);
 
-		// List<Product> products = productService.viewActiveProducts(vendorId);
-		List<Product> products = productService.viewAllProduct();
+	
+		Vendor vendor = vendorService.findVendorByEmail(principal.getName());
+
+		boolean isActive = false;
+	 	List<Product> products = productService.viewActiveProducts(vendor.getId(), isActive);
+
 		model.addAttribute("products", products);
 
 		List<Category> categories = categoryService.viewAllCategory();
@@ -147,41 +147,10 @@ public class VendorController {
 
 	// Vendor Add Products from Vendor Dashboard
 
-	/*
-	 * @RequestMapping(value="/vendor/addproduct", method = RequestMethod.POST)
-	 * public String vendorAddProduct(@ModelAttribute("product") @Valid Product
-	 * product, BindingResult result,@RequestParam("product_image") MultipartFile[]
-	 * files, ModelMap model) throws IOException { // Save file on system String
-	 * imageName = product.getProduct_name()+".jpg"; for (MultipartFile file :
-	 * files) { if (!file.getOriginalFilename().isEmpty()) { BufferedOutputStream
-	 * outputStream = new BufferedOutputStream( new FileOutputStream( new
-	 * File("D:/sagarmathamarketplace/src/main/webapp/resources/MultipleFileUpload",
-	 * imageName)));
-	 * 
-	 * outputStream.write(file.getBytes()); outputStream.flush();
-	 * outputStream.close(); } else { model.addAttribute("msg",
-	 * "Please select at least one file.."); return "fileUploadForm"; } }
-	 * 
-	 * productService.addProduct(product); return "redirect:/vendor/listproduct";
-	 * 
-	 * }
-	 */
 
 	@RequestMapping(value = "/vendor/addproduct", method = RequestMethod.POST)
 	public String vendorAddProduct(@ModelAttribute("product") @Valid Product product, BindingResult result,
 			@RequestParam("photo") MultipartFile[] files, ModelMap model) throws IOException {
-		// Save file on system
-		/*
-		 * String imageName = product.getProduct_name()+".jpg"; for (MultipartFile file
-		 * : files) { if (!file.getOriginalFilename().isEmpty()) { BufferedOutputStream
-		 * outputStream = new BufferedOutputStream( new FileOutputStream( new File(
-		 * "D:\\SagarmathaMarketplace\\src\\main\\webapp\\resources\\MultipleFileUpload",
-		 * imageName)));
-		 * 
-		 * outputStream.write(file.getBytes()); outputStream.flush();
-		 * outputStream.close(); } else { model.addAttribute("msg",
-		 * "Please select at least one file.."); return "fileUploadForm"; } }
-		 */
 
 		MultipartFile photo = product.getPhoto();
 		System.out.println("*AddPHOTO");
@@ -205,9 +174,7 @@ public class VendorController {
 				throw new RuntimeException("Employee photo saving failed", e);
 				// throw new UnableToUploadPhotoException("Employee photo saving failed");
 			}
-		}
-		System.out.println("*********************************");
-		System.out.println(product);
+
 		productService.addProduct(product);
 		return "redirect:/vendor/listproduct";
 

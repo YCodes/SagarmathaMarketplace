@@ -32,8 +32,11 @@ public class Product {
 	
 	@JsonIgnore
 	@Transient
+
 	private MultipartFile photo;
-	
+
+	private Long vendorId;
+
 
 	public MultipartFile getPhoto() {
 		return photo;
@@ -87,11 +90,10 @@ public class Product {
 		this.isActive = isActive;
 	}
 
-	public int getVendorId() {
+	public Long getVendorId() {
 		return vendorId;
 	}
-
-	public void setVendorId(int vendorId) {
+	public void setVendorId(Long vendorId) {
 		this.vendorId = vendorId;
 	}
 

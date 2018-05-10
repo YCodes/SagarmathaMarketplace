@@ -3,10 +3,12 @@
 
 <div id="header_bottom">
 	<p>
-		<a href="<c:url value='/vendor/dashboard/${vendorId}'/>">Vendor
-			Dashboard |</a> <a href="<c:url value='/vendor/listproduct'/>">List
-			Product | </a><a href="<c:url value='/vendor/addproduct'/>">Add
-			Product</a>
+
+		<a href="<c:url value='/vendor/dashboard/${vendorId}'/>">Vendor Dashboard  |</a> <a
+			href="<c:url value='/vendor/listproduct'/>">List Product |</a><a
+			href="<c:url value='/vendor/addproduct'/>">Add Product |</a>
+			<a href="<c:url value='/report'/>">View Report</a>
+
 	</p>
 
 </div>
@@ -59,14 +61,16 @@
 						</div>
 
 						<div class="form-group">
-							<input type="number" name="product_quantity"
+							<input type="number" min="0" name="product_quantity"
 								id="product_quantity" class="form-control input-sm"
 								placeholder="Product quantity">
 						</div>
 
 						<div class="form-group">
-							<input type="number" name="product_price" id="product_price"
-								class="form-control input-sm" placeholder="Product price">
+
+							<input type="number" min="0" name="product_price"
+								id="product_price" class="form-control input-sm"
+								placeholder="Product price">
 						</div>
 
 						<!-- <div class="form-group">
