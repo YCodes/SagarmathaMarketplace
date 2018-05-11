@@ -3,3 +3,5 @@ INSERT INTO BAccount VALUES (2, "20000","2222222222222222","2008-11-11","222","0
 INSERT INTO BAccount VALUES (3, "30000","3333333333333333","2008-11-11","333","03/20","Vendor-Rolex","52557");
 INSERT INTO BAccount VALUES (4, "30000","4444444444444444","2008-11-11","444","04/22","Vendor-RayBan","52557");
 INSERT INTO BAccount VALUES (5, "100","5555555555555555","2008-11-11","555","05/21","Admin","52557");
+
+INSERT INTO `sagarmatha`.`user`(`enabled`,`password`,`role`,`username` ) VALUES (True,'$2a$06$HZdf9.pKdAmSXp6a8ltUUeghU4i.RhyhLd0Y0cY0olJ0W8nPyGxKm','ROLE_ADMIN','admin@mum.edu');
