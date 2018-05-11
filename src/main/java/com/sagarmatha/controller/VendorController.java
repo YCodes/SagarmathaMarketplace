@@ -87,12 +87,17 @@ public class VendorController {
 	@RequestMapping(value = "/vendor/update", method = RequestMethod.POST)
 	public String vendorUpdate(@ModelAttribute("vendorUpdate") @Valid Vendor vendor, BindingResult result,
 			ModelMap model) {
-		if (result.hasErrors()) {
-			return "redirect:/vendor/dashboard";
-		}
 		Long id = vendor.getId();
+		
+		
+		if (result.hasErrors()) {
+			System.out.println("Inside the error"+id);
+			return "redirect:/vendor/dashboard/"+id;
+		}
+		model.addAttribute("vendorId", id);
 		vendorService.updateVendor(id, vendor);
 
+		System.out.println("AAA"+id);
 		return "redirect:/vendor/dashboard/" + id;
 	}
 

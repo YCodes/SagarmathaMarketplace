@@ -48,7 +48,7 @@ public class VendorServiceImpl implements VendorService {
 		vendor_db.setLast_name(vendor.getLast_name());
 		vendor_db.setPhone_number(vendor.getPhone_number());
 		vendor_db.setAddress(vendor.getAddress());
-		vendor_db.setEmail(vendor.getEmail());
+		//vendor_db.setEmail(vendor.getEmail());
 		vendor_db.setUser(vendor.getUser());
 		
 		vendorRepository.save(vendor_db);

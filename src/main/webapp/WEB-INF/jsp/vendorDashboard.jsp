@@ -31,7 +31,7 @@
 									<div class="row">
 										<div class="col-xs-6 col-sm-6 col-md-6">
 
-											<input type="hidden" name="Id" value="1" >
+											<input type="hidden" name="Id" value="${vendorId}" >
 
 											<div class="form-group">
 												<input type="text" name="first_name" id="first_name"
@@ -57,7 +57,7 @@
 									<div class="form-group">
 										<input type="email" name="email" id="email"
 											class="form-control input-sm" placeholder="Email Address"
-											value="${vendor.email}">
+											value="${vendor.email}" disabled="disabled">
 									</div>
 
 									<div class="row">
@@ -65,13 +65,6 @@
 											<div class="form-group">
 												<input type="password" name="user.password" id="password"
 													class="form-control input-sm" placeholder="Password">
-											</div>
-										</div>
-										<div class="col-xs-6 col-sm-6 col-md-6">
-											<div class="form-group">
-												<input type="password" name="password_confirmation"
-													id="password_confirmation" class="form-control input-sm"
-													placeholder="Confirm Password">
 											</div>
 										</div>
 									</div>
